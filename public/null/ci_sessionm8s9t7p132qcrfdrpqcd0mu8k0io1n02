@@ -1,0 +1,14 @@
+__ci_last_regenerate|i:1664457385;_ci_previous_url|s:30:"http://localhost:8080/register";error|s:417:"<!-- DEBUG-VIEW START 1 SYSTEMPATH\Validation\Views\list.php -->
+	<div class="errors" role="alert">
+		<ul>
+					<li>NIM Harus Diisi</li>
+					<li>Jurusan Harus Diisi</li>
+					<li>Email Harus Diisi</li>
+					<li>Password Harus Diisi</li>
+					<li>No Handphone Harus Diisi</li>
+					<li>The reguler field must be one of: A,B.</li>
+				</ul>
+	</div>
+
+<!-- DEBUG-VIEW ENDED 1 SYSTEMPATH\Validation\Views\list.php -->
+";__ci_vars|a:3:{s:5:"error";s:3:"old";s:13:"_ci_old_input";s:3:"old";s:21:"_ci_validation_errors";s:3:"old";}_ci_old_input|a:2:{s:3:"get";a:0:{}s:4:"post";a:7:{s:4:"nama";s:11:"abdhfiqweoq";s:3:"nim";s:0:"";s:7:"jurusan";s:0:"";s:5:"email";s:0:"";s:8:"password";s:0:"";s:7:"reguler";s:7:"Reguler";s:5:"no_hp";s:0:"";}}_ci_validation_errors|s:264:"a:6:{s:3:"nim";s:15:"NIM Harus Diisi";s:7:"jurusan";s:19:"Jurusan Harus Diisi";s:5:"email";s:17:"Email Harus Diisi";s:8:"password";s:20:"Password Harus Diisi";s:5:"no_hp";s:24:"No Handphone Harus Diisi";s:7:"reguler";s:38:"The reguler field must be one of: A,B.";}";
