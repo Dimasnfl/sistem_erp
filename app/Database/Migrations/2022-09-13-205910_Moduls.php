@@ -21,7 +21,12 @@ class Moduls extends Migration
             ],
             'kode' => [
                 'type' => 'VARCHAR',
-                'constraint' => '255'
+                'constraint' => '255',
+                'unique' => true
+            ],
+            'ketersediaan' => [
+                'type' => 'INT',
+                'constrain' => '5'
             ],
             'harga' => [
                 'type' => 'INT',

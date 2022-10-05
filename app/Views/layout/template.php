@@ -26,7 +26,7 @@
                         <a class="nav-link text-center text-primary" href="/">Home</a>
                     </li>
                     <li class="nav-item" style="width: 120px;">
-                        <a class="nav-link text-center text-primary" href="#">Modul</a>
+                        <a class="nav-link text-center text-primary" href="/modul">Modul</a>
                     </li>
                     <li class="nav-item" style="width: 120px;">
                         <a class="nav-link text-center text-primary" href="#">Sertifikat</a>

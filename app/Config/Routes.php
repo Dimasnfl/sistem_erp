@@ -39,6 +39,9 @@ $routes->set404Override();
 // Home
 $routes->get('/', 'Home::index');
 
+//Modul
+$routes->get('/modul', 'ModulController::index');
+
 // Login
 $routes->get('/login', 'LoginController::index');
 $routes->post('/login', 'LoginController::auth');
@@ -48,7 +51,9 @@ $routes->get('/logout', 'LoginController::logout');
 $routes->get('/register', 'RegisterController::index');
 $routes->post('/register', 'RegisterController::store');
 
+// Admin
 $routes->get('/admin', 'AdminController::index', ['filter' => 'FilterErp']);
+
 
 /*
  * --------------------------------------------------------------------

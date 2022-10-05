@@ -10,6 +10,7 @@
     <div class="col-sm-4 mt-4">
         <div class="container-sm mt-5 p-4">
 
+            <h1 class="h3 mb-3 fw-normal">Login Account</h1>
             <?php if (!empty(session()->getFlashdata('error'))) : ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <?php echo session()->getFlashdata('error'); ?>
@@ -23,7 +24,6 @@
 
             <form action="/login" method="POST">
                 <?= csrf_field(); ?>
-                <h1 class="h3 mb-3 fw-normal">Login Account</h1>
 
                 <div class="form-floating mt-2">
                     <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
