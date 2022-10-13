@@ -29,7 +29,7 @@
                         <a class="nav-link text-center text-primary" href="/modul">Modul</a>
                     </li>
                     <li class="nav-item" style="width: 120px;">
-                        <a class="nav-link text-center text-primary" href="#">Sertifikat</a>
+                        <a class="nav-link text-center text-primary" href="/sertifikat">Sertifikat</a>
                     </li>
                     <li class="nav-item" style="width: 120px;">
                         <a class="nav-link text-center text-primary" href="#">Layanan</a>
@@ -40,6 +40,12 @@
                 </ul>
 
                 <?php if (session()->has('logged_in') == true) : ?>
+                    <button type="button" class="btn me-3">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                        </svg>
+                    </button>
                     <a class="nav-link dropdown-toggle me-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="img/ERP.png" class="rounded-circle" width="40px" height="40px">
                         <?php $session = session() ?>

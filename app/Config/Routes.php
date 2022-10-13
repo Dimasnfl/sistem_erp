@@ -42,6 +42,8 @@ $routes->get('/', 'Home::index');
 //Modul
 $routes->get('/modul', 'ModulController::index');
 
+$routes->get('/sertifikat', 'SertifikatController::index', ['filter' => 'logged_in']);
+
 // Login
 $routes->get('/login', 'LoginController::index');
 $routes->post('/login', 'LoginController::auth');
@@ -54,6 +56,7 @@ $routes->post('/register', 'RegisterController::store');
 // Admin
 $routes->get('/admin', 'AdminController::index', ['filter' => 'FilterErp']);
 
+$routes->get('/error404', 'customError404::index');
 
 /*
  * --------------------------------------------------------------------

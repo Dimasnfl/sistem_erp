@@ -24,6 +24,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'FilterErp' => \App\Filters\FilterErp::class,
+        'logged_in' => \App\Filters\logged_in::class,
     ];
 
     /**

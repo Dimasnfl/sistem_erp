@@ -13,7 +13,9 @@
                     <th scope="col">Nama Modul</th>
                     <th scope="col">Ketersediaan</th>
                     <th scope="col">Harga</th>
-                    <th scope="col">Pesanan</th>
+                    <?php if (session()->has('logged_in') == true) :  ?>
+                        <th scope="col">Pesanan</th>
+                    <?php endif;  ?>
                 </tr>
             </thead>
             <tbody class="align-middle">
@@ -23,7 +25,9 @@
                         <td><?php echo $modul['nama'] ?></td>
                         <td><?php echo $modul['ketersediaan'] ?></td>
                         <td><?php echo $modul['harga'] ?></td>
-                        <td> <button class="btn btn-success">Masukkan Keranjang</button></td>
+                        <?php if (session()->has('logged_in') == true) :  ?>
+                            <td> <button class="btn btn-success">Masukkan Keranjang</button></td>
+                        <?php endif;  ?>
                     </tr>
                 <?php endforeach ?>
             </tbody>

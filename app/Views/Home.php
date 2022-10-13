@@ -24,4 +24,23 @@
     </button>
 </div>
 
+<div class="m-3">
+    <div class="row">
+        <div class="col border border-dark">
+            <h3>petunjuk</h3>
+            <div class="row">
+                <div class="col">col</div>
+                <div class="col">col</div>
+            </div>
+        </div>
+        <div class="col border border-dark">
+            <h3>petunjuk</h3>
+            <div class="row">
+                <div class="col">col</div>
+                <div class="col">col</div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?= $this->endsection(); ?>
