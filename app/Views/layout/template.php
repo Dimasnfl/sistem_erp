@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
@@ -40,12 +41,16 @@
                 </ul>
 
                 <?php if (session()->has('logged_in') == true) : ?>
-                    <button type="button" class="btn me-3">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                        </svg>
-                    </button>
+                    <div class="dropdown">
+                        <button type="button" class="btn me-3">
+                            <i class="bi bi-cart-fill"></i>
+                        </button>
+                    </div>
+                    <div class="dropdown">
+                        <button type="button" class="btn me-3">
+                            <i class="bi bi-bell-fill"></i>
+                        </button>
+                    </div>
                     <a class="nav-link dropdown-toggle me-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="img/ERP.png" class="rounded-circle" width="40px" height="40px">
                         <?php $session = session() ?>

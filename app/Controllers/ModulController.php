@@ -17,4 +17,24 @@ class ModulController extends BaseController
         ];
         return view('Modul', $data);
     }
+
+    public function cart()
+    {
+        $data = [
+            'title' => 'Cart'
+        ];
+        return view('Cart', $data);
+    }
+
+    public function addtocart()
+    {
+    }
+
+    public function update()
+    {
+    }
+
+    public function remove()
+    {
+    }
 }
