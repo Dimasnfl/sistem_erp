@@ -41,7 +41,11 @@ $routes->get('/', 'Home::index');
 
 //Modul
 $routes->get('/modul', 'ModulController::index');
+$routes->get('/cart', 'ModulController::cart');
+$routes->get('/add-to-cart/(:segment)', 'ModulController::addtocart/$1');
+$routes->get('/remove-from-cart/(:num)', 'ModulController::remove/$1');
 
+// Sertifikat
 $routes->get('/sertifikat', 'SertifikatController::index', ['filter' => 'logged_in']);
 
 // Login
@@ -55,11 +59,6 @@ $routes->post('/register', 'RegisterController::store');
 
 // Admin
 $routes->get('/admin', 'AdminController::index', ['filter' => 'FilterErp']);
-
-$routes->get('cart', 'ModulController::cart');
-$routes->get('add-to-cart/{id}', 'ModulController::addtocart');
-$routes->patch('update-cart', 'ModulController::update');
-$routes->delete('removefromcart', 'ModulController::remove');
 
 // Error Page
 $routes->get('/error404', 'customError404::index');

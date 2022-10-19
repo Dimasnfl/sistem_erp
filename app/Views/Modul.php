@@ -26,7 +26,7 @@
                         <td><?php echo $modul['ketersediaan'] ?></td>
                         <td><?php echo $modul['harga'] ?></td>
                         <?php if (session()->has('logged_in') == true) :  ?>
-                            <td> <button class="btn btn-success">Masukkan Keranjang</button></td>
+                            <td><a href="/add-to-cart/<?= $modul['id'] ?>" class="btn btn-success" role="button">Masukkan Keranjang</a></td>
                         <?php endif;  ?>
                     </tr>
                 <?php endforeach ?>

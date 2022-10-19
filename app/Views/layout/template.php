@@ -45,6 +45,11 @@
                         <button type="button" class="btn me-3">
                             <i class="bi bi-cart-fill"></i>
                         </button>
+                        <div class="dropdown-menu">
+                            <div class="btn btn-primary">
+                                View All
+                            </div>
+                        </div>
                     </div>
                     <div class="dropdown">
                         <button type="button" class="btn me-3">
