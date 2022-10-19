@@ -35,7 +35,45 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+
+//homepage
+$routes->get('/', 'Dashboard::index');
+
+//===================================================================
+//modul page
+$routes->get('Modul', 'Modul::index');
+
+//add Modul
+$routes->get('modul/add', 'Modul::create');
+$routes->post('modul', 'Modul::store');
+
+//edit Modul
+$routes->get('modul/edit/(:num)', 'Modul::edit/$1');
+$routes->put('modul/(:any)', 'Modul::update/$1');
+$routes->delete('modul/(:segment)', 'Modul::destroy/$1');
+
+//import modul
+$routes->post('modul/import', 'Modul::import');
+//===================================================================
+
+//===================================================================
+//sertifikat page
+$routes->get('Sertifikat', 'Sertifikat::index');
+
+//add sertifikat
+$routes->get('sertifikat/add', 'Sertifikat::create');
+$routes->post('sertifikat', 'Sertifikat::store');
+
+//edit sertifikat
+$routes->get('sertifikat/edit/(:num)', 'Sertifikat::edit/$1');
+$routes->put('sertifikat/(:any)', 'Sertifikat::update/$1');
+$routes->delete('sertifikat/(:segment)', 'Sertifikat::destroy/$1');
+
+//import sertifikat
+$routes->post('sertifikat/import', 'Sertifikat::import');
+//===================================================================
+
+
 
 /*
  * --------------------------------------------------------------------
