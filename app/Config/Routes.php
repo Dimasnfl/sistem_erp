@@ -73,7 +73,9 @@ $routes->delete('sertifikat/(:segment)', 'Sertifikat::destroy/$1');
 $routes->post('sertifikat/import', 'Sertifikat::import');
 //===================================================================
 
-
+//===================================================================
+//modul page
+$routes->get('ListModul', 'ListModul::index');
 
 /*
  * --------------------------------------------------------------------

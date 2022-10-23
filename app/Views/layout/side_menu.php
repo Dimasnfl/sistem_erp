@@ -54,14 +54,14 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="<?= site_url('Modul') ?>" class="nav-link">
-                <i class="far fa-copy nav-icon"></i>
-                <p>View Modul</p>
+                <i class="fas fa-archive nav-icon"></i>
+                <p>Stok Modul</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= site_url('modul/add') ?>" class="nav-link">
-                <i class="far fa-edit nav-icon"></i>
-                <p>Add Data Modul</p>
+              <a href="<?= site_url('ListModul') ?>" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>List Modul</p>
               </a>
             </li>
           </ul>

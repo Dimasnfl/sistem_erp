@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\M_listmodul;
 use App\Models\M_modul;
 
-class Modul extends BaseController
+class ListModul extends BaseController
 {
 
     function __construct()
@@ -28,20 +28,18 @@ class Modul extends BaseController
         // $M_modul= new M_modul();
         // $data['modul'] = $M_modul->orderBy('kode', 'ASC')->findAll();
 
-
         //cara 3
-        // $query = $this->db->query("SELECT * FROM moduls");
-        // $data['moduls'] = $query->getResult();
+        // $query = $this->db->query("SELECT * FROM list_modul");
+        // $data['list_modul'] = $query->getResult();
 
-        
         //cara 4
-        // $data['moduls'] = $this->modul->getAll();
-        $data['moduls'] = $this->modul->getStok();
+        $data['list_modul'] = $this->listmodul->getAll();
+
 
         echo view('layout/header', $header);
         echo view('layout/top_menu');
         echo view('layout/side_menu');
-        echo view('modul/get', $data);
+        echo view('list_modul/get', $data);
         echo view('layout/footer');
     }
 

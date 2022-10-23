@@ -5,12 +5,13 @@
      <div class="container-fluid">
        <div class="row mb-2">
          <div class="col-sm-6">
-           <h1>Stok Modul</h1>
+           <h1>List Modul</h1>
          </div>
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
              <li class="breadcrumb-item"><a href="/">Home</a></li>
-             <li class="breadcrumb-item active">Stok Modul</li>
+             <li class="breadcrumb-item"><a href="/Modul">Data Modul</a></li>
+             <li class="breadcrumb-item active">List Modul</li>
            </ol>
          </div>
        </div>
@@ -31,9 +32,6 @@
            <div class="card">
              <div class="card-header">
                <h3 class="card-title">
-                 <div class="btn-group">
-                   <a href="<?= site_url('modul/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
-                 </div>
                  <div class="btn-group">
                    <button type="button" class="btn btn-outline-primary"><i class="fas fa-file-upload"></i>.Import Excel</button>
                    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
@@ -62,28 +60,21 @@
                <table class="table table-head-fixed table-striped text-nowrap table-bordered">
                  <thead>
                    <tr>
+                     <th>NO</th>
                      <th>KODE</th>
                      <th>NAMA MODUL</th>
-                     <th>HARGA</th>
-                     <th>KETERSEDIAAN</th>
                      <th class="text-center">ACTION</th>
                    </tr>
                  </thead>
                  <tbody>
                    <?php
-                    function rupiah($harga)
-                    {
-                      $harga = 'Rp ' . number_format($harga, 2, ",", ".");
-                      return $harga;
-                    }
-                    foreach ($moduls as $key => $value) : ?>
+                   $no = 1;
+                    foreach ($list_modul as $key => $value) : ?>
                      <tr>
+                       <td><?= $no; ?></td>
                        <td><?= strtoupper($value->kode) ?></td>
                        <td><?= $value->nama ?></td>
-                       <td><?= rupiah($value->harga) ?></td>
-                       <td><?= $value->ketersediaan ?></td>
                        <td class="text-center">
-                         <a href="<?= site_url('modul/edit/' . $value->id) ?>" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
                          <form action="<?= site_url('modul/' . $value->id) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus Data Modul Bernama <?= ($value->nama) ?>?')">
                            <input type="hidden" name="_method" value="DELETE">
                            <button class="btn btn-outline-danger">
@@ -92,10 +83,8 @@
                          </form>
                        </td>
                      </tr>
-
+                     <?php $no++; ?>
                    <?php endforeach ?>
-
-
                  </tbody>
                </table>
              </div>

@@ -1,25 +1,39 @@
 <?php 
+
 namespace App\Models;
 use CodeIgniter\Model;
+
 class M_modul extends Model
 {
-    protected $table = 'modul';
-    protected $primaryKey = 'id';
-    
+    protected $table         = 'moduls';
+    protected $primaryKey    = 'id';
+    // protected $returntype    = 'object';
     protected $allowedFields = ['nama', 'kode', 'harga'];
+
+    public function getAll()
+    {
+        $builder = $this->db->table('moduls');
+        $builder->select('*');
+        $query   = $builder->get();
+        return $query->getResult();
+    }
+    // public function get()
+    // {
+    //     $query = $this->db->query('SELECT moduls.id as id, kode, nama, harga, COUNT( * ) as ketersediaan 
+    //     FROM moduls
+    //     JOIN list_modul ON list_modul.id_modul = moduls.id
+    //     GROUP BY kode
+    //     ');
+    //     return $query->getResult(); 
+    // }
 
     public function getStok()
     {
-         return $this->db->table('modul');
-
+        $builder = $this->db->table('moduls');
+        $builder->select('moduls.id as id, kode, nama, harga, COUNT( * ) as ketersediaan');
+        $builder->join('list_modul', 'list_modul.id_modul = moduls.id');
+        $builder->groupby('kode');
+        $query   = $builder->get();
+        return $query->getResult();
     }
-    // public function getStssok()
-    // {
-    //     $query = $this->db->query('SELECT modul.id, kode_modul.kode, kode_modul_id, COUNT( * ) as total 
-    //     FROM modul
-    //     JOIN kode_modul ON kode_modul.id = modul.kode_modul_id
-    //     GROUP BY kode_modul_id
-    //     ');
-    //     return $query->result(); 
-    // }
 }
