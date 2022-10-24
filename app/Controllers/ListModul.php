@@ -112,7 +112,7 @@ class ListModul extends BaseController
     //FUNCTION DELETE
     public function destroy($id)
     {
-        $this->db->table('list_modul')->where(['id' => $id])->delete();
+        $this->listmodul->delete($id);
         session()->setFlashdata('message', 'List Modul Berhasil Dihapus');
         return $this->response->redirect(site_url('/ListModul'));
     }

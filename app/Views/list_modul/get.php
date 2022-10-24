@@ -77,7 +77,7 @@
                        <td><?= strtoupper($value->kode) ?></td>
                        <td><?= $value->nama ?></td>
                        <td class="text-center">
-                         <form action="<?= site_url('listmodul/' . $value->id) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus List Modul Bernama <?= ($value->id_modul) ?>?')">
+                         <form action="<?= site_url('listmodul/' . $value->id_list) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus List Modul Bernama <?= ($value->id_list) ?>?')">
                            <input type="hidden" name="_method" value="DELETE">
                            <button class="btn btn-outline-danger">
                              <i class="fas fa-trash"></i>.Delete
