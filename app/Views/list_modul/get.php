@@ -33,6 +33,9 @@
              <div class="card-header">
                <h3 class="card-title">
                  <div class="btn-group">
+                   <a href="<?= site_url('listmodul/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
+                 </div>
+                 <div class="btn-group">
                    <button type="button" class="btn btn-outline-primary"><i class="fas fa-file-upload"></i>.Import Excel</button>
                    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
                      <span class="sr-only">Toggle Dropdown</span>
@@ -68,22 +71,20 @@
                  </thead>
                  <tbody>
                    <?php
-                   $no = 1;
                     foreach ($list_modul as $key => $value) : ?>
                      <tr>
-                       <td><?= $no; ?></td>
+                       <td><?= $key + 1 ?></td>
                        <td><?= strtoupper($value->kode) ?></td>
                        <td><?= $value->nama ?></td>
                        <td class="text-center">
-                         <form action="<?= site_url('modul/' . $value->id) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus Data Modul Bernama <?= ($value->nama) ?>?')">
+                         <form action="<?= site_url('listmodul/' . $value->id) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus List Modul Bernama <?= ($value->id_modul) ?>?')">
                            <input type="hidden" name="_method" value="DELETE">
                            <button class="btn btn-outline-danger">
-                             <i class="fas fa-trash"></i>
+                             <i class="fas fa-trash"></i>.Delete
                            </button>
                          </form>
                        </td>
                      </tr>
-                     <?php $no++; ?>
                    <?php endforeach ?>
                  </tbody>
                </table>

@@ -74,9 +74,21 @@ $routes->post('sertifikat/import', 'Sertifikat::import');
 //===================================================================
 
 //===================================================================
-//modul page
+//list modul page
 $routes->get('ListModul', 'ListModul::index');
 
+//add List Modul
+$routes->get('listmodul/add', 'ListModul::create');
+$routes->post('listmodul', 'ListModul::store');
+
+//edit List Modul
+$routes->get('listmodul/edit/(:num)', 'ListModul::edit/$1');
+$routes->put('listmodul/(:any)', 'ListModul::update/$1');
+$routes->delete('listmodul/(:segment)', 'ListModul::destroy/$1');
+
+//import List modul
+$routes->post('listmodul/import', 'ListModul::import');
+//===================================================================
 /*
  * --------------------------------------------------------------------
  * Additional Routing

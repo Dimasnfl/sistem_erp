@@ -111,7 +111,7 @@ class Modul extends BaseController
     //FUNCTION DELETE MODUL
     public function destroy($id)
     {
-        $this->db->table('moduls')->where(['id' => $id])->delete();
+        $this->modul->where(['id' => $id])->delete();
         session()->setFlashdata('message', 'Data Modul Berhasil Dihapus');
         return $this->response->redirect(site_url('/Modul'));
     }

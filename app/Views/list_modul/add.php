@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Form Tambah Data</h1>
+            <h1>Form Tambah Stok Modul</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -23,21 +23,18 @@
       <div class="container-fluid">
         <!-- /.row -->
         <div class="row">
-          <div class="col-12">
+          <div class="col-8">
                 <div class="card">
                     <div class="card-body">
-                        <form action="<?=site_url('modul')?>" method="post" autocomplete="off">
+                        <form action="<?=site_url('listmodul')?>" method="post" autocomplete="off">
                             <div class="form-group">
-                                <label>KODE MODUL</label>
-                                <input type="text" class="form-control" name="kode" placeholder="Masukkan Kode Modul" required>
-                            </div>
-                            <div class="form-group">
-                                <label>NAMA MODUL</label>
-                               <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Modul" required>
-                            </div>
-                            <div class="form-group">
-                                <label>HARGA</label>
-                               <input type="number" class="form-control" name="harga"  placeholder="Masukkan Harga" required>
+                                <label>PILIH MODUL YANG AKAN DITAMBAHKAN</label>
+                                <select name="id_modul" class="form-control" required>
+                                  <option value="" hidden>- Pilih Modul -</option>
+                                  <?php foreach ($moduls as $key => $value) : ?>
+                                    <option value="<?=$value->id?>"><?=$value->kode?> - <?=$value->nama?> - Rp.<?=$value->harga?></option>
+                                  <?php endforeach; ?>
+                                </select>
                             </div>
                             <button type="submit" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i>.Save</button>
                             <button type="reset" class="btn btn-outline-secondary"><i class="fas fa-redo"></i>.Reset</button>

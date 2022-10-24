@@ -81,7 +81,7 @@
                        <td><?= strtoupper($value->kode) ?></td>
                        <td><?= $value->nama ?></td>
                        <td><?= rupiah($value->harga) ?></td>
-                       <td><?= $value->ketersediaan ?></td>
+                       <td><?= $value->ketersediaan ?> <a>pcs</a></td>
                        <td class="text-center">
                          <a href="<?= site_url('modul/edit/' . $value->id) ?>" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
                          <form action="<?= site_url('modul/' . $value->id) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus Data Modul Bernama <?= ($value->nama) ?>?')">

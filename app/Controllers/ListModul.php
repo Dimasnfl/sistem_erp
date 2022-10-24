@@ -43,18 +43,20 @@ class ListModul extends BaseController
         echo view('layout/footer');
     }
 
-    //FUNCTION ADD MODUL 1
+
+    //FUNCTION ADD 1
     public function create()
     {
         $header['title'] = 'Form Tambah Modul';
+        $data['moduls'] = $this->modul->getAll();
 
         echo view('layout/header', $header);
         echo view('layout/top_menu');
         echo view('layout/side_menu');
-        echo view('modul/add');
+        echo view('list_modul/add', $data);
         echo view('layout/footer');
     }
-    //FUNCTION ADD MODUL 2
+    //FUNCTION ADD 2
     public function store()
     {
         $data = $this->request->getpost();
@@ -65,27 +67,27 @@ class ListModul extends BaseController
         //     'harga'  => $this->request->getVar('harga'),
         // ];
 
-        $this->db->table('moduls')->insert($data);
+        $this->listmodul->insert($data);
 
         if ($this->db->affectedRows() > 0) {
-            session()->setFlashdata('message', 'Data Modul Telah Tersimpan');
-            return $this->response->redirect(site_url('/Modul'));
+            session()->setFlashdata('message', 'List Modul Telah Tersimpan');
+            return $this->response->redirect(site_url('/ListModul'));
         }
     }
 
-    //FUNCTION EDIT MODUL 1
+    //FUNCTION EDIT 1
     public function edit($id = null)
     {
         if ($id != null) {
-            $query = $this->db->table('moduls')->getWhere(['id' => $id]);
+            $query = $this->db->table('list_modul')->getWhere(['id' => $id]);
             if ($query->resultID->num_rows > 0) {
-                $header['title'] = 'Form Edit Modul';
-                $data['moduls'] = $query->getRow();
+                $header['title'] = 'Form Edit List Modul';
+                $data['list_modul'] = $query->getRow();
 
                 echo view('layout/header', $header);
                 echo view('layout/top_menu');
                 echo view('layout/side_menu');
-                echo view('modul/edit', $data);
+                echo view('list_modul/edit', $data);
                 echo view('layout/footer');
             } else {
                 throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -94,27 +96,29 @@ class ListModul extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
-    //FUNCTION EDIT MODUL 2
+    //FUNCTION EDIT 2
     public function update($id)
     {
         //if data is array = don't need to use "unset"
         $data = $this->request->getPost();
         unset($data['_method']);
 
-        $this->db->table('moduls')->where(['id' => $id])->update($data);
-        session()->setFlashdata('message', 'Data Modul Berhasil Diupdate');
-        return $this->response->redirect(site_url('/Modul'));
+        $this->db->table('list_modul')->where(['id' => $id])->update($data);
+        session()->setFlashdata('message', 'List Modul Berhasil Diupdate');
+        return $this->response->redirect(site_url('/ListModul'));
     }
 
-    //FUNCTION DELETE MODUL
+
+    //FUNCTION DELETE
     public function destroy($id)
     {
-        $this->db->table('moduls')->where(['id' => $id])->delete();
-        session()->setFlashdata('message', 'Data Modul Berhasil Dihapus');
-        return $this->response->redirect(site_url('/Modul'));
+        $this->db->table('list_modul')->where(['id' => $id])->delete();
+        session()->setFlashdata('message', 'List Modul Berhasil Dihapus');
+        return $this->response->redirect(site_url('/ListModul'));
     }
 
-    //FUNCTION IMPORT MODUL
+
+    //FUNCTION IMPORT 
     public function import()
     {
         $file = $this->request->getFile('file_excel');
