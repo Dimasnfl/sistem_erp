@@ -37,11 +37,5 @@ class M_modul extends Model
         return $query->getResult();
     }
 
-    public function trash($id1,$id2)
-    {
-        $builder = $this->db->table('moduls');
-        $builder->where('moduls.id', $id1);
-        $builder->where('moduls.id = list_modul.id_modul', $id2);
-        $builder->delete();
-    }
+
 }

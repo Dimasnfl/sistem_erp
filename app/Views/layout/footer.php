@@ -48,6 +48,7 @@ $(function () {
 
 <!-- SCRIPT CHART JS -->
 <script>
+
   //-------------
     //- DONUT CHART -
     //-------------

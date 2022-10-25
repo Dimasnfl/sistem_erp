@@ -71,11 +71,7 @@
                  </thead>
                  <tbody>
                    <?php
-                    function rupiah($harga)
-                    {
-                      $harga = 'Rp ' . number_format($harga, 2, ",", ".");
-                      return $harga;
-                    }
+                    
                     foreach ($moduls as $key => $value) : ?>
                      <tr>
                        <td><?= strtoupper($value->kode) ?></td>

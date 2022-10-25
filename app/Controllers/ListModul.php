@@ -119,35 +119,34 @@ class ListModul extends BaseController
 
 
     //FUNCTION IMPORT 
-    public function import()
-    {
-        $file = $this->request->getFile('file_excel');
-        $extension = $file->getClientExtension();
-        if ($extension == 'xlsx' || $extension == 'xls') {
-            if ($extension == 'xls') {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-            } else {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-            }
-            $spreadsheet = $reader->load($file);
-            $moduls = $spreadsheet->getActiveSheet()->toArray();
-            foreach ($moduls as $key => $value) {
-                if ($key == 0) {
-                    continue;
-                }
-                $data = [
-                    'kode' => $value[1],
-                    'nama' => $value[2],
-                    'harga' => $value[3],
-                ];
-                $this->db->table('moduls')->insert($data);
-            }
+    // public function import()
+    // {
+    //     $file = $this->request->getFile('file_excel');
+    //     $extension = $file->getClientExtension();
+    //     if ($extension == 'xlsx' || $extension == 'xls') {
+    //         if ($extension == 'xls') {
+    //             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+    //         } else {
+    //             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+    //         }
+    //         $spreadsheet = $reader->load($file);
+    //         $moduls = $spreadsheet->getActiveSheet()->toArray();
+    //         foreach ($moduls as $key => $value) {
+    //             if ($key == 0) {
+    //                 continue;
+    //             }
+    //             $data = [
+    //                 'kode' => $value[1],
+    //                 'nama' => $value[2],
+    //             ];
+    //             $this->db->table('moduls')->insert($data);
+    //         }
 
-            session()->setFlashdata('message', 'File Excel Berhasil Diimport');
-            return $this->response->redirect(site_url('/Modul'));
-        } else {
-            session()->setFlashdata('message', 'File Excel Tidak Sesuai');
-            return $this->response->redirect(site_url('/Modul'));
-        }
-    }
+    //         session()->setFlashdata('message', 'File Excel Berhasil Diimport');
+    //         return $this->response->redirect(site_url('/Modul'));
+    //     } else {
+    //         session()->setFlashdata('message', 'File Excel Tidak Sesuai');
+    //         return $this->response->redirect(site_url('/Modul'));
+    //     }
+    // }
 }

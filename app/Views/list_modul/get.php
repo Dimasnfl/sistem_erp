@@ -35,7 +35,7 @@
                  <div class="btn-group">
                    <a href="<?= site_url('listmodul/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
                  </div>
-                 <div class="btn-group">
+                 <!-- <div class="btn-group">
                    <button type="button" class="btn btn-outline-primary"><i class="fas fa-file-upload"></i>.Import Excel</button>
                    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
                      <span class="sr-only">Toggle Dropdown</span>
@@ -45,7 +45,7 @@
                      <div class="dropdown-divider"></div>
                      <a class="dropdown-item has-icon" href="#" data-toggle="modal" data-target="#modal-import-modul"><i class="fas fa-file-import"></i>.Upload File</a>
                    </div>
-                 </div>
+                 </div> -->
                </h3>
                <div class="card-tools">
                  <div class="input-group" style="width: 150px;">
