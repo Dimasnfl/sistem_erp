@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
             'email'    => 'darth@theempire.com',
             'nim' => '1234567890',
             'no_hp' => '08123456789',
-            'jurusan' => 'Teknik',
+            'id_jurusan' => '1',
             'reguler' => 'A',
             'password' => password_hash('12345', PASSWORD_BCRYPT),
             'is_admin' => '1'

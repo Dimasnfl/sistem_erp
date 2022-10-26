@@ -11,7 +11,7 @@ class UsersModel extends Model
     protected $allowedFields = [
         'nama',
         'nim',
-        'jurusan',
+        'id_jurusan',
         'email',
         'password',
         'no_hp',

@@ -8,6 +8,7 @@ class Users extends Migration
 {
     public function up()
     {
+        $this->db->disableForeignKeyChecks();
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
@@ -21,8 +22,7 @@ class Users extends Migration
             ],
             'nim' => [
                 'type' => 'VARCHAR',
-                'constraint' => '255',
-                'unique' => true
+                'constraint' => '255'
             ],
             'email' => [
                 'type' => 'VARCHAR',
@@ -32,9 +32,10 @@ class Users extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '255'
             ],
-            'jurusan' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255'
+            'id_jurusan' => [
+                'type' => 'INT',
+                'constraint' => '5',
+                'unsigned' => true
             ],
             'reguler' => [
                 'type' => 'VARCHAR',
@@ -50,7 +51,10 @@ class Users extends Migration
             ]
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addUniqueKey('nim');
+        $this->forge->addForeignKey('id_jurusan', 'jurusan', 'id');
         $this->forge->createTable('users');
+        $this->db->enableForeignKeyChecks();
     }
 
     public function down()

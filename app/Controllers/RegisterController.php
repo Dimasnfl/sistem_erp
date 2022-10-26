@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\JurusanModel;
 use App\Models\UsersModel;
 
 use Config\Services;
@@ -14,9 +15,12 @@ class RegisterController extends BaseController
 
     public function index()
     {
+        $jurusan = new JurusanModel();
+        $jurusans = $jurusan->findAll();
         $data = [
             'title' => 'Register',
             'validation' => Services::validation(),
+            'jurusans' => $jurusans
         ];
         return view('auth/register', $data);
     }
@@ -38,7 +42,7 @@ class RegisterController extends BaseController
                 ]
             ],
 
-            'jurusan' => [
+            'id_jurusan' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Jurusan Harus Diisi'
@@ -74,7 +78,7 @@ class RegisterController extends BaseController
         $users->insert([
             'nama' => $this->request->getVar('nama'),
             'nim' => $this->request->getVar('nim'),
-            'jurusan' => $this->request->getVar('jurusan'),
+            'id_jurusan' => $this->request->getVar('id_jurusan'),
             'email' => $this->request->getVar('email'),
             'password' => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
             'no_hp' => $this->request->getVar('no_hp')

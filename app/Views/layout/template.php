@@ -40,25 +40,56 @@
                     </li>
                 </ul>
 
+                <?php $session = session() ?>
                 <?php if (session()->has('logged_in') == true) : ?>
+                    <?php $carts = session('cart') ?>
+                    <!-- Cart -->
                     <div class="dropdown">
-                        <button type="button" class="btn me-3">
-                            <i class="bi bi-cart-fill"></i>
+                        <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
+                            <i class="bi bi-cart-fill">
+                                <?php if (count((array) $carts) == "0") :  ?>
+                                    <span class='badge badge-warning' id='lblCartCount'></span>
+                                <?php else : ?>
+                                    <span class='badge badge-warning' id='lblCartCount'> <?php echo count((array) $carts) ?> </span>
+                                <?php endif; ?>
+                            </i>
                         </button>
-                        <div class="dropdown-menu">
-                            <div class="btn btn-primary">
-                                View All
+                        <div class="dropdown-menu text-center">
+                            <div class="row">
+                                <?php if (count((array) $carts) == "0") : ?>
+                                    <p>Empty cart</p>
+                                <?php else : ?>
+                                    <?php foreach ($carts as $cart) : ?>
+                                        <div class="row cart-detail">
+                                            <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
+                                                <p><?php echo $cart['nama'] ?></p>
+                                                <span class="price text-info"><?php echo $cart['harga'] ?></span>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif ?>
+                                <div class="col-lg-12 col-sm-12 col-12 text-center">
+                                    <a href="cart" class="btn btn-primary btn-block">View all</a>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Notifications -->
                     <div class="dropdown">
-                        <button type="button" class="btn me-3">
+                        <button type="button" class="btn me-3" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
                             <i class="bi bi-bell-fill"></i>
                         </button>
+                        <div class="dropdown-menu">
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-12 text-center">
+                                    No New Messages
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <a class="nav-link dropdown-toggle me-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="img/ERP.png" class="rounded-circle" width="40px" height="40px">
-                        <?php $session = session() ?>
                         <?php echo $session->get('nama') ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">

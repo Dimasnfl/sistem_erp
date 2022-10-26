@@ -36,10 +36,18 @@
                 </div>
 
                 <!-- JURUSAN -->
-                <div class="form-floating mt-2">
+                <div class="mt-2">
+                    <select class="form-select text-start" style="height: 58px;" name="id_jurusan" value="<?= set_value('Jurusan') ?>">
+                        <option selected>Jurusan</option>
+                        <?php foreach ($jurusans as $jurusan) : ?>
+                            <option value="<?php echo $jurusan['id'] ?>"><?php echo $jurusan['nama'] ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+                <!-- <div class="form-floating mt-2">
                     <input type="text" class="form-control" id="jurusan" name="jurusan" placeholder="Example" value="<?= set_value('jurusan') ?>">
                     <label for="jurusan">Jurusan</label>
-                </div>
+                </div> -->
 
                 <!-- EMAIL -->
                 <div class="form-floating mt-2">

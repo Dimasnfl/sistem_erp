@@ -41,9 +41,11 @@ $routes->get('/', 'Home::index');
 
 //Modul
 $routes->get('/modul', 'ModulController::index');
-$routes->get('/cart', 'ModulController::cart');
-$routes->get('/add-to-cart/(:segment)', 'ModulController::addtocart/$1');
-$routes->get('/remove-from-cart/(:num)', 'ModulController::remove/$1');
+
+// Cart
+$routes->get('/cart', 'CartController::cart');
+$routes->get('/add-to-cart/(:segment)', 'CartController::addtocart/$1');
+$routes->get('/remove-from-cart/(:num)', 'CartController::remove/$1');
 
 // Sertifikat
 $routes->get('/sertifikat', 'SertifikatController::index', ['filter' => 'logged_in']);
@@ -58,7 +60,59 @@ $routes->get('/register', 'RegisterController::index');
 $routes->post('/register', 'RegisterController::store');
 
 // Admin
-$routes->get('/admin', 'AdminController::index', ['filter' => 'FilterErp']);
+//homepage
+$routes->get('dashboard.admin', 'Dashboard::index', ['filter' => 'FilterErp']);
+
+//===================================================================
+//modul page
+$routes->get('admin.modul', 'Modul::index', ['filter' => 'FilterErp']);
+
+//add Modul
+$routes->get('admin.modul/add', 'Modul::create', ['filter' => 'FilterErp']);
+$routes->post('admin.modul', 'Modul::store', ['filter' => 'FilterErp']);
+
+//edit Modul
+$routes->get('admin.modul/edit/(:num)', 'Modul::edit/$1', ['filter' => 'FilterErp']);
+$routes->put('admin.modul/(:any)', 'Modul::update/$1', ['filter' => 'FilterErp']);
+$routes->delete('admin.modul/(:segment)', 'Modul::destroy/$1', ['filter' => 'FilterErp']);
+
+//import modul
+$routes->post('admin.modul/import', 'Modul::import', ['filter' => 'FilterErp']);
+//===================================================================
+
+//===================================================================
+//sertifikat page
+$routes->get('admin.sertifikat', 'Sertifikat::index', ['filter' => 'FilterErp']);
+
+//add sertifikat
+$routes->get('admin.sertifikat/add', 'Sertifikat::create', ['filter' => 'FilterErp']);
+$routes->post('admin.sertifikat', 'Sertifikat::store', ['filter' => 'FilterErp']);
+
+//edit sertifikat
+$routes->get('admin.sertifikat/edit/(:num)', 'Sertifikat::edit/$1', ['filter' => 'FilterErp']);
+$routes->put('admin.sertifikat/(:any)', 'Sertifikat::update/$1', ['filter' => 'FilterErp']);
+$routes->delete('admin.sertifikat/(:segment)', 'Sertifikat::destroy/$1', ['filter' => 'FilterErp']);
+
+//import sertifikat
+$routes->post('admin.sertifikat/import', 'Sertifikat::import', ['filter' => 'FilterErp']);
+//===================================================================
+
+//===================================================================
+//list modul page
+$routes->get('ListModul', 'ListModul::index', ['filter' => 'FilterErp']);
+
+//add List Modul
+$routes->get('listmodul/add', 'ListModul::create', ['filter' => 'FilterErp']);
+$routes->post('listmodul', 'ListModul::store', ['filter' => 'FilterErp']);
+
+//edit List Modul
+$routes->get('listmodul/edit/(:num)', 'ListModul::edit/$1', ['filter' => 'FilterErp']);
+$routes->put('listmodul/(:any)', 'ListModul::update/$1', ['filter' => 'FilterErp']);
+$routes->delete('listmodul/(:segment)', 'ListModul::destroy/$1', ['filter' => 'FilterErp']);
+
+//import List modul
+$routes->post('listmodul/import', 'ListModul::import', ['filter' => 'FilterErp']);
+
 
 // Error Page
 $routes->get('/error404', 'customError404::index');

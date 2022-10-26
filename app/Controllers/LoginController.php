@@ -33,10 +33,10 @@ class LoginController extends BaseController
                 session()->set([
                     'logged_in' => true,
                     'nama' => $data['nama'],
-                    'role' => $data['is_admin']
+                    'role' => $data['is_admin'],
                 ]);
                 if (session()->get('role') == '1') {
-                    return redirect()->to('/admin');
+                    return redirect()->to('dashboard.admin');
                 } else {
                     return redirect()->to('/');
                 }
