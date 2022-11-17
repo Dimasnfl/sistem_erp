@@ -43,9 +43,17 @@ $routes->get('/', 'Dashboard::index');
 //modul page
 $routes->get('Modul', 'Modul::index');
 
+//search
+$routes->post('Modul', 'Modul::index');
+
+
 //add Modul
 $routes->get('modul/add', 'Modul::create');
 $routes->post('modul', 'Modul::store');
+
+
+$routes->get('modul_in/add', 'Modul_in::create');
+$routes->post('modul_in', 'Modul_in::store');
 
 //edit Modul
 $routes->get('modul/edit/(:num)', 'Modul::edit/$1');
@@ -85,6 +93,15 @@ $routes->post('listmodul', 'ListModul::store');
 $routes->get('listmodul/edit/(:num)', 'ListModul::edit/$1');
 $routes->put('listmodul/(:any)', 'ListModul::update/$1');
 $routes->delete('listmodul/(:segment)', 'ListModul::destroy/$1');
+
+//process modul
+$routes->get('listmodul/process', 'ListModul::process');
+$routes->get('listmodul/restore/(:any)', 'ListModul::restore/$1');
+$routes->get('listmodul/restore', 'ListModul::restore');
+$routes->delete('listmodul/konfirm/(:any)', 'ListModul::konfirm/$1');
+$routes->delete('listmodul/destroy2/(:any)', 'ListModul::destroy2/$1');
+
+
 
 //import List modul
 $routes->post('listmodul/import', 'ListModul::import');

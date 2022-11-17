@@ -58,12 +58,12 @@
                 <p>Stok Modul</p>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="<?= site_url('ListModul') ?>" class="nav-link">
                 <i class="fas fa-list nav-icon"></i>
                 <p>List Modul</p>
               </a>
-            </li>
+            </li> -->
           </ul>
         </li>
 
@@ -82,12 +82,7 @@
                 <p>View Sertifikat</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="<?= site_url('sertifikat/add') ?>" class="nav-link">
-                <i class="far fa-edit nav-icon"></i>
-                <p>Add Data Sertifikat</p>
-              </a>
-            </li>
+
           </ul>
         </li>
       </ul>

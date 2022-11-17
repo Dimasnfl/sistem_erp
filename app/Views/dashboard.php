@@ -46,8 +46,10 @@
               <div class="info-box-content">
                 <span class="info-box-text">Jumlah Modul Keseluruhan</span>
                 <span class="info-box-number">
-                <?=countData('list_modul') ?>
-                </span>
+                <?php foreach($sum_modul->getResult() as $key=>$value): ?>
+                <?= $value->ketersediaan ?> pcs
+                <?php endforeach ?>
+              </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -85,16 +87,12 @@
           </div>
           <!-- /.col -->
         </div>
-
-
-
-
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <!-- DONUT CHART -->
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-book"></i>  Jenis Modul</h3>
+                <h3 class="card-title"><i class="fas fa-book"></i>  Chart Jenis Modul</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -205,15 +203,16 @@ $(function () {
 
 <!-- SCRIPT CHART JS -->
 <script>
-
-
+  //-------------
+    //- MODUL CHART -
+    //-------------
 var modul_kategori = document.getElementById('modul_kategori');
         var data_modul_kategori = [];
         var label_modul_kategori = [];
 
         <?php foreach($modul_per_kategori->getResult() as $key=>$value): ?>
             data_modul_kategori.push(<?= $value->jumlah ?>);
-            label_modul_kategori.push('<?= $value->nama ?>');
+            label_modul_kategori.push('<?= $value->nama_modul ?>');
         <?php endforeach ?>
 
         var data_modul_per_kategori = {
