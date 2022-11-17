@@ -5,7 +5,7 @@
      <div class="container-fluid">
        <div class="row mb-0">
          <div class="col-md-1">
-           <a href="<?= site_url('Modul/index') ?>" class="btn btn-outline-danger"><i class="fas fa-arrow-left"></i></a>
+           <a href="<?= site_url('Modul') ?>" class="btn btn-outline-danger"><i class="fas fa-arrow-left"></i></a>
          </div>
          <div class="col-sm-5">
            <h1>Form Edit Stok Modul</h1>
@@ -43,20 +43,7 @@
                    <label>HARGA</label>
                    <input type="text" class="form-control" name="harga_modul" value="<?= $moduls->harga_modul ?>" placeholder="Masukkan Harga Modul" required>
                  </div>
-                 <div class="row">
-                   <div class="col-sm-6">
-                     <div class="form-group">
-                       <label>KETERSEDIAAN SAAT INI</label>
-                       <input type="text" class="form-control" name="" value="<?= $moduls->ketersediaan ?>" placeholder="Masukkan Harga Modul" disabled>
-                     </div>
-                   </div>
-                   <div class="col-sm-6">
-                     <div class="form-group">
-                       <label>TAMBAH KETERSEDIAAN MODUL</label>
-                       <input type="text" class="form-control" name="ketersediaan1" value="<?= $moduls->ketersediaan ?>" placeholder="Masukkan Harga Modul" required>
-                     </div>
-                   </div>
-                 </div>
+                   
                  <button type="submit" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i>.Save</button>
                </form>
              </div>

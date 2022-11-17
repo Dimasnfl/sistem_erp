@@ -54,6 +54,10 @@ $routes->post('modul', 'Modul::store');
 
 $routes->get('modul_in/add', 'Modul_in::create');
 $routes->post('modul_in', 'Modul_in::store');
+$routes->get('Modul_out', 'Modul_out::index');
+$routes->get('modul_out/restore/(:any)', 'Modul_out::restore/$1');
+$routes->post('modul_out/restore2', 'Modul_out::restore2');
+
 
 //edit Modul
 $routes->get('modul/edit/(:num)', 'Modul::edit/$1');
@@ -95,7 +99,6 @@ $routes->put('listmodul/(:any)', 'ListModul::update/$1');
 $routes->delete('listmodul/(:segment)', 'ListModul::destroy/$1');
 
 //process modul
-$routes->get('listmodul/process', 'ListModul::process');
 $routes->get('listmodul/restore/(:any)', 'ListModul::restore/$1');
 $routes->get('listmodul/restore', 'ListModul::restore');
 $routes->delete('listmodul/konfirm/(:any)', 'ListModul::konfirm/$1');

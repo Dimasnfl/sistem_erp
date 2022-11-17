@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\M_modul;
 use App\Models\M_modul_in;
+use App\Models\M_modul_out;
+
 
 helper('form');
 
@@ -15,6 +17,8 @@ class Modul_in extends BaseController
     {
         $this->modul = new M_modul();
         $this->modul_in = new M_modul_in();
+        $this->modul_out = new M_modul_out();
+
     }
 
 

@@ -76,7 +76,6 @@
                      <th>KELAS</th>
                      <th>STATUS</th>
                      <th>NAMA DOSEN</th>
-                     <th class="text-center">ACTION</th>
                    </tr>
                  </thead>
                  <tbody>
@@ -98,15 +97,7 @@
                        <td><?= strtoupper($value['kelas']) ?></td>
                        <td><?= strtoupper($value['status']) ?></td>
                        <td><?= $value['nama_dosen'] ?></td>
-                       <td class="text-center">
-                         <a href="<?= site_url('modul/edit/' . $value['id']) ?>" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
-                         <form action="<?= site_url('modul/' . $value['id']) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus Data Modul Bernama ?')">
-                           <input type="hidden" name="_method" value="DELETE">
-                           <button class="btn btn-outline-danger">
-                             <i class="fas fa-trash"></i>
-                           </button>
-                         </form>
-                       </td>
+
                      </tr>
 
                    <?php endforeach; ?>

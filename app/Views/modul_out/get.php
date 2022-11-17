@@ -5,12 +5,12 @@
      <div class="container-fluid">
        <div class="row mb-2">
          <div class="col-sm-6">
-           <h1>Stok Modul</h1>
+           <h1>Pembelian Modul</h1>
          </div>
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
              <li class="breadcrumb-item"><a href="/">Home</a></li>
-             <li class="breadcrumb-item active">Stok Modul</li>
+             <li class="breadcrumb-item active">Pembelian Modul</li>
            </ol>
          </div>
        </div>
@@ -32,38 +32,26 @@
              <div class="card-header">
                <h3 class="card-title">
                  <div class="btn-group">
-                   <a href="<?= site_url('modul/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
-                 </div>
-                 <div class="btn-group">
-                   <a href="<?= site_url('modul_in/add') ?>" class="btn btn-outline-warning"><i class="fas fa-th"></i></a>
-                 </div>
-                 <div class="btn-group">
-                   <button type="button" class="btn btn-outline-success"><i class="fas fa-file-upload"></i>.Import Excel</button>
-                   <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">
-                     <span class="sr-only">Toggle Dropdown</span>
-                   </button>
-                   <div class="dropdown-menu" role="menu">
-                     <a class="dropdown-item has-icon" href="<?= base_url('Import_Modul_Example.xlsx') ?>"><i class="fas fa-file-excel"></i>.Download Contoh Format</a>
-                     <div class="dropdown-divider"></div>
-                     <a class="dropdown-item has-icon" href="#" data-toggle="modal" data-target="#modal-import-modul"><i class="fas fa-file-import"></i>.Upload File</a>
-                   </div>
+                   <!-- <form action="" method="get" autocomplete="off">
+                     <div class="input-group" style="width: 300px;">
+                       <?php $request = \Config\Services::request(); ?>
+                       <input type="text" class="form-control float-right" placeholder="Cari Data Modul" name="keyword" value="<?= $request->getGet('keyword') ?>">
+                       <div class="input-group-append">
+                         <button type="submit" class="btn btn-outline-primary">
+                           <i class="fas fa-search"></i>
+                         </button>
+                       </div>
+                     </div>
+                   </form> -->
                  </div>
                </h3>
-
-
                <div class="card-tools">
-                <form action="" method="get" autocomplete="off">
-                 <div class="input-group" style="width: 300px;">
-                   <?php $request = \Config\Services::request(); ?>
-                   <input type="text"  class="form-control float-right" placeholder="Cari Data Modul" name="keyword" value="<?= $request->getGet('keyword')?>">
-                   <div class="input-group-append">
-                     <button type="submit" class="btn btn-outline-primary">
-                       <i class="fas fa-search"></i>
-                     </button>
-                   </div>
-                 </div>
+                 <!-- <a href="<?= site_url('listmodul/restore') ?>" class="btn btn-outline-danger"><i class="fas fa-undo"></i>.Restore All</a> -->
+                 <form action="<?= site_url('modul_out/restore2') ?>" method="post" class="d-inline" onsubmit="return confirm('Kembalikan Semua Modul Ke Stok ?')">
+                   <button class="btn btn-outline-danger">
+                     <i class="fas fa-undo"></i>.Restore All
+                   </button>
                  </form>
-
                </div>
 
              </div>
@@ -72,28 +60,29 @@
                <table class="table table-head-fixed table-striped text-nowrap table-bordered">
                  <thead>
                    <tr>
+                     <th>NO</th>
                      <th>KODE</th>
                      <th>NAMA MODUL</th>
-                     <th>HARGA</th>
-                     <th>KETERSEDIAAN</th>
+                     <th>JUMLAH</th>
+                     <th>Di Check Out Pada</th>
                      <th class="text-center">ACTION</th>
                    </tr>
                  </thead>
                  <tbody>
                    <?php
-                    
-                    foreach ($moduls as $key => $value) : ?>
+
+                    foreach ($modul_out as $key => $value) : ?>
                      <tr>
+                       <td> <?= $key + 1 ?> </td>
                        <td><?= strtoupper($value->kode_modul) ?></td>
                        <td><?= $value->nama_modul ?></td>
-                       <td><?= rupiah($value->harga_modul) ?></td>
-                       <td><?= $value->ketersediaan ?> <a>pcs</a></td>
+                       <td><?= $value->qty ?></td>
+                       <td><?= date('d/m/Y - H:i', strtotime($value->date)) ?></td>
                        <td class="text-center">
-                         <a href="<?= site_url('modul/edit/' . $value->id) ?>" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
-                         <form action="<?= site_url('modul/' . $value->id) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus Data Modul Bernama <?= ($value->nama_modul) ?>?')">
-                           <input type="hidden" name="_method" value="DELETE">
+                         <form action="<?= site_url('modul_out/restore/' . $value->id_out) ?>" method="get" class="d-inline" onsubmit="return confirm('Kembalikan Modul (<?= ($value->nama_modul) ?>) dengan ID (<?= ($value->id_out) ?>) Ke Stok ?')">
+                           <input type="hidden" name="_method" value="GET">
                            <button class="btn btn-outline-danger">
-                             <i class="fas fa-trash"></i>
+                             <i class="fas fa-undo"></i>
                            </button>
                          </form>
                        </td>

@@ -45,17 +45,7 @@ class Modul extends BaseController
         echo view('layout/footer');
     }
 
-    public function create2()
-    {
-        $header['title'] = 'Form Tambah Stok Modul';
-        $data['moduls'] = $this->modul->getAll();
 
-        echo view('layout/header', $header);
-        echo view('layout/top_menu');
-        echo view('layout/side_menu');
-        echo view('modul/add2', $data);
-        echo view('layout/footer');
-    }
 
     //FUNCTION ADD MODUL 2
     public function store()
@@ -72,23 +62,6 @@ class Modul extends BaseController
 
         if ($this->db->affectedRows() > 0) {
             session()->setFlashdata('message', 'Data Modul Telah Tersimpan');
-            return $this->response->redirect(site_url('/Modul'));
-        }
-    }
-
-    public function store2()
-    {
-        // $data = $this->request->getpost();
-
-        $data = [
-            'id_moduls' => $this->request->getVar('id_moduls'),
-            'qty'  => $this->request->getVar('qty'),
-        ];
-
-        $this->modul_in->insert($data);
-
-        if ($this->db->affectedRows() > 0) {
-            session()->setFlashdata('message', 'Stok Modul Telah Ditambahkan');
             return $this->response->redirect(site_url('/Modul'));
         }
     }
@@ -125,7 +98,6 @@ class Modul extends BaseController
             'kode_modul' => $this->request->getVar('kode_modul'),
             'nama_modul'  => $this->request->getVar('nama_modul'),
             'harga_modul'  => $this->request->getVar('harga_modul'),
-            'ketersediaan'  => $this->request->getVar('ketersediaan1'),
         ];
 
 

@@ -58,12 +58,12 @@
                 <p>Stok Modul</p>
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a href="<?= site_url('ListModul') ?>" class="nav-link">
+            <li class="nav-item">
+              <a href="<?= site_url('Modul_out') ?>" class="nav-link">
                 <i class="fas fa-list nav-icon"></i>
-                <p>List Modul</p>
+                <p>Pembelian Modul</p>
               </a>
-            </li> -->
+            </li>
           </ul>
         </li>
 
