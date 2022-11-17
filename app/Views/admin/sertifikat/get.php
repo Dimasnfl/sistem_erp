@@ -5,7 +5,7 @@
      <div class="container-fluid">
        <div class="row mb-2">
          <div class="col-sm-6">
-           <h1>Data Sertifikat</h1>
+           <h1>Sertifikat</h1>
          </div>
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
@@ -32,70 +32,80 @@
              <div class="card-header">
                <h3 class="card-title">
                  <div class="btn-group">
-                   <button type="button" class="btn btn-outline-primary"><i class="fas fa-file-upload"></i>.Import Excel</button>
-                   <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
+                   <!-- <a href="<?= site_url('modul/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a> -->
+                 </div>
+                 <div class="btn-group">
+                   <button type="button" class="btn btn-outline-success"><i class="fas fa-file-upload"></i>.Import Excel</button>
+                   <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">
                      <span class="sr-only">Toggle Dropdown</span>
                    </button>
                    <div class="dropdown-menu" role="menu">
-                     <a class="dropdown-item has-icon" href="<?= base_url('Import_Modul_Example.xlsx') ?>"><i class="fas fa-file-excel"></i>.Download Contoh Format</a>
+                     <a class="dropdown-item has-icon" href="<?= base_url('Import_Sertifikat_Example.xlsx') ?>"><i class="fas fa-file-excel"></i>.Download Contoh Format</a>
                      <div class="dropdown-divider"></div>
-                     <a class="dropdown-item has-icon" href="#" data-toggle="modal" data-target="#modal-import-modul"><i class="fas fa-file-import"></i>.Upload File</a>
+                     <a class="dropdown-item has-icon" href="#" data-toggle="modal" data-target="#sertifikat-import-modul"><i class="fas fa-file-import"></i>.Upload File</a>
                    </div>
                  </div>
                </h3>
-               <div class="card-tools">
-                 <div class="input-group" style="width: 150px;">
-                   <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                   <div class="input-group-append">
-                     <button type="submit" class="btn btn-default">
-                       <i class="fas fa-search"></i>
-                     </button>
-                   </div>
-                 </div>
-               </div>
+
              </div>
              <!-- /.card-header -->
              <div class="card-body table-responsive p-0" style="height: 510px;">
                <table class="table table-head-fixed table-striped text-nowrap table-bordered">
                  <thead>
                    <tr>
-                     <th>MAHASISWA</th>
-                     <th>NAMA MODUL</th>
+                     <!-- <th>KODE</th>
+                     <th>NAMA SERTIFIKAT</th>
+                     <th>HARGA SERTIFIKAT</th>
+                     <th>GRADE</th>
+                     <th>RESULT</th>
                      <th>TANGGAL UJIAN</th>
-                     <th>NILAI</th>
+                     <th>NIM MAHASISWA</th>
+                     <th>NAMA MAHASISWA</th>
+                     <th>REGULER</th>
+                     <th>KELAS</th>
+                     <th>NAMA DOSEN</th> -->
+                     <th>NO</th>
+                     <th>JP</th>
+                     <th>NIM</th>
+                     <th>SAS File</th>
+                     <th>GRADE</th>
+                     <th>RESULT</th>
+                     <th>REGULER</th>
+                     <th>TANGGAL UJIAN</th>
+                     <th>RUANGAN</th>
+                     <th>KELAS</th>
                      <th>STATUS</th>
-                     <th>HARGA</th>
-                     <th class="text-center">ACTION</th>
+                     <th>NAMA DOSEN</th>
                    </tr>
                  </thead>
                  <tbody>
                    <?php
-                    function rupiah($harga)
-                    {
-                      $harga = 'Rp ' . number_format($harga, 2, ",", ".");
-                      return $harga;
-                    }
+                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $no = 1 + (10 * ($page - 1));
                     foreach ($sertifikat as $key => $value) : ?>
                      <tr>
-                       <td><?= $value->id_user ?></td>
-                       <td><?= $value->id_modul ?></td>
-                       <td><?= $value->tgl_ujian ?></td>
-                       <td><?= $value->nilai ?></td>
-                       <td><?= $value->id_status_nilai ?></td>
-                       <td><?= rupiah($value->harga) ?></td>
-                       <td class="text-center">
-                         <a href="<?= site_url('admin.sertifikat/edit/' . $value->id) ?>" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i>.Edit</a>
-                         <form action="<?= site_url('admin.sertifikat/' . $value->id) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus Data Sertifikat Bernama <?= ($value->id_user) ?>?')">
-                           <input type="hidden" name="_method" value="DELETE">
-                           <button class="btn btn-outline-danger">
-                             <i class="fas fa-trash"></i>.Delete
-                           </button>
-                         </form>
-                       </td>
+                       <td><?= $no++ ?></td>
+
+                       <td><?= $value['kode'] ?></td>
+                       <td><?= $value['nim'] ?></td>
+                       <td><?= $value['nama'] ?></td>
+                       <td><?= $value['nilai'] ?></td>
+                       <td><?= strtoupper($value['result']) ?></td>
+                       <td><?= strtoupper($value['reguler']) ?></td>
+                       <td><?= date('d/m/Y', strtotime($value['tanggal_ujian'])) ?></td>
+                       <td><?= strtoupper($value['ruangan']) ?></td>
+                       <td><?= strtoupper($value['kelas']) ?></td>
+                       <td><?= $value['status'] ?></td>
+                       <td><?= $value['nama_dosen'] ?></td>
+
                      </tr>
-                   <?php endforeach ?>
+
+                   <?php endforeach; ?>
+
+
                  </tbody>
                </table>
+               <?= $pager->links('default', 'pagination') ?>
              </div>
              <!-- /.card-body -->
            </div>
@@ -107,19 +117,17 @@
  </div>
  <!-- /.content-wrapper -->
 
-
-
  <!-- modal import modul -->
- <div class="modal fade" id="modal-import-modul">
+ <div class="modal fade" id="sertifikat-import-modul">
    <div class="modal-dialog">
      <div class="modal-content bg-primary">
        <div class="modal-header">
-         <h4 class="modal-title">Import Modul</h4>
+         <h4 class="modal-title">Import Sertifikat</h4>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
-       <form action="<?= site_url('modul/import') ?>" method="post" enctype="multipart/form-data">
+       <form action="<?= site_url('sertifikat/import') ?>" method="post" enctype="multipart/form-data">
          <div class="modal-body">
            <label>File Excel</label>
            <div class="custom-file">

@@ -47,22 +47,26 @@
                     <div class="dropdown">
                         <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
                             <i class="bi bi-cart-fill">
-                                <?php if (count((array) $carts) == "0") :  ?>
+                                <?php if ($count == "0") :  ?>
                                     <span class='badge badge-warning' id='lblCartCount'></span>
                                 <?php else : ?>
-                                    <span class='badge badge-warning' id='lblCartCount'> <?php echo count((array) $carts) ?> </span>
+                                    <span class='badge badge-warning' id='lblCartCount'> <?php echo $count ?> </span>
                                 <?php endif; ?>
                             </i>
                         </button>
                         <div class="dropdown-menu text-center">
                             <div class="row">
-                                <?php if (count((array) $carts) == "0") : ?>
+                                <?php if ($count == "0") : ?>
                                     <p>Empty cart</p>
                                 <?php else : ?>
-                                    <?php foreach ($carts as $cart) : ?>
+                                    <?php foreach ($cart as $cart) : ?>
                                         <div class="row cart-detail">
                                             <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                                <p><?php echo $cart['nama'] ?></p>
+                                                <?php if ($cart['id_produk'] != null) : ?>
+                                                    <p><?php echo $cart['nama_modul'] ?></p>
+                                                <?php else : ?>
+                                                    <p><?php echo $cart['nama_sertifikat'] ?></p>
+                                                <?php endif; ?>
                                                 <span class="price text-info"><?php echo $cart['harga'] ?></span>
                                             </div>
                                         </div>

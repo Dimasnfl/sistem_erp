@@ -4,6 +4,10 @@ namespace App\Controllers;
 
 use App\Models\M_listmodul;
 use App\Models\M_modul;
+use App\Models\M_modul_in;
+
+helper('form');
+
 
 class Modul extends BaseController
 {
@@ -12,50 +16,37 @@ class Modul extends BaseController
     {
         $this->listmodul = new M_listmodul();
         $this->modul = new M_modul();
+        $this->modul_in = new M_modul_in();
     }
 
     public function index()
     {
         $header['title'] = 'Data Modul';
 
-        //cara 1
-        // $builder = $this->db->table('moduls');
-        // $query   = $builder->get();
+        $keyword = $this->request->getGet('keyword');
 
-        // $data['moduls'] = $query->getResult();
-
-        //cara2
-        // $M_modul= new M_modul();
-        // $data['modul'] = $M_modul->orderBy('kode', 'ASC')->findAll();
-
-
-        //cara 3
-        // $query = $this->db->query("SELECT * FROM moduls");
-        // $data['moduls'] = $query->getResult();
-
-
-        //cara 4
-        // $data['moduls'] = $this->modul->getAll();
-        $data['moduls'] = $this->modul->getStok();
-
-        echo view('admin/layout.admin/header', $header);
-        echo view('admin/layout.admin/top_menu');
-        echo view('admin/layout.admin/side_menu');
+        $data['moduls'] = $this->modul->get($keyword);
+        echo view('admin/layout/header', $header);
+        echo view('admin/layout/top_menu');
+        echo view('admin/layout/side_menu');
         echo view('admin/modul/get', $data);
-        echo view('admin/layout.admin/footer');
+        echo view('admin/layout/footer');
     }
 
     //FUNCTION ADD MODUL 1
     public function create()
     {
-        $header['title'] = 'Form Tambah Modul';
+        $header['title'] = 'Form Tambah Data Modul';
 
-        echo view('admin/layout.admin/header', $header);
-        echo view('admin/layout.admin/top_menu');
-        echo view('admin/layout.admin/side_menu');
+        echo view('admin/layout/header', $header);
+        echo view('admin/layout/top_menu');
+        echo view('admin/layout/side_menu');
         echo view('admin/modul/add');
-        echo view('admin/layout.admin/footer');
+        echo view('admin/layout/footer');
     }
+
+
+
     //FUNCTION ADD MODUL 2
     public function store()
     {
@@ -71,9 +62,10 @@ class Modul extends BaseController
 
         if ($this->db->affectedRows() > 0) {
             session()->setFlashdata('message', 'Data Modul Telah Tersimpan');
-            return $this->response->redirect(site_url('admin.modul'));
+            return $this->response->redirect(site_url('/Modul'));
         }
     }
+
 
     //FUNCTION EDIT MODUL 1
     public function edit($id = null)
@@ -84,11 +76,11 @@ class Modul extends BaseController
                 $header['title'] = 'Form Edit Modul';
                 $data['moduls'] = $query->getRow();
 
-                echo view('admin/layout.admin/header', $header);
-                echo view('admin/layout.admin/top_menu');
-                echo view('admin/layout.admin/side_menu');
+                echo view('admin/layout/header', $header);
+                echo view('admin/layout/top_menu');
+                echo view('admin/layout/side_menu');
                 echo view('admin/modul/edit', $data);
-                echo view('admin/layout.admin/footer');
+                echo view('admin/layout/footer');
             } else {
                 throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
             }
@@ -100,12 +92,18 @@ class Modul extends BaseController
     public function update($id)
     {
         //if data is array = don't need to use "unset"
-        $data = $this->request->getPost();
-        unset($data['_method']);
+        // $data = $this->request->getPost();
+        // unset($data['_method']);
+        $data = [
+            'kode_modul' => $this->request->getVar('kode_modul'),
+            'nama_modul'  => $this->request->getVar('nama_modul'),
+            'harga_modul'  => $this->request->getVar('harga_modul'),
+        ];
+
 
         $this->db->table('moduls')->where(['id' => $id])->update($data);
         session()->setFlashdata('message', 'Data Modul Berhasil Diupdate');
-        return $this->response->redirect(site_url('admin.modul'));
+        return $this->response->redirect(site_url('/Modul'));
     }
 
     //FUNCTION DELETE MODUL
@@ -113,7 +111,7 @@ class Modul extends BaseController
     {
         $this->modul->where(['id' => $id])->delete();
         session()->setFlashdata('message', 'Data Modul Berhasil Dihapus');
-        return $this->response->redirect(site_url('admin.modul'));
+        return $this->response->redirect(site_url('/Modul'));
     }
 
     //FUNCTION IMPORT MODUL
@@ -134,18 +132,18 @@ class Modul extends BaseController
                     continue;
                 }
                 $data = [
-                    'kode' => $value[1],
-                    'nama' => $value[2],
-                    'harga' => $value[3],
+                    'kode_modul' => $value[1],
+                    'nama_modul' => $value[2],
+                    'harga_modul' => $value[3],
                 ];
                 $this->db->table('moduls')->insert($data);
             }
 
             session()->setFlashdata('message', 'File Excel Berhasil Diimport');
-            return $this->response->redirect(site_url('admin.modul'));
+            return $this->response->redirect(site_url('/Modul'));
         } else {
             session()->setFlashdata('message', 'File Excel Tidak Sesuai');
-            return $this->response->redirect(site_url('admin.modul'));
+            return $this->response->redirect(site_url('/Modul'));
         }
     }
 }

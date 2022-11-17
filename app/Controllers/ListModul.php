@@ -36,11 +36,11 @@ class ListModul extends BaseController
         $data['list_modul'] = $this->listmodul->getAll();
 
 
-        echo view('admin/layout.admin/header', $header);
-        echo view('admin/layout.admin/top_menu');
-        echo view('admin/layout.admin/side_menu');
+        echo view('admin/layout/header', $header);
+        echo view('admin/layout/top_menu');
+        echo view('admin/layout/side_menu');
         echo view('admin/list_modul/get', $data);
-        echo view('admin/layout.admin/footer');
+        echo view('admin/layout/footer');
     }
 
 
@@ -50,11 +50,11 @@ class ListModul extends BaseController
         $header['title'] = 'Form Tambah Modul';
         $data['moduls'] = $this->modul->getAll();
 
-        echo view('admin/layout.admin/header', $header);
-        echo view('admin/layout.admin/top_menu');
-        echo view('admin/layout.admin/side_menu');
+        echo view('admin/layout/header', $header);
+        echo view('admin/layout/top_menu');
+        echo view('admin/layout/side_menu');
         echo view('admin/list_modul/add', $data);
-        echo view('admin/layout.admin/footer');
+        echo view('admin/layout/footer');
     }
     //FUNCTION ADD 2
     public function store()
@@ -84,11 +84,11 @@ class ListModul extends BaseController
                 $header['title'] = 'Form Edit List Modul';
                 $data['list_modul'] = $query->getRow();
 
-                echo view('admin/layout.admin/header', $header);
-                echo view('admin/layout.admin/top_menu');
-                echo view('admin/layout.admin/side_menu');
+                echo view('admin/layout/header', $header);
+                echo view('admin/layout/top_menu');
+                echo view('admin/layout/side_menu');
                 echo view('admin/list_modul/edit', $data);
-                echo view('admin/layout.admin/footer');
+                echo view('admin/layout/footer');
             } else {
                 throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
             }
@@ -119,35 +119,34 @@ class ListModul extends BaseController
 
 
     //FUNCTION IMPORT 
-    public function import()
-    {
-        $file = $this->request->getFile('file_excel');
-        $extension = $file->getClientExtension();
-        if ($extension == 'xlsx' || $extension == 'xls') {
-            if ($extension == 'xls') {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-            } else {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-            }
-            $spreadsheet = $reader->load($file);
-            $moduls = $spreadsheet->getActiveSheet()->toArray();
-            foreach ($moduls as $key => $value) {
-                if ($key == 0) {
-                    continue;
-                }
-                $data = [
-                    'kode' => $value[1],
-                    'nama' => $value[2],
-                    'harga' => $value[3],
-                ];
-                $this->db->table('moduls')->insert($data);
-            }
+    // public function import()
+    // {
+    //     $file = $this->request->getFile('file_excel');
+    //     $extension = $file->getClientExtension();
+    //     if ($extension == 'xlsx' || $extension == 'xls') {
+    //         if ($extension == 'xls') {
+    //             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+    //         } else {
+    //             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+    //         }
+    //         $spreadsheet = $reader->load($file);
+    //         $moduls = $spreadsheet->getActiveSheet()->toArray();
+    //         foreach ($moduls as $key => $value) {
+    //             if ($key == 0) {
+    //                 continue;
+    //             }
+    //             $data = [
+    //                 'kode' => $value[1],
+    //                 'nama' => $value[2],
+    //             ];
+    //             $this->db->table('moduls')->insert($data);
+    //         }
 
-            session()->setFlashdata('message', 'File Excel Berhasil Diimport');
-            return $this->response->redirect(site_url('admin.modul'));
-        } else {
-            session()->setFlashdata('message', 'File Excel Tidak Sesuai');
-            return $this->response->redirect(site_url('admin.modul'));
-        }
-    }
+    //         session()->setFlashdata('message', 'File Excel Berhasil Diimport');
+    //         return $this->response->redirect(site_url('/Modul'));
+    //     } else {
+    //         session()->setFlashdata('message', 'File Excel Tidak Sesuai');
+    //         return $this->response->redirect(site_url('/Modul'));
+    //     }
+    // }
 }

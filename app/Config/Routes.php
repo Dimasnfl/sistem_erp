@@ -36,6 +36,7 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
+
 // Home
 $routes->get('/', 'Home::index');
 
@@ -44,11 +45,13 @@ $routes->get('/modul', 'ModulController::index');
 
 // Cart
 $routes->get('/cart', 'CartController::cart');
-$routes->get('/add-to-cart/(:segment)', 'CartController::addtocart/$1');
-$routes->get('/remove-from-cart/(:num)', 'CartController::remove/$1');
+$routes->post('/add-to-cart/(:any)', 'CartController::addtocart/$1');
+$routes->get('/remove-from-cart/(:segment)', 'CartController::remove/$1');
 
 // Sertifikat
 $routes->get('/sertifikat', 'SertifikatController::index', ['filter' => 'logged_in']);
+$routes->get('/add-sertifikat/(:num)', 'SertifikatController::addsertifikat/$1');
+$routes->get('/remove-sertifikat/(:any)', 'SertifikatController::removesertifikat/$1');
 
 // Login
 $routes->get('/login', 'LoginController::index');
@@ -59,64 +62,82 @@ $routes->get('/logout', 'LoginController::logout');
 $routes->get('/register', 'RegisterController::index');
 $routes->post('/register', 'RegisterController::store');
 
-// Admin
+// Error Page
+$routes->get('/error404', 'customError404::index');
+
 //homepage
-$routes->get('dashboard.admin', 'Dashboard::index', ['filter' => 'FilterErp']);
+$routes->get('dashboard.admin', 'Dashboard::index');
 
 //===================================================================
 //modul page
-$routes->get('admin.modul', 'Modul::index', ['filter' => 'FilterErp']);
+$routes->get('admin.Modul', 'Modul::index');
+
+//search
+$routes->post('Modul', 'Modul::index');
+
 
 //add Modul
-$routes->get('admin.modul/add', 'Modul::create', ['filter' => 'FilterErp']);
-$routes->post('admin.modul', 'Modul::store', ['filter' => 'FilterErp']);
+$routes->get('modul/add', 'Modul::create');
+$routes->post('modul', 'Modul::store');
+
+
+$routes->get('modul_in/add', 'Modul_in::create');
+$routes->post('modul_in', 'Modul_in::store');
+$routes->get('Modul_out', 'Modul_out::index');
+$routes->get('modul_out/restore/(:any)', 'Modul_out::restore/$1');
+$routes->post('modul_out/restore2', 'Modul_out::restore2');
+
 
 //edit Modul
-$routes->get('admin.modul/edit/(:num)', 'Modul::edit/$1', ['filter' => 'FilterErp']);
-$routes->put('admin.modul/(:any)', 'Modul::update/$1', ['filter' => 'FilterErp']);
-$routes->delete('admin.modul/(:segment)', 'Modul::destroy/$1', ['filter' => 'FilterErp']);
+$routes->get('modul/edit/(:num)', 'Modul::edit/$1');
+$routes->put('modul/(:any)', 'Modul::update/$1');
+$routes->delete('modul/(:segment)', 'Modul::destroy/$1');
 
 //import modul
-$routes->post('admin.modul/import', 'Modul::import', ['filter' => 'FilterErp']);
+$routes->post('modul/import', 'Modul::import');
 //===================================================================
 
 //===================================================================
 //sertifikat page
-$routes->get('admin.sertifikat', 'Sertifikat::index', ['filter' => 'FilterErp']);
+$routes->get('admin.Sertifikat', 'Sertifikat::index');
 
 //add sertifikat
-$routes->get('admin.sertifikat/add', 'Sertifikat::create', ['filter' => 'FilterErp']);
-$routes->post('admin.sertifikat', 'Sertifikat::store', ['filter' => 'FilterErp']);
+$routes->get('sertifikat/add', 'Sertifikat::create');
+$routes->post('sertifikat', 'Sertifikat::store');
 
 //edit sertifikat
-$routes->get('admin.sertifikat/edit/(:num)', 'Sertifikat::edit/$1', ['filter' => 'FilterErp']);
-$routes->put('admin.sertifikat/(:any)', 'Sertifikat::update/$1', ['filter' => 'FilterErp']);
-$routes->delete('admin.sertifikat/(:segment)', 'Sertifikat::destroy/$1', ['filter' => 'FilterErp']);
+$routes->get('sertifikat/edit/(:num)', 'Sertifikat::edit/$1');
+$routes->put('sertifikat/(:any)', 'Sertifikat::update/$1');
+$routes->delete('sertifikat/(:segment)', 'Sertifikat::destroy/$1');
 
 //import sertifikat
-$routes->post('admin.sertifikat/import', 'Sertifikat::import', ['filter' => 'FilterErp']);
+$routes->post('sertifikat/import', 'Sertifikat::import');
 //===================================================================
 
 //===================================================================
 //list modul page
-$routes->get('ListModul', 'ListModul::index', ['filter' => 'FilterErp']);
+$routes->get('ListModul', 'ListModul::index');
 
 //add List Modul
-$routes->get('listmodul/add', 'ListModul::create', ['filter' => 'FilterErp']);
-$routes->post('listmodul', 'ListModul::store', ['filter' => 'FilterErp']);
+$routes->get('listmodul/add', 'ListModul::create');
+$routes->post('listmodul', 'ListModul::store');
 
 //edit List Modul
-$routes->get('listmodul/edit/(:num)', 'ListModul::edit/$1', ['filter' => 'FilterErp']);
-$routes->put('listmodul/(:any)', 'ListModul::update/$1', ['filter' => 'FilterErp']);
-$routes->delete('listmodul/(:segment)', 'ListModul::destroy/$1', ['filter' => 'FilterErp']);
+$routes->get('listmodul/edit/(:num)', 'ListModul::edit/$1');
+$routes->put('listmodul/(:any)', 'ListModul::update/$1');
+$routes->delete('listmodul/(:segment)', 'ListModul::destroy/$1');
+
+//process modul
+$routes->get('listmodul/restore/(:any)', 'ListModul::restore/$1');
+$routes->get('listmodul/restore', 'ListModul::restore');
+$routes->delete('listmodul/konfirm/(:any)', 'ListModul::konfirm/$1');
+$routes->delete('listmodul/destroy2/(:any)', 'ListModul::destroy2/$1');
+
+
 
 //import List modul
-$routes->post('listmodul/import', 'ListModul::import', ['filter' => 'FilterErp']);
-
-
-// Error Page
-$routes->get('/error404', 'customError404::index');
-
+$routes->post('listmodul/import', 'ListModul::import');
+//===================================================================
 /*
  * --------------------------------------------------------------------
  * Additional Routing

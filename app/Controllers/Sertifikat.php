@@ -2,91 +2,30 @@
 
 namespace App\Controllers;
 
-// use App\Models\M_modul;
-// use CodeIgniter\Controller;
+use App\Models\M_sertifikat;
+
 
 class Sertifikat extends BaseController
 {
+
+    function __construct()
+    {
+        $this->sertifikat = new M_sertifikat();
+    }
+
     public function index()
     {
         $header['title'] = 'Data Sertifikat';
-
-        $builder = $this->db->table('sertifikat');
-        $query   = $builder->get();
-
-        $data['sertifikat'] = $query->getResult();
-
-        echo view('admin/layout.admin/header', $header);
-        echo view('admin/layout.admin/top_menu');
-        echo view('admin/layout.admin/side_menu');
+        $data = $this->sertifikat->getPaginated(10);
+        // $data['pager'] = $this->sertifikat->pager;
+        echo view('admin/layout/header', $header);
+        echo view('admin/layout/top_menu');
+        echo view('admin/layout/side_menu');
         echo view('admin/sertifikat/get', $data);
-        echo view('admin/layout.admin/footer');
+        echo view('admin/layout/footer');
     }
 
-    //FUNCTION ADD 1
-    public function create()
-    {
-        $header['title'] = 'Form Tambah Sertifikat';
 
-        echo view('admin/layout.admin/header', $header);
-        echo view('admin/layout.admin/top_menu');
-        echo view('admin/layout.admin/side_menu');
-        echo view('admin/sertifikat/add');
-        echo view('admin/layout.admin/footer');
-    }
-    //FUNCTION ADD 2
-    public function store()
-    {
-        $data = $this->request->getpost();
-
-        $this->db->table('sertifikat')->insert($data);
-
-        if ($this->db->affectedRows() > 0) {
-            session()->setFlashdata('message', 'Data Sertifikat Telah Tersimpan');
-            return $this->response->redirect(site_url('/Sertifikat'));
-        }
-    }
-
-    //FUNCTION EDIT 1
-    public function edit($id = null)
-    {
-        if ($id != null) {
-            $query = $this->db->table('sertifikat')->getWhere(['id' => $id]);
-            if ($query->resultID->num_rows > 0) {
-                $header['title'] = 'Form Edit Sertifikat';
-                $data['sertifikat'] = $query->getRow();
-
-                echo view('admin/layout.admin/header', $header);
-                echo view('admin/layout.admin/top_menu');
-                echo view('admin/layout.admin/side_menu');
-                echo view('admin/sertifikat/edit', $data);
-                echo view('admin/layout.admin/footer');
-            } else {
-                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-            }
-        } else {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-        }
-    }
-    //FUNCTION EDIT 2
-    public function update($id)
-    {
-        //if data is array = don't need to use "unset"
-        $data = $this->request->getPost();
-        unset($data['_method']);
-
-        $this->db->table('sertifikat')->where(['id' => $id])->update($data);
-        session()->setFlashdata('message', 'Data Sertifikat Berhasil Diupdate');
-        return $this->response->redirect(site_url('/Sertifikat'));
-    }
-
-    //FUNCTION DELETE
-    public function destroy($id)
-    {
-        $this->db->table('sertifikat')->where(['id' => $id])->delete();
-        session()->setFlashdata('message', 'Data Sertifikat Berhasil Dihapus');
-        return $this->response->redirect(site_url('/Sertifikat'));
-    }
 
     //FUNCTION IMPORT MODUL
     public function import()
@@ -106,11 +45,19 @@ class Sertifikat extends BaseController
                     continue;
                 }
                 $data = [
-                    // 'kode' => $value[1],
-                    // 'nama' => $value[2],
-                    // 'harga' => $value[3],
+                    'kode_sertifikat' => $value[1],
+                    'nim' => $value[2],
+                    'nama' => $value[3],
+                    'nilai' => $value[4],
+                    'result' => $value[8],
+                    'reguler' => $value[10],
+                    'tanggal_ujian' => $value[11],
+                    'ruangan' => $value[12],
+                    'kelas' => $value[13],
+                    'status' => $value[15],
+                    'nama_dosen' => $value[16],
                 ];
-                $this->db->table('sertifikat')->insert($data);
+                $this->db->table('sertifikat_excel')->insert($data);
             }
 
             session()->setFlashdata('message', 'File Excel Berhasil Diimport');

@@ -9,7 +9,7 @@
          </div>
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
-             <li class="breadcrumb-item"><a href="dashboard.admin">Home</a></li>
+             <li class="breadcrumb-item"><a href="admin.Modul">Home</a></li>
              <li class="breadcrumb-item active">Stok Modul</li>
            </ol>
          </div>
@@ -32,11 +32,14 @@
              <div class="card-header">
                <h3 class="card-title">
                  <div class="btn-group">
-                   <a href="<?= site_url('admin.modul/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
+                   <a href="<?= site_url('modul/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
                  </div>
                  <div class="btn-group">
-                   <button type="button" class="btn btn-outline-primary"><i class="fas fa-file-upload"></i>.Import Excel</button>
-                   <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
+                   <a href="<?= site_url('modul_in/add') ?>" class="btn btn-outline-warning"><i class="fas fa-th"></i></a>
+                 </div>
+                 <div class="btn-group">
+                   <button type="button" class="btn btn-outline-success"><i class="fas fa-file-upload"></i>.Import Excel</button>
+                   <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">
                      <span class="sr-only">Toggle Dropdown</span>
                    </button>
                    <div class="dropdown-menu" role="menu">
@@ -46,16 +49,23 @@
                    </div>
                  </div>
                </h3>
+
+
                <div class="card-tools">
-                 <div class="input-group" style="width: 150px;">
-                   <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                   <div class="input-group-append">
-                     <button type="submit" class="btn btn-default">
-                       <i class="fas fa-search"></i>
-                     </button>
+                 <form action="" method="get" autocomplete="off">
+                   <div class="input-group" style="width: 300px;">
+                     <?php $request = \Config\Services::request(); ?>
+                     <input type="text" class="form-control float-right" placeholder="Cari Data Modul" name="keyword" value="<?= $request->getGet('keyword') ?>">
+                     <div class="input-group-append">
+                       <button type="submit" class="btn btn-outline-primary">
+                         <i class="fas fa-search"></i>
+                       </button>
+                     </div>
                    </div>
-                 </div>
+                 </form>
+
                </div>
+
              </div>
              <!-- /.card-header -->
              <div class="card-body table-responsive p-0" style="height: 510px;">
@@ -71,20 +81,16 @@
                  </thead>
                  <tbody>
                    <?php
-                    function rupiah($harga)
-                    {
-                      $harga = 'Rp ' . number_format($harga, 2, ",", ".");
-                      return $harga;
-                    }
+
                     foreach ($moduls as $key => $value) : ?>
                      <tr>
-                       <td><?= strtoupper($value->kode) ?></td>
-                       <td><?= $value->nama ?></td>
-                       <td><?= rupiah($value->harga) ?></td>
+                       <td><?= strtoupper($value->kode_modul) ?></td>
+                       <td><?= $value->nama_modul ?></td>
+                       <td><?= rupiah($value->harga_modul) ?></td>
                        <td><?= $value->ketersediaan ?> <a>pcs</a></td>
                        <td class="text-center">
-                         <a href="<?= site_url('admin.modul/edit/' . $value->id) ?>" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
-                         <form action="<?= site_url('admin.modul/' . $value->id) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus Data Modul Bernama <?= ($value->nama) ?>?')">
+                         <a href="<?= site_url('modul/edit/' . $value->id) ?>" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
+                         <form action="<?= site_url('modul/' . $value->id) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus Data Modul Bernama <?= ($value->nama_modul) ?>?')">
                            <input type="hidden" name="_method" value="DELETE">
                            <button class="btn btn-outline-danger">
                              <i class="fas fa-trash"></i>
@@ -119,7 +125,7 @@
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
-       <form action="<?= site_url('admin.modul/import') ?>" method="post" enctype="multipart/form-data">
+       <form action="<?= site_url('modul/import') ?>" method="post" enctype="multipart/form-data">
          <div class="modal-body">
            <label>File Excel</label>
            <div class="custom-file">

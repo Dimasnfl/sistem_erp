@@ -8,7 +8,7 @@ class M_modul extends Model
     protected $table         = 'moduls';
     protected $primaryKey    = 'id';
     // protected $returntype    = 'object';
-    protected $allowedFields = ['nama', 'kode', 'harga'];
+    protected $allowedFields = ['nama_modul', 'kode_modul', 'harga_modul', 'ketersediaan'];
 
     public function getAll()
     {
@@ -17,31 +17,30 @@ class M_modul extends Model
         $query   = $builder->get();
         return $query->getResult();
     }
-    // public function get()
-    // {
-    //     $query = $this->db->query('SELECT moduls.id as id, kode, nama, harga, COUNT( * ) as ketersediaan 
-    //     FROM moduls
-    //     JOIN list_modul ON list_modul.id_modul = moduls.id
-    //     GROUP BY kode
-    //     ');
-    //     return $query->getResult(); 
-    // }
-
-    public function getStok()
+    public function get($keyword = null)
     {
         $builder = $this->db->table('moduls');
-        $builder->select('moduls.id as id, kode, nama, harga, COUNT( * ) as ketersediaan');
-        $builder->join('list_modul', 'list_modul.id_modul = moduls.id');
-        $builder->groupby('kode');
+        if($keyword != '') {
+            $builder->like('nama_modul', $keyword);
+            $builder->orlike('kode_modul', $keyword);
+            $builder->orlike('harga_modul', $keyword);
+            $builder->orlike('ketersediaan', $keyword);
+        }
         $query   = $builder->get();
         return $query->getResult();
     }
 
-    public function trash($id1,$id2)
+    public function getStok()
     {
         $builder = $this->db->table('moduls');
-        $builder->where('moduls.id', $id1);
-        $builder->where('moduls.id = list_modul.id_modul', $id2);
-        $builder->delete();
+        $builder->select('moduls.id as id, kode_modul, nama_modul, harga_modul, COUNT( * ) as ketersediaan');
+        $builder->join('list_modul', 'list_modul.id_modul = moduls.id');
+        $builder->groupby('kode_modul');
+        $builder->where('deleted_at', NULL);
+        $builder->orderBy('kode_modul', 'ASC');
+        $query   = $builder->get();
+        return $query->getResult();
     }
+
+
 }

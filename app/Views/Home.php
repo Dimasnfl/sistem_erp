@@ -43,4 +43,4 @@
     </div>
 </div>
 
-<?= $this->endsection(); ?>
+<?= $this->endsection('content'); ?>

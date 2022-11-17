@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Moduls extends Migration
+class Sertifikat extends Migration
 {
     public function up()
     {
@@ -15,31 +15,25 @@ class Moduls extends Migration
                 'unsigned' => true,
                 'auto_increment' => true
             ],
-            'nama_modul' => [
+            'nama_sertifikat' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255'
             ],
-            'kode_modul' => [
+            'kode_sertifikat' => [
                 'type' => 'VARCHAR',
-                'constraint' => '255',
-                'unique' => true
+                'constraint' => 255
             ],
-            'ketersediaan' => [
-                'type' => 'INT',
-                'constrain' => '5',
-                'unsigned' => true
-            ],
-            'harga_modul' => [
+            'harga_sertifikat' => [
                 'type' => 'INT',
                 'constraint' => '100'
             ]
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('moduls');
+        $this->forge->createTable('sertifikat');
     }
 
     public function down()
     {
-        $this->forge->dropTable('moduls');
+        $this->forge->dropTable('sertifikat');
     }
 }

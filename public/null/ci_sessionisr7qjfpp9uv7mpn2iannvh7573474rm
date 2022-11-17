@@ -1,9 +1,0 @@
-__ci_last_regenerate|i:1664949308;_ci_previous_url|s:30:"http://localhost:8080/register";_ci_old_input|a:2:{s:3:"get";a:0:{}s:4:"post";a:8:{s:14:"csrf_test_name";s:32:"1db0aae13490ee1a74772927b21a91d6";s:4:"nama";s:8:"agusbaca";s:3:"nim";s:10:"1234567891";s:7:"jurusan";s:11:"informatika";s:5:"email";s:15:"agus@google.com";s:8:"password";s:8:"12345678";s:7:"reguler";s:1:"B";s:5:"no_hp";s:12:"089123456781";}}__ci_vars|a:3:{s:13:"_ci_old_input";s:3:"old";s:21:"_ci_validation_errors";s:3:"old";s:5:"error";s:3:"old";}_ci_validation_errors|s:43:"a:1:{s:3:"nim";s:19:"NIM Sudah Terdaftar";}";error|s:228:"<!-- DEBUG-VIEW START 1 SYSTEMPATH\Validation\Views\list.php -->
-	<div class="errors" role="alert">
-		<ul>
-					<li>NIM Sudah Terdaftar</li>
-				</ul>
-	</div>
-
-<!-- DEBUG-VIEW ENDED 1 SYSTEMPATH\Validation\Views\list.php -->
-";
