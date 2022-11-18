@@ -26,7 +26,7 @@ class Moduls extends Migration
             ],
             'ketersediaan' => [
                 'type' => 'INT',
-                'constrain' => '5',
+                'constraint' => '100',
                 'unsigned' => true
             ],
             'harga_modul' => [

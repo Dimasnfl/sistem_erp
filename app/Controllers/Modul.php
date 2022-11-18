@@ -62,7 +62,7 @@ class Modul extends BaseController
 
         if ($this->db->affectedRows() > 0) {
             session()->setFlashdata('message', 'Data Modul Telah Tersimpan');
-            return $this->response->redirect(site_url('/Modul'));
+            return $this->response->redirect(site_url('admin.Modul'));
         }
     }
 
@@ -103,7 +103,7 @@ class Modul extends BaseController
 
         $this->db->table('moduls')->where(['id' => $id])->update($data);
         session()->setFlashdata('message', 'Data Modul Berhasil Diupdate');
-        return $this->response->redirect(site_url('/Modul'));
+        return $this->response->redirect(site_url('admin.Modul'));
     }
 
     //FUNCTION DELETE MODUL
@@ -111,7 +111,7 @@ class Modul extends BaseController
     {
         $this->modul->where(['id' => $id])->delete();
         session()->setFlashdata('message', 'Data Modul Berhasil Dihapus');
-        return $this->response->redirect(site_url('/Modul'));
+        return $this->response->redirect(site_url('admin.Modul'));
     }
 
     //FUNCTION IMPORT MODUL
@@ -143,7 +143,7 @@ class Modul extends BaseController
             return $this->response->redirect(site_url('/Modul'));
         } else {
             session()->setFlashdata('message', 'File Excel Tidak Sesuai');
-            return $this->response->redirect(site_url('/Modul'));
+            return $this->response->redirect(site_url('admin.Modul'));
         }
     }
 }

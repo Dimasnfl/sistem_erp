@@ -5,15 +5,15 @@
      <div class="container-fluid">
        <div class="row mb-0">
          <div class="col-md-1">
-           <a href="<?= site_url('Modul') ?>" class="btn btn-outline-danger"><i class="fas fa-arrow-left"></i></a>
+           <a href="<?= site_url('admin.Modul') ?>" class="btn btn-outline-danger"><i class="fas fa-arrow-left"></i></a>
          </div>
          <div class="col-sm-5">
            <h1>Form Edit Stok Modul</h1>
          </div>
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
-             <li class="breadcrumb-item"><a href="/">Home</a></li>
-             <li class="breadcrumb-item"><a href="/Modul">Data Modul</a></li>
+             <li class="breadcrumb-item"><a href="dashboard.admin">Home</a></li>
+             <li class="breadcrumb-item"><a href="admin.Modul">Data Modul</a></li>
              <li class="breadcrumb-item active">Edit Data Modul</li>
            </ol>
          </div>
@@ -43,7 +43,7 @@
                    <label>HARGA</label>
                    <input type="text" class="form-control" name="harga_modul" value="<?= $moduls->harga_modul ?>" placeholder="Masukkan Harga Modul" required>
                  </div>
-                   
+
                  <button type="submit" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i>.Save</button>
                </form>
              </div>

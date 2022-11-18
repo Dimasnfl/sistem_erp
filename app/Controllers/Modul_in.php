@@ -46,7 +46,7 @@ class Modul_in extends BaseController
 
         if ($this->db->affectedRows() > 0) {
             session()->setFlashdata('message', 'Stok Modul Telah Ditambahkan');
-            return $this->response->redirect(site_url('/Modul'));
+            return $this->response->redirect(site_url('admin.Modul'));
         }
     }
 }

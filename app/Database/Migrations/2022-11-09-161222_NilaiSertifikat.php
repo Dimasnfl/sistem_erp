@@ -24,19 +24,45 @@ class NilaiSertifikat extends Migration
             'tanggal_ujian' => [
                 'type' => 'DATE'
             ],
-            'user_id' => [
+            'nama_user' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255'
+            ],
+            'nim_user' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255'
+            ],
+            'result' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255'
+            ],
+            'reguler_user' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255'
+            ],
+            'kelas' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255'
+            ],
+            'status' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255'
+            ],
+            'nama_dosen' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255'
+            ],
+            'ruangan' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255'
             ],
             'sertifikat_id' => [
-                'type' => 'INT',
-                'constraint' => '5',
-                'unsigned' => true,
+                'type' => 'VARCHAR',
+                'constraint' => '255',
             ]
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('sertifikat_id', 'sertifikat', 'id');
-        $this->forge->addForeignKey('user_id', 'users', 'nim');
+        $this->forge->addForeignKey('sertifikat_id', 'sertifikat', 'kode_sertifikat');
         $this->forge->createTable('nilai_sertifikat');
         $this->db->enableForeignKeyChecks();
     }

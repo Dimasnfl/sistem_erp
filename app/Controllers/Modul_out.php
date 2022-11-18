@@ -40,6 +40,6 @@ class Modul_out extends BaseController
     {
         $this->modul_out->emptyTable('moduls_out');
         session()->setFlashdata('message', 'Semua Data Modul Telah Di Restore');
-        return $this->response->redirect(site_url('/Modul'));
+        return $this->response->redirect(site_url('admin.Modul'));
     }
 }
