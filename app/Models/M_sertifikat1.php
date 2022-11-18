@@ -5,9 +5,9 @@ use CodeIgniter\Model;
 
 class M_sertifikat extends Model
 {
-    protected $table         = 'nilai_sertifikat';
+    protected $table         = 'sertifikat_excel';
     protected $primaryKey    = 'id';
-    protected $allowedFields = ['JP', 'nilai', 'tanggal_ujian', 'nama_user', 'nim_user', 'result', 'reguler_user', 'kelas', 'status', 'nama_dosen', 'ruangan','sertifikat_id'];
+    protected $allowedFields = ['kode', 'nim', 'nama', 'nilai', 'result', 'reguler', 'tanggal_ujian', 'ruangan', 'kelas', 'status', 'nama_dosen'];
 
     // public function getAlll()
     // {
@@ -26,7 +26,7 @@ class M_sertifikat extends Model
 
     function getAll()
     {
-        $builder = $this->db->table('nilai_sertifikat');
+        $builder = $this->db->table('sertifikat_excel');
         $builder->select('*');
         $query   = $builder->get();
         return $query->getResult();
@@ -34,7 +34,7 @@ class M_sertifikat extends Model
 
     function getPaginated($num, $keyword = null)
     {
-        $builder = $this->db->table('nilai_sertifikat');
+        $builder = $this->db->table('sertifikat_excel');
         return [
             'sertifikat' => $this->paginate($num),
             'pager' => $this->pager,

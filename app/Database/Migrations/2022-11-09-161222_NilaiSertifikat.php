@@ -16,10 +16,6 @@ class NilaiSertifikat extends Migration
                 'unsigned' => true,
                 'auto_increment' => true
             ],
-            'JP' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255'
-            ],
             'nilai' => [
                 'type' => 'INT',
                 'constraint' => '5',
