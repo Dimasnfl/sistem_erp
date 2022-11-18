@@ -103,10 +103,17 @@ class Sertifikat extends BaseController
 
             session()->setFlashdata('message', 'File Excel Berhasil Diimport');
 <<<<<<< HEAD
+<<<<<<< HEAD
             return $this->response->redirect(site_url('admin.Sertifikat'));
         } else {
             session()->setFlashdata('message', 'File Excel Tidak Sesuai');
             return $this->response->redirect(site_url('admin.Sertifikat'));
+=======
+            return $this->response->redirect(site_url('/admin.Sertifikat'));
+        } else {
+            session()->setFlashdata('message', 'File Excel Tidak Sesuai');
+            return $this->response->redirect(site_url('/admin.Sertifikat'));
+>>>>>>> eb2773ac1a799c4a6a1d9231ebb07e90b6f60ef0
 =======
             return $this->response->redirect(site_url('/admin.Sertifikat'));
         } else {
