@@ -61,28 +61,37 @@
                  <thead>
                    <tr>
                      <th>NO</th>
-                     <th>KODE</th>
-                     <th>NAMA MODUL</th>
-                     <th>JUMLAH</th>
-                     <th>Di Check Out Pada</th>
+                     <th>USER</th>
+                     <th>MODUL</th>
+                     <th>SERTIFIKAT</th>
+                     <th>QTY</th>
+                     <th>HARGA</th>
+
                      <th class="text-center">ACTION</th>
                    </tr>
                  </thead>
                  <tbody>
                    <?php
 
-                    foreach ($modul_out as $key => $value) : ?>
+                    foreach ($shopping_cart as $key => $value) : ?>
                      <tr>
                        <td> <?= $key + 1 ?> </td>
-                       <td><?= strtoupper($value->kode_modul) ?></td>
-                       <td><?= $value->nama_modul ?></td>
+                       <td><?= $value->id_user ?></td>
+                       <td><?= $value->id_produk ?></td>
+                       <td><?= $value->id_sertifikat ?></td>
                        <td><?= $value->qty ?></td>
-                       <td><?= date('d/m/Y - H:i', strtotime($value->date)) ?></td>
+                       <td><?= $value->harga ?></td>
                        <td class="text-center">
-                         <form action="<?= site_url('modul_out/restore/' . $value->id_out) ?>" method="get" class="d-inline" onsubmit="return confirm('Kembalikan Modul (<?= ($value->nama_modul) ?>) dengan ID (<?= ($value->id_out) ?>) Ke Stok ?')">
+                         <form action="<?= site_url('modul_out/restore/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Kembalikan Modul <?= $value->id?>  ?')">
                            <input type="hidden" name="_method" value="GET">
                            <button class="btn btn-outline-danger">
                              <i class="fas fa-undo"></i>
+                           </button>
+                         </form>
+                         <form action="<?= site_url('modul_out/konfirmasi/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Konfirmasi Modul <?= $value->id?>  ?')">
+                           <input type="hidden" name="_method" value="GET">
+                           <button class="btn btn-outline-success">
+                             <i class="fas fa-check"></i>
                            </button>
                          </form>
                        </td>
