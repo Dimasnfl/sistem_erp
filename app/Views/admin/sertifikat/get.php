@@ -66,16 +66,17 @@
                      <th>NAMA DOSEN</th> -->
                      <th>NO</th>
                      <th>JP</th>
-                     <th>NIM</th>
-                     <th>SAS File</th>
-                     <th>GRADE</th>
-                     <th>RESULT</th>
-                     <th>REGULER</th>
+                     <th>NILAI</th>
                      <th>TANGGAL UJIAN</th>
-                     <th>RUANGAN</th>
+                     <th>NAMA USER</th>
+                     <th>NIM USER</th>
+                     <th>RESULT</th>
+                     <th>REGULER USER</th>
                      <th>KELAS</th>
                      <th>STATUS</th>
                      <th>NAMA DOSEN</th>
+                     <th>RUANGAN</th>
+                     <th>SERTIFIKAT ID</th>
                    </tr>
                  </thead>
                  <tbody>
@@ -86,17 +87,18 @@
                      <tr>
                        <td><?= $no++ ?></td>
 
-                       <td><?= $value['kode'] ?></td>
-                       <td><?= $value['nim'] ?></td>
-                       <td><?= $value['nama'] ?></td>
+                       <td><?= $value['JP'] ?></td>
                        <td><?= $value['nilai'] ?></td>
+                       <td><?= $value['tanggal_ujian'] ?></td>
+                       <td><?= $value['nama_user'] ?></td>
+                       <td><?= strtoupper($value['nim_user']) ?></td>
                        <td><?= strtoupper($value['result']) ?></td>
-                       <td><?= strtoupper($value['reguler']) ?></td>
-                       <td><?= date('d/m/Y', strtotime($value['tanggal_ujian'])) ?></td>
-                       <td><?= strtoupper($value['ruangan']) ?></td>
+                       <td><?= $value['reguler_user'] ?></td>
                        <td><?= strtoupper($value['kelas']) ?></td>
-                       <td><?= $value['status'] ?></td>
+                       <td><?= strtoupper($value['status']) ?></td>
                        <td><?= $value['nama_dosen'] ?></td>
+                       <td><?= $value['ruangan'] ?></td>
+                       <td><?= $value['sertifikat_id'] ?></td>
 
                      </tr>
 
