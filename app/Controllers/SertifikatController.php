@@ -34,7 +34,7 @@ class SertifikatController extends BaseController
         } else {
             $data = [
                 'id_user' => session('nim'),
-                'id_sertifikat' => $nilai['0']['id'],
+                'id_sertifikat' => $id,
                 'qty' => 1,
                 'harga' => $nilai['0']['harga_sertifikat']
             ];
