@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\M_modul;
 use App\Models\M_modul_in;
 use App\Models\M_modul_out;
+use App\Models\M_shopping_cart;
 
 
 class Modul_out extends BaseController
@@ -15,12 +16,14 @@ class Modul_out extends BaseController
         $this->modul = new M_modul();
         $this->modul_in = new M_modul_in();
         $this->modul_out = new M_modul_out();
+        $this->shopping = new M_shopping_cart();
+
     }
 
     public function index()
     {
         $header['title'] = 'Transaksi Modul';
-        $data['modul_out'] = $this->modul_out->getProcess();
+        $data['shopping_cart'] = $this->shopping->get();
 
         echo view('admin/layout/header', $header);
         echo view('admin/layout/top_menu');
@@ -31,15 +34,23 @@ class Modul_out extends BaseController
 
     public function restore($id = null)
     {
-        $this->modul_out->delete($id);
+        $this->shopping->delete($id);
         session()->setFlashdata('message', 'Data Modul Telah Di Restore');
+        return $this->response->redirect(site_url('/Modul_out'));
+    }
+
+
+    public function konfirmasi($id = null)
+    {
+        $this->db->table('shopping_cart')->where('id', $id)->set('konfirmasi', 1)->update();
+        session()->setFlashdata('message', 'Data Modul Telah Terkonfirmasi');
         return $this->response->redirect(site_url('/Modul_out'));
     }
 
     public function restore2()
     {
-        $this->modul_out->emptyTable('moduls_out');
+        $this->shopping->emptyTable('shopping_cart');
         session()->setFlashdata('message', 'Semua Data Modul Telah Di Restore');
-        return $this->response->redirect(site_url('/Modul'));
+        return $this->response->redirect(site_url('/Modul_out'));
     }
 }
