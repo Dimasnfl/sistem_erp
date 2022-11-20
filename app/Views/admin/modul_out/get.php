@@ -80,15 +80,15 @@
                        <td><?= $value->id_produk ?></td>
                        <td><?= $value->id_sertifikat ?></td>
                        <td><?= $value->qty ?></td>
-                       <td><?= $value->harga ?></td>
+                       <td><?= rupiah($value->harga) ?></td>
                        <td class="text-center">
-                         <form action="<?= site_url('modul_out/restore/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Kembalikan Modul <?= $value->id?>  ?')">
+                         <form action="<?= site_url('modul_out/restore/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Kembalikan Modul <?= $value->id_produk?> -  <?= $value->id_user?> ?')">
                            <input type="hidden" name="_method" value="GET">
                            <button class="btn btn-outline-danger">
                              <i class="fas fa-undo"></i>
                            </button>
                          </form>
-                         <form action="<?= site_url('modul_out/konfirmasi/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Konfirmasi Modul <?= $value->id?>  ?')">
+                         <form action="<?= site_url('modul_out/konfirmasi/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Konfirmasi Modul <?= $value->id_produk?> -  <?= $value->id_user?> ?')">
                            <input type="hidden" name="_method" value="GET">
                            <button class="btn btn-outline-success">
                              <i class="fas fa-check"></i>

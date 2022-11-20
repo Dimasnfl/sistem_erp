@@ -32,9 +32,9 @@
              <div class="card-header">
                <h3 class="card-title">
                  <div class="btn-group">
-                   <!-- <a href="<?= site_url('modul/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a> -->
+                   <a href="<?= site_url('sertifikat/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
                  </div>
-                 <div class="btn-group">
+                 <!-- <div class="btn-group">
                    <button type="button" class="btn btn-outline-success"><i class="fas fa-file-upload"></i>.Import Excel</button>
                    <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">
                      <span class="sr-only">Toggle Dropdown</span>
@@ -44,7 +44,7 @@
                      <div class="dropdown-divider"></div>
                      <a class="dropdown-item has-icon" href="#" data-toggle="modal" data-target="#sertifikat-import-modul"><i class="fas fa-file-import"></i>.Upload File</a>
                    </div>
-                 </div>
+                 </div> -->
                </h3>
 
              </div>
@@ -65,41 +65,29 @@
                      <th>KELAS</th>
                      <th>NAMA DOSEN</th> -->
                      <th>NO</th>
-                     <th>JP</th>
-                     <th>NILAI</th>
-                     <th>TANGGAL UJIAN</th>
-                     <th>NAMA USER</th>
-                     <th>NIM USER</th>
-                     <th>RESULT</th>
-                     <th>REGULER USER</th>
-                     <th>KELAS</th>
-                     <th>STATUS</th>
-                     <th>NAMA DOSEN</th>
-                     <th>RUANGAN</th>
-                     <th>SERTIFIKAT ID</th>
+                     <th>KODE</th>
+                     <th>NAMA SERTIFIKAT</th>
+                     <th>HARGA</th>
+                     <th>ACTION</th>
                    </tr>
                  </thead>
                  <tbody>
                    <?php
-                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                    $no = 1 + (10 * ($page - 1));
                     foreach ($sertifikat as $key => $value) : ?>
                      <tr>
-                       <td><?= $no++ ?></td>
-
-                       <td><?= $value['JP'] ?></td>
-                       <td><?= $value['nilai'] ?></td>
-                       <td><?= $value['tanggal_ujian'] ?></td>
-                       <td><?= $value['nama_user'] ?></td>
-                       <td><?= strtoupper($value['nim_user']) ?></td>
-                       <td><?= strtoupper($value['result']) ?></td>
-                       <td><?= $value['reguler_user'] ?></td>
-                       <td><?= strtoupper($value['kelas']) ?></td>
-                       <td><?= strtoupper($value['status']) ?></td>
-                       <td><?= $value['nama_dosen'] ?></td>
-                       <td><?= $value['ruangan'] ?></td>
-                       <td><?= $value['sertifikat_id'] ?></td>
-
+                       <td><?= $key +1 ?></td>
+                       <td><?= strtoupper($value['kode_sertifikat']) ?></td>
+                       <td><?= $value['nama_sertifikat'] ?></td>
+                       <td><?= rupiah($value['harga_sertifikat']) ?></td>
+                       <td class="text-center">
+                         <a href="<?= site_url('sertifikat/edit/' . $value['id']) ?>" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
+                         <form action="<?= site_url('sertifikat/' . $value['id']) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus Data Sertifikat Bernama <?= $value['nama_sertifikat'] ?>?')">
+                           <input type="hidden" name="_method" value="DELETE">
+                           <button class="btn btn-outline-danger">
+                             <i class="fas fa-trash"></i>
+                           </button>
+                         </form>
+                       </td>
                      </tr>
 
                    <?php endforeach; ?>
@@ -107,7 +95,6 @@
 
                  </tbody>
                </table>
-               <?= $pager->links('default', 'pagination') ?>
              </div>
              <!-- /.card-body -->
            </div>

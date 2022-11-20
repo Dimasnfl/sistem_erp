@@ -5,12 +5,12 @@
      <div class="container-fluid">
        <div class="row mb-2">
          <div class="col-sm-6">
-           <h1>Stok Modul</h1>
+           <h1>Sertifikat</h1>
          </div>
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
              <li class="breadcrumb-item"><a href="dashboard.admin">Home</a></li>
-             <li class="breadcrumb-item active">Stok Modul</li>
+             <li class="breadcrumb-item active">List Sertifikat</li>
            </ol>
          </div>
        </div>
@@ -32,10 +32,7 @@
              <div class="card-header">
                <h3 class="card-title">
                  <div class="btn-group">
-                   <a href="<?= site_url('modul/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
-                 </div>
-                 <div class="btn-group">
-                   <a href="<?= site_url('modul_in/add') ?>" class="btn btn-outline-warning"><i class="fas fa-th"></i></a>
+
                  </div>
                  <div class="btn-group">
                    <button type="button" class="btn btn-outline-success"><i class="fas fa-file-upload"></i>.Import Excel</button>
@@ -43,19 +40,17 @@
                      <span class="sr-only">Toggle Dropdown</span>
                    </button>
                    <div class="dropdown-menu" role="menu">
-                     <a class="dropdown-item has-icon" href="<?= base_url('Import_Modul_Example.xlsx') ?>"><i class="fas fa-file-excel"></i>.Download Contoh Format</a>
+                     <a class="dropdown-item has-icon" href="<?= base_url('Import_Sertifikat_Example.xlsx') ?>"><i class="fas fa-file-excel"></i>.Download Contoh Format</a>
                      <div class="dropdown-divider"></div>
-                     <a class="dropdown-item has-icon" href="#" data-toggle="modal" data-target="#modal-import-modul"><i class="fas fa-file-import"></i>.Upload File</a>
+                     <a class="dropdown-item has-icon" href="#" data-toggle="modal" data-target="#sertifikat-import-modul"><i class="fas fa-file-import"></i>.Upload File</a>
                    </div>
                  </div>
                </h3>
-
-
                <div class="card-tools">
                  <form action="" method="get" autocomplete="off">
                    <div class="input-group" style="width: 300px;">
                      <?php $request = \Config\Services::request(); ?>
-                     <input type="text" class="form-control float-right" placeholder="Cari Data Modul" name="keyword" value="<?= $request->getGet('keyword') ?>">
+                     <input type="text" class="form-control float-right" placeholder="Cari Data Sertifikat" name="keyword" value="<?= $request->getGet('keyword') ?>">
                      <div class="input-group-append">
                        <button type="submit" class="btn btn-outline-primary">
                          <i class="fas fa-search"></i>
@@ -71,40 +66,71 @@
                <table class="table table-head-fixed table-striped text-nowrap table-bordered">
                  <thead>
                    <tr>
+                     <!-- <th>KODE</th>
+                     <th>NAMA SERTIFIKAT</th>
+                     <th>HARGA SERTIFIKAT</th>
+                     <th>GRADE</th>
+                     <th>RESULT</th>
+                     <th>TANGGAL UJIAN</th>
+                     <th>NIM MAHASISWA</th>
+                     <th>NAMA MAHASISWA</th>
+                     <th>REGULER</th>
+                     <th>KELAS</th>
+                     <th>NAMA DOSEN</th> -->
                      <th>NO</th>
-                     <th>KODE</th>
-                     <th>NAMA MODUL</th>
-                     <th>HARGA</th>
-                     <th>KETERSEDIAAN</th>
-                     <th class="text-center">ACTION</th>
+                     <th>JP</th>
+                     <th>NILAI</th>
+                     <th>TANGGAL UJIAN</th>
+                     <th>NAMA USER</th>
+                     <th>NIM USER</th>
+                     <th>RESULT</th>
+                     <th>REGULER USER</th>
+                     <th>KELAS</th>
+                     <th>STATUS</th>
+                     <th>NAMA DOSEN</th>
+                     <th>RUANGAN</th>
+                     <th>SERTIFIKAT ID</th>
                    </tr>
                  </thead>
                  <tbody>
                    <?php
-
-                    foreach ($moduls as $key => $value) : ?>
+                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $no = 1 + (10 * ($page - 1));
+                    foreach ($sertifikat as $key => $value) : ?>
                      <tr>
-                       <td><?= $key + 1 ?></td>
-                       <td><?= strtoupper($value->kode_modul) ?></td>
-                       <td><?= $value->nama_modul ?></td>
-                       <td><?= rupiah($value->harga_modul) ?></td>
-                       <td><?= $value->ketersediaan ?> <a>pcs</a></td>
-                       <td class="text-center">
-                         <a href="<?= site_url('modul/edit/' . $value->id) ?>" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
-                         <form action="<?= site_url('modul/' . $value->id) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus Data Modul Bernama <?= ($value->nama_modul) ?>?')">
-                           <input type="hidden" name="_method" value="DELETE">
-                           <button class="btn btn-outline-danger">
-                             <i class="fas fa-trash"></i>
-                           </button>
-                         </form>
-                       </td>
+                       <td><?= $no++ ?></td>
+
+                       <td><?= $value['JP'] ?></td>
+                       <td><?= $value['nilai'] ?></td>
+                       <td><?= $value['tanggal_ujian'] ?></td>
+                       <td><?= $value['nama_user'] ?></td>
+                       <td><?= strtoupper($value['nim_user']) ?></td>
+                       <td><?= strtoupper($value['result']) ?></td>
+                       <td><?= $value['reguler_user'] ?></td>
+                       <td><?= strtoupper($value['kelas']) ?></td>
+                       <td><?= strtoupper($value['status']) ?></td>
+                       <td><?= $value['nama_dosen'] ?></td>
+                       <td><?= $value['ruangan'] ?></td>
+                       <td><?= $value['sertifikat_id'] ?></td>
+
                      </tr>
 
-                   <?php endforeach ?>
+                   <?php endforeach; ?>
 
 
                  </tbody>
                </table>
+               <div class="card-footer clearfix">
+               <ul class="pagination pagination-md m-0 float-left">
+                <i>Showing <?=1 + (10 * ($page - 1))?> to <?=$no-1?> of <?=$pager->getTotal()?> entries</i>      
+               </ul>
+               <!-- <div class="float-right"> -->
+               <ul class="pagination pagination-md m-0 float-right">
+               <?= $pager->links('default', 'pagination') ?>
+               </ul>
+               <!-- </div> -->
+               </div>
+
              </div>
              <!-- /.card-body -->
            </div>
@@ -117,16 +143,16 @@
  <!-- /.content-wrapper -->
 
  <!-- modal import modul -->
- <div class="modal fade" id="modal-import-modul">
+ <div class="modal fade" id="sertifikat-import-modul">
    <div class="modal-dialog">
      <div class="modal-content bg-primary">
        <div class="modal-header">
-         <h4 class="modal-title">Import Modul</h4>
+         <h4 class="modal-title">Import Sertifikat</h4>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
-       <form action="<?= site_url('modul/import') ?>" method="post" enctype="multipart/form-data">
+       <form action="<?= site_url('sertifikatlist/import') ?>" method="post" enctype="multipart/form-data">
          <div class="modal-body">
            <label>File Excel</label>
            <div class="custom-file">

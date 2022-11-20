@@ -11,10 +11,10 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="<?= base_url('adminLTE/dist/img/avatar5.png') ?>" class="img-circle elevation-2" alt="User Image">
+        <!-- <img src="<?= base_url('adminLTE/dist/img/avatar5.png') ?>" class="img-circle elevation-2" alt="User Image"> -->
       </div>
       <div class="info">
-        <a class="d-block">admin1</a>
+        <a class="d-block">ADMIN</a>
         <!-- Status -->
         <a><i class="fa fa-circle text-success"></i> Online</a>
       </div>
@@ -82,7 +82,12 @@
                 <p>View Sertifikat</p>
               </a>
             </li>
-
+            <li class="nav-item">
+              <a href="<?= site_url('admin.SertifikatList') ?>" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>List Sertifikat</p>
+              </a>
+            </li>
           </ul>
         </li>
       </ul>

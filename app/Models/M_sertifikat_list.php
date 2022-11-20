@@ -3,11 +3,11 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class M_sertifikat extends Model
+class M_sertifikat_list extends Model
 {
-    protected $table         = 'sertifikat_excel';
+    protected $table         = 'nilai_sertifikat';
     protected $primaryKey    = 'id';
-    protected $allowedFields = ['kode', 'nim', 'nama', 'nilai', 'result', 'reguler', 'tanggal_ujian', 'ruangan', 'kelas', 'status', 'nama_dosen'];
+    protected $allowedFields = ['JP', 'nilai', 'tanggal_ujian', 'nama_user', 'nim_user', 'result', 'reguler_user', 'kelas', 'status', 'nama_dosen', 'ruangan','sertifikat_id'];
 
     // public function getAlll()
     // {
@@ -26,7 +26,7 @@ class M_sertifikat extends Model
 
     function getAll()
     {
-        $builder = $this->db->table('sertifikat_excel');
+        $builder = $this->db->table('nilai_sertifikat');
         $builder->select('*');
         $query   = $builder->get();
         return $query->getResult();
@@ -34,27 +34,27 @@ class M_sertifikat extends Model
 
     function getPaginated($num, $keyword = null)
     {
-        $builder = $this->db->table('sertifikat_excel');
+        $builder = $this->builder();
+        if($keyword != '') {
+            $builder->like('JP', $keyword);
+            $builder->orlike('nilai', $keyword);
+            $builder->orlike('tanggal_ujian', $keyword);
+            $builder->orlike('nama_user', $keyword);
+            $builder->orlike('nim_user', $keyword);
+            $builder->orlike('result', $keyword);
+            $builder->orlike('reguler_user', $keyword);
+            $builder->orlike('kelas', $keyword);
+            $builder->orlike('status', $keyword);
+            $builder->orlike('nama_dosen', $keyword);
+            $builder->orlike('ruangan', $keyword);
+            $builder->orlike('sertifikat_id', $keyword);
+        }
         return [
             'sertifikat' => $this->paginate($num),
             'pager' => $this->pager,
         ];
 
     }
-
-
-
-    // public function excel($num, $keyword = null)
-    // {
-    //     $builder = $this->db->table('sertifikat_excel');
-    //     $builder->select('*');
-    //     return [
-    //         'sertifikat_excel' => $this->paginate($num),
-    //         'pager' => $this->pager,
-    //     ];
-    //     $query   = $builder->get();
-    //     return $query->getResult();
-    // }
 
 
 }

@@ -101,7 +101,9 @@ $routes->post('modul/import', 'Modul::import');
 
 //===================================================================
 //sertifikat page
+$routes->get('admin.SertifikatList', 'SertifikatList::index');
 $routes->get('admin.Sertifikat', 'Sertifikat::index');
+
 
 //add sertifikat
 $routes->get('sertifikat/add', 'Sertifikat::create');
@@ -113,7 +115,7 @@ $routes->put('sertifikat/(:any)', 'Sertifikat::update/$1');
 $routes->delete('sertifikat/(:segment)', 'Sertifikat::destroy/$1');
 
 //import sertifikat
-$routes->post('sertifikat/import', 'Sertifikat::import');
+$routes->post('sertifikatlist/import', 'SertifikatList::import');
 //===================================================================
 
 //===================================================================

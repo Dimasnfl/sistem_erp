@@ -16,7 +16,7 @@ class Sertifikat extends BaseController
     public function index()
     {
         $header['title'] = 'Data Sertifikat';
-        $data = $this->sertifikat->getPaginated(10);
+        $data['sertifikat'] = $this->sertifikat->findAll();
         // $data['pager'] = $this->sertifikat->pager;
         echo view('admin/layout/header', $header);
         echo view('admin/layout/top_menu');
@@ -25,101 +25,72 @@ class Sertifikat extends BaseController
         echo view('admin/layout/footer');
     }
 
-
-
-    //FUNCTION IMPORT MODUL
-    // public function import()
-    // {
-    //     $file = $this->request->getFile('file_excel');
-    //     $extension = $file->getClientExtension();
-    //     if ($extension == 'xlsx' || $extension == 'xls') {
-    //         if ($extension == 'xls') {
-    //             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-    //         } else {
-    //             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-    //         }
-    //         $spreadsheet = $reader->load($file);
-    //         $sertifikat = $spreadsheet->getActiveSheet()->toArray();
-    //         foreach ($sertifikat as $key => $value) {
-    //             if ($key == 0) {
-    //                 continue;
-    //             }
-    //             $data = [
-    //                 'kode_sertifikat' => $value[1],
-    //                 'nim' => $value[2],
-    //                 'nama' => $value[3],
-    //                 'nilai' => $value[4],
-    //                 'result' => $value[8],
-    //                 'reguler' => $value[10],
-    //                 'tanggal_ujian' => $value[11],
-    //                 'ruangan' => $value[12],
-    //                 'kelas' => $value[13],
-    //                 'status' => $value[15],
-    //                 'nama_dosen' => $value[16],
-    //             ];
-    //             $this->db->table('sertifikat_excel')->insert($data);
-    //         }
-
-    //         session()->setFlashdata('message', 'File Excel Berhasil Diimport');
-    //         return $this->response->redirect(site_url('/Sertifikat'));
-    //     } else {
-    //         session()->setFlashdata('message', 'File Excel Tidak Sesuai');
-    //         return $this->response->redirect(site_url('/Sertifikat'));
-    //     }
-    // }
-
-    public function import()
+    public function create()
     {
-        $file = $this->request->getFile('file_excel');
-        $extension = $file->getClientExtension();
-        if ($extension == 'xlsx' || $extension == 'xls') {
-            if ($extension == 'xls') {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-            } else {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-            }
-            $spreadsheet = $reader->load($file);
-            $sertifikat = $spreadsheet->getActiveSheet()->toArray();
-            foreach ($sertifikat as $key => $value) {
-                if ($key == 0) {
-                    continue;
-                }
-                $data = [
-                    'JP' => $value[1],
-                    'nilai' => $value[4],
-                    'tanggal_ujian' => $value[8],
-                    'nama_user' => $value[3],
-                    'nim_user' => $value[2],
-                    'result' => $value[5],
-                    'reguler_user' => $value[7],
-                    'kelas' => $value[10],
-                    'status' => $value[11],
-                    'nama_dosen' => $value[12],
-                    'ruangan' => $value[9],
-                    'sertifikat_id' => $value[6],
-                ];
-                $this->db->table('nilai_sertifikat')->insert($data);
-            }
+        $header['title'] = 'Form Tambah Data Sertifikat';
 
-            session()->setFlashdata('message', 'File Excel Berhasil Diimport');
-<<<<<<< HEAD
-<<<<<<< HEAD
+        echo view('admin/layout/header', $header);
+        echo view('admin/layout/top_menu');
+        echo view('admin/layout/side_menu');
+        echo view('admin/sertifikat/add');
+        echo view('admin/layout/footer');
+    }
+
+    public function store()
+    {
+        $data = $this->request->getpost();
+
+        $this->db->table('sertifikat')->insert($data);
+
+        if ($this->db->affectedRows() > 0) {
+            session()->setFlashdata('message', 'Data Sertifikat Telah Tersimpan');
             return $this->response->redirect(site_url('admin.Sertifikat'));
-        } else {
-            session()->setFlashdata('message', 'File Excel Tidak Sesuai');
-            return $this->response->redirect(site_url('admin.Sertifikat'));
-=======
-            return $this->response->redirect(site_url('/admin.Sertifikat'));
-        } else {
-            session()->setFlashdata('message', 'File Excel Tidak Sesuai');
-            return $this->response->redirect(site_url('/admin.Sertifikat'));
->>>>>>> eb2773ac1a799c4a6a1d9231ebb07e90b6f60ef0
-=======
-            return $this->response->redirect(site_url('/admin.Sertifikat'));
-        } else {
-            session()->setFlashdata('message', 'File Excel Tidak Sesuai');
-            return $this->response->redirect(site_url('/admin.Sertifikat'));
->>>>>>> eb2773ac1a799c4a6a1d9231ebb07e90b6f60ef0
         }
     }
+
+    public function edit($id = null)
+    {
+        if ($id != null) {
+            $query = $this->db->table('sertifikat')->getWhere(['id' => $id]);
+            if ($query->resultID->num_rows > 0) {
+                $header['title'] = 'Form Edit Data Sertifikat';
+                $data['sertifikat'] = $query->getRow();
+
+                echo view('admin/layout/header', $header);
+                echo view('admin/layout/top_menu');
+                echo view('admin/layout/side_menu');
+                echo view('admin/sertifikat/edit', $data);
+                echo view('admin/layout/footer');
+            } else {
+                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            }
+        } else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+    }
+
+    public function update($id)
+    {
+
+        $data = [
+            'kode_sertifikat' => $this->request->getVar('kode_sertifikat'),
+            'nama_sertifikat'  => $this->request->getVar('nama_sertifikat'),
+            'harga_sertifikat'  => $this->request->getVar('harga_sertifikat'),
+        ];
+
+
+        $this->db->table('sertifikat')->where(['id' => $id])->update($data);
+        session()->setFlashdata('message', 'Data Sertifikat Berhasil Diupdate');
+        return $this->response->redirect(site_url('admin.Sertifikat'));
+    }
+
+
+    public function destroy($id)
+    {
+        $this->sertifikat->where(['id' => $id])->delete();
+        session()->setFlashdata('message', 'Data Sertifikat Berhasil Dihapus');
+        return $this->response->redirect(site_url('admin.Sertifikat'));
+    }
+
+    
 }
