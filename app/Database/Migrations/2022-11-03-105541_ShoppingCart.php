@@ -39,6 +39,14 @@ class ShoppingCart extends Migration
             'harga' => [
                 'type' => 'INT',
                 'constraint' => '100',
+            ],
+            'konfirmasi' => [
+                'type' => 'INT',
+                'constraint' => '11'
+            ],
+            'tanggal_checkout' => [
+                'type' => 'DATE',
+                'default' => NULL
             ]
         ]);
         $this->forge->addKey('id', true);

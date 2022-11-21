@@ -47,6 +47,7 @@ $routes->get('/modul', 'ModulController::index');
 $routes->get('/cart', 'CartController::cart');
 $routes->post('/add-to-cart/(:any)', 'CartController::addtocart/$1');
 $routes->get('/remove-from-cart/(:segment)', 'CartController::remove/$1');
+$routes->post('/checkout', 'CartController::Checkout');
 
 // Sertifikat
 $routes->get('/sertifikat', 'SertifikatController::index', ['filter' => 'logged_in']);

@@ -9,7 +9,7 @@ class CartModel extends Model
     protected $table = 'shopping_cart';
     protected $primaryKey = 'id';
     protected $allowedFields = [
-        'id_user', 'id_produk', 'qty', 'id_sertifikat', 'harga'
+        'id_user', 'id_produk', 'qty', 'id_sertifikat', 'harga', 'konfirmasi', 'tanggal_checkout'
     ];
 
     public function getAll()
@@ -22,6 +22,12 @@ class CartModel extends Model
         $builder->where('id_user', session('nim'));
         $query = $builder->get();
         return $query->getResultArray();
+    }
+
+    public function getiduser($data)
+    {
+        $builder = $this->db->table('shopping_cart')->where('id_user', session('nim'));
+        $builder->update($data);
     }
 
     public function getspecific($id)
