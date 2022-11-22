@@ -79,7 +79,7 @@
             <li class="nav-item">
               <a href="<?= site_url('admin.Sertifikat') ?>" class="nav-link">
                 <i class="far fa-copy nav-icon"></i>
-                <p>View Sertifikat</p>
+                <p>Data Sertifikat</p>
               </a>
             </li>
             <li class="nav-item">
@@ -89,6 +89,15 @@
               </a>
             </li>
           </ul>
+        </li>
+
+        <li class="nav-item">
+        <a href="<?= site_url('admin.Laporan') ?>" class="nav-link">
+        <i class="fas fa-shopping-cart nav-icon"></i>
+            <p>
+              Laporan Transaksi
+            </p>
+          </a>
         </li>
       </ul>
     </nav>

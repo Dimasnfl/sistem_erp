@@ -5,12 +5,12 @@
      <div class="container-fluid">
        <div class="row mb-2">
          <div class="col-sm-6">
-           <h1>Pembelian Modul</h1>
+           <h1>Laporan Trasnsaksi</h1>
          </div>
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
              <li class="breadcrumb-item"><a href="dashboard.admin">Home</a></li>
-             <li class="breadcrumb-item active">Pembelian Modul</li>
+             <li class="breadcrumb-item active">Laporan Transaksi</li>
            </ol>
          </div>
        </div>
@@ -46,12 +46,7 @@
                  </div>
                </h3>
                <div class="card-tools">
-                 <!-- <a href="<?= site_url('listmodul/restore') ?>" class="btn btn-outline-danger"><i class="fas fa-undo"></i>.Restore All</a> -->
-                 <form action="<?= site_url('modul_out/restore2') ?>" method="post" class="d-inline" onsubmit="return confirm('Kembalikan Semua Modul Ke Stok ?')">
-                   <button class="btn btn-outline-danger">
-                     <i class="fas fa-undo"></i>.Restore All
-                   </button>
-                 </form>
+
                </div>
 
              </div>
@@ -69,16 +64,14 @@
                      <th>SERTIFIKAT</th>
                      <th>QTY</th>
                      <th>HARGA</th>
-
-                     <th class="text-center">ACTION</th>
                    </tr>
                  </thead>
                  <tbody>
                    <?php
 
-                    foreach ($shopping_cart as $key => $value) : ?>
+                    foreach ($laporan as $key => $value) : ?>
                      <tr>
-                       <td> <?= $key + 1 ?> </td>
+                     <td> <?= $key + 1 ?> </td>
                        <td><?= $value->id_user ?></td>
                        <td><?= $value->nama_user?></td>
                        <td><?= $value->nama_jurusan?></td>
@@ -87,20 +80,6 @@
                        <td><?= $value->id_sertifikat ?></td>
                        <td><?= $value->qty ?></td>
                        <td><?= rupiah($value->harga) ?></td>
-                       <td class="text-center">
-                         <form action="<?= site_url('modul_out/restore/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Kembalikan Modul <?= $value->id_produk?> -  <?= $value->id_user?> ?')">
-                           <input type="hidden" name="_method" value="GET">
-                           <button class="btn btn-outline-danger">
-                             <i class="fas fa-undo"></i>
-                           </button>
-                         </form>
-                         <form action="<?= site_url('modul_out/konfirmasi/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Konfirmasi Modul <?= $value->id_produk?> -  <?= $value->id_user?> ?')">
-                           <input type="hidden" name="_method" value="GET">
-                           <button class="btn btn-outline-success">
-                             <i class="fas fa-check"></i>
-                           </button>
-                         </form>
-                       </td>
                      </tr>
 
                    <?php endforeach ?>

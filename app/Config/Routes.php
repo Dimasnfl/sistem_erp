@@ -137,6 +137,8 @@ $routes->get('listmodul/restore', 'ListModul::restore');
 $routes->delete('listmodul/konfirm/(:any)', 'ListModul::konfirm/$1');
 $routes->delete('listmodul/destroy2/(:any)', 'ListModul::destroy2/$1');
 
+//Laporan
+$routes->get('admin.Laporan', 'Laporan::index');
 
 
 //import List modul

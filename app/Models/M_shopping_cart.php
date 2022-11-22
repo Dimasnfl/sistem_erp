@@ -25,9 +25,24 @@ class M_shopping_cart extends Model
     function get()
     {
         $builder = $this->db->table('shopping_cart');
-        $builder->select('*');
+        $builder->select('shopping_cart.id, shopping_cart.id_user, shopping_cart.id_produk, shopping_cart.id_sertifikat, shopping_cart.qty, shopping_cart.harga, 
+        users.id as users_id, users.nama as nama_user, users.nim, users.id_jurusan, users.reguler, jurusan.nama as nama_jurusan');
+        $builder->join('users', 'users.nim = shopping_cart.id_user');
+        $builder->join('jurusan', 'jurusan.id = users.id_jurusan');
         $builder->where('konfirmasi', 0);
         $query   = $builder->get();
+        return $query->getResult();
+    }
+
+    function laporan()
+    {
+        $builder = $this->db->table('shopping_cart');
+        $builder->select('shopping_cart.id, shopping_cart.id_user, shopping_cart.id_produk, shopping_cart.id_sertifikat, shopping_cart.qty, shopping_cart.harga, 
+        users.id as users_id, users.nama as nama_user, users.nim, users.id_jurusan, users.reguler, jurusan.nama as nama_jurusan');
+        $builder->join('users', 'users.nim = shopping_cart.id_user');
+        $builder->join('jurusan', 'jurusan.id = users.id_jurusan');
+        $builder->where('konfirmasi', 1);
+        $query = $builder->get();
         return $query->getResult();
     }
 }
