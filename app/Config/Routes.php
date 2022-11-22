@@ -140,6 +140,8 @@ $routes->delete('listmodul/destroy2/(:any)', 'ListModul::destroy2/$1');
 
 //Laporan
 $routes->get('admin.Laporan', 'Laporan::index');
+$routes->post('admin.Laporan', 'Laporan::index');
+
 
 
 //import List modul

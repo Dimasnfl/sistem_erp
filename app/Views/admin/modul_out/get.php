@@ -68,7 +68,8 @@
                      <th>MODUL</th>
                      <th>SERTIFIKAT</th>
                      <th>QTY</th>
-                     <th>HARGA</th>
+                     <th>TOTAL HARGA</th>
+                     <th>TANGGAL CHECK OUT</th>
 
                      <th class="text-center">ACTION</th>
                    </tr>
@@ -87,6 +88,8 @@
                        <td><?= $value->id_sertifikat ?></td>
                        <td><?= $value->qty ?></td>
                        <td><?= rupiah($value->harga) ?></td>
+                       <td><?= date('d/M/Y', strtotime($value->tanggal_checkout)) ?></td>
+
                        <td class="text-center">
                          <form action="<?= site_url('modul_out/restore/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Kembalikan Modul <?= $value->id_produk?> -  <?= $value->id_user?> ?')">
                            <input type="hidden" name="_method" value="GET">

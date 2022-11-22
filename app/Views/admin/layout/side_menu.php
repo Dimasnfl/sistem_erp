@@ -44,27 +44,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+        <a href="<?= site_url('admin.Modul') ?>" class="nav-link">
             <i class="nav-icon fas fa-book"></i>
             <p>
               Data Modul
-              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?= site_url('admin.Modul') ?>" class="nav-link">
-                <i class="fas fa-archive nav-icon"></i>
-                <p>Stok Modul</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?= site_url('Modul_out') ?>" class="nav-link">
-                <i class="fas fa-list nav-icon"></i>
-                <p>Pembelian Modul</p>
-              </a>
-            </li>
-          </ul>
         </li>
 
         <li class="nav-item">
@@ -92,13 +77,29 @@
         </li>
 
         <li class="nav-item">
-        <a href="<?= site_url('admin.Laporan') ?>" class="nav-link">
-        <i class="fas fa-shopping-cart nav-icon"></i>
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-shopping-cart"></i>
             <p>
-              Laporan Transaksi
+              Data Transaksi
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="<?= site_url('Modul_out') ?>" class="nav-link">
+                <i class="far fa-copy nav-icon"></i>
+                <p>Proses Transaksi</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= site_url('admin.Laporan') ?>" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Laporan Transaksi</p>
+              </a>
+            </li>
+          </ul>
         </li>
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

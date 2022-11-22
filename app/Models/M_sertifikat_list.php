@@ -24,30 +24,32 @@ class M_sertifikat_list extends Model
     //     return $query->getResult();
     // }
 
-    function getAll()
-    {
-        $builder = $this->db->table('nilai_sertifikat');
-        $builder->select('*');
-        $query   = $builder->get();
-        return $query->getResult();
-    }
+    // function getAll()
+    // {
+    //     $builder = $this->db->table('nilai_sertifikat');
+    //     $builder->select('*');
+    //     $query   = $builder->get();
+    //     return $query->getResult();
+    // }
 
     function getPaginated($num, $keyword = null)
     {
         $builder = $this->builder();
+        $builder->where('is_out', 0);
+        
         if($keyword != '') {
-            $builder->like('JP', $keyword);
-            $builder->orlike('nilai', $keyword);
-            $builder->orlike('tanggal_ujian', $keyword);
-            $builder->orlike('nama_user', $keyword);
-            $builder->orlike('nim_user', $keyword);
-            $builder->orlike('result', $keyword);
-            $builder->orlike('reguler_user', $keyword);
-            $builder->orlike('kelas', $keyword);
-            $builder->orlike('status', $keyword);
-            $builder->orlike('nama_dosen', $keyword);
-            $builder->orlike('ruangan', $keyword);
-            $builder->orlike('sertifikat_id', $keyword);
+            $builder->like('JP', $keyword)->where('is_out', 0);
+            $builder->orlike('nilai', $keyword)->where('is_out', 0);
+            $builder->orlike('tanggal_ujian', $keyword)->where('is_out', 0);
+            $builder->orlike('nama_user', $keyword)->where('is_out', 0);
+            $builder->orlike('nim_user', $keyword)->where('is_out', 0);
+            $builder->orlike('result', $keyword)->where('is_out', 0);
+            $builder->orlike('reguler_user', $keyword)->where('is_out', 0);
+            $builder->orlike('kelas', $keyword)->where('is_out', 0);
+            $builder->orlike('status', $keyword)->where('is_out', 0);
+            $builder->orlike('nama_dosen', $keyword)->where('is_out', 0);
+            $builder->orlike('ruangan', $keyword)->where('is_out', 0);
+            $builder->orlike('sertifikat_id', $keyword)->where('is_out', 0);
         }
         return [
             'sertifikat' => $this->paginate($num),
