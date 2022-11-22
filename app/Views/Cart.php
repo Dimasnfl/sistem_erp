@@ -88,10 +88,12 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>Untuk pembayaran dapat dilakukan di PUPD dan dapat langsung diambil di ERP Center Widyatama sebelum <span class="text-danger text-uppercase"> jam 16.00</span>. </p>
+                                <p>Untuk pembayaran dapat dilakukan di PUPD dan bukti pembayaran silahkan diserahkan di ERP Center untuk di tukar dengan product yang sudah di pesam sebelum jam 16.00. </p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <form action="/checkout" method="POST">
+                                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </form>
                             </div>
                         </div>
                     </div>

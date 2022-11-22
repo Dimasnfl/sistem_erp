@@ -1,3 +1,14 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .form-signin {
   max-width: 330px;
   padding: 15px;
@@ -33,10 +44,10 @@
 }
 
 #lblCartCount {
-    font-size: 12px;
-    background: #2596ff;
-    color: #fff;
-    padding: 0 5px;
-    vertical-align: top;
-    margin-left: -10px; 
+  font-size: 12px;
+  background: #2596ff;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-left: -10px;
 }

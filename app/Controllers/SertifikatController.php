@@ -28,15 +28,19 @@ class SertifikatController extends BaseController
         $cartmodul = new CartModel();
         $nilai = $nilaimodul->getspecific($id);
         $cart = $cartmodul->getspecific2($id);
-
         if ($cart) {
             return redirect()->to('/sertifikat');
         } else {
+            if ($nilai['0']['nilai'] >= 70 && $nilai['0']['nilai'] < 80) {
+                $harga = 250000;
+            } else if ($nilai['0']['nilai'] > 80) {
+                $harga = 200000;
+            }
             $data = [
                 'id_user' => session('nim'),
                 'id_sertifikat' => $id,
                 'qty' => 1,
-                'harga' => $nilai['0']['harga_sertifikat']
+                'harga' => $harga
             ];
             $cartmodul->insert($data);
             return redirect()->to('/cart');

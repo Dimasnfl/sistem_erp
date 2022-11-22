@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\CartModel;
 use App\Models\ModulsModel;
+use CodeIgniter\I18n\Time;
+use DateTime;
 
 class CartController extends BaseController
 {
@@ -107,6 +109,12 @@ class CartController extends BaseController
 
     public function Checkout()
     {
-        # code...
+        $date = new Time('now');
+        $cartmodel = new CartModel();
+        $data = [
+            'tanggal_checkout' => $date
+        ];
+        $cartmodel->getiduser($data);
+        return redirect()->to('/cart');
     }
 }
