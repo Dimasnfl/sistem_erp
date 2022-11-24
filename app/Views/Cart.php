@@ -76,8 +76,6 @@
 
             <td colspan="5" class="text-end">
 
-                <a href="/modul" class="btn btn-warning"><i class="fa fa-angle-left"></i> Kembali</a>
-
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Checkout

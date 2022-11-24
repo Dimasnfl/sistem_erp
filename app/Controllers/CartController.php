@@ -58,7 +58,7 @@ class CartController extends BaseController
                 }
             }
         }
-        return redirect()->to('/cart');
+        return redirect()->to('/modul');
     }
 
     // public function addtocart($id)
