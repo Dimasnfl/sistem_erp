@@ -40,7 +40,9 @@
                     </li>
                 </ul>
 
-                <?php $session = session() ?>
+                <?php $session = session();
+                $total = 0;
+                $totalseluruh = 0 ?>
                 <?php if (session()->has('logged_in') == true) : ?>
                     <?php $carts = session('cart') ?>
                     <!-- Cart -->
@@ -60,6 +62,8 @@
                                     <p>Empty cart</p>
                                 <?php else : ?>
                                     <?php foreach ($cart as $cart) : ?>
+                                        <?php $total = $cart['harga'] * $cart['qty'];
+                                        $totalseluruh += $total ?>
                                         <div class="row cart-detail">
                                             <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                                 <?php if ($cart['id_produk'] != null) : ?>
@@ -67,10 +71,11 @@
                                                 <?php else : ?>
                                                     <p><?php echo $cart['nama_sertifikat'] ?></p>
                                                 <?php endif; ?>
-                                                <span class="price text-info"><?php echo $cart['harga'] ?></span>
+                                                <span class="price text-info"><?php echo $total ?></span>
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
+                                    <?php echo $totalseluruh ?>
                                 <?php endif ?>
                                 <div class="col-lg-12 col-sm-12 col-12 text-center">
                                     <a href="cart" class="btn btn-primary btn-block">View all</a>
@@ -136,7 +141,13 @@
     </div>
     <!-- End Footer -->
 
+    <script>
+        var baseurl = '<?= base_url(); ?>';
+        var siteurl = '<?= site_url(); ?>';
+    </script>
+    <script src="js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

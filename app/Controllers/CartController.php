@@ -27,68 +27,113 @@ class CartController extends BaseController
         return view('Cart', $data);
     }
 
-    public function addtocart($id)
+    public function add()
     {
-        $cart = $this->cartmodel->getspecific($id);
-        $modul = $this->modulmodel->getspecific($id);
+        $modulmodel = new ModulsModel();
+        $cart = new CartModel();
+        $count = $modulmodel->count();
+        $modul = $modulmodel->findAll();
+        $qty = $this->request->getVar('qty');
 
 
-
-        if ($cart) {
-            if ($this->request->getVar('qty') > $modul['0']['ketersediaan']) {
-                return redirect()->to('/modul');
-            } else if ($this->request->getVar('qty') < 0) {
-                return redirect()->to('/modul');
+        for ($i = 0; $i < $count; $i++) {
+            $validasi = $cart->get1($i);
+            $data = [
+                'id_user' => session('nim'),
+                'id_produk' => $modul[$i]['kode_modul'],
+                'qty' => $qty[$i],
+                'harga' => (int)$modul[$i]['harga_modul']
+            ];
+            $data2 = [
+                'ketersediaan' => (int)$modul[$i]['ketersediaan'] - (int)$qty[$i]
+            ];
+            if ($validasi) {
             } else {
-                $data = [
-                    'qty' => $cart['0']['qty'] + $this->request->getVar('qty'),
-                    'harga' => $cart['0']['harga'] + ($modul['0']['harga_modul'] * $this->request->getVar('qty'))
-                ];
-                $this->cartmodel->updatedata($id, $data);
-                $data2 = [
-                    'ketersediaan' => $modul['0']['ketersediaan'] - $this->request->getVar('qty')
-                ];
-                $this->modulmodel->updatedata($id, $data2);
-                return redirect()->to('/modul');
-            }
-        } else {
-            if ($this->request->getVar('qty') > $modul['0']['ketersediaan']) {
-                return redirect()->to('/modul');
-            } else {
-                $data = [
-                    'id_user' => session('nim'),
-                    'id_produk' => $id,
-                    'qty' => $this->request->getVar('qty'),
-                    'harga' => $modul['0']['harga_modul'] * $this->request->getVar('qty')
-                ];
-                $data2 = [
-                    'ketersediaan' => $modul['0']['ketersediaan'] - $this->request->getVar('qty')
-                ];
-                $this->modulmodel->updatedata($id, $data2);
-                $this->cartmodel->insert($data);
-                return redirect()->to('/cart');
+                if ($data['qty'] < 0) {
+                } else {
+                    $modulmodel->update($modul[$i], $data2);
+                    $cart->insert($data);
+                }
             }
         }
-
-        // $cart = session()->get('cart', []);
-        // if (isset($cart[$id])) {
-        //     return redirect()->to('/modul');
-        // } else {
-        //     $cart[$id] = [
-        //         'id' => $modul['id'],
-        //         'quantity' => 1,
-        //         'harga' => $modul['harga'],
-        //         'nama' => $modul['nama'],
-        //         'kode' => $modul['kode']
-        //     ];
-        //     session()->set('cart', $cart);
-        // }
-
+        return redirect()->to('/cart');
     }
+
+    // public function addtocart($id)
+    // {
+    //     $cart = $this->cartmodel->getspecific($id);
+    //     $modul = $this->modulmodel->getspecific($id);
+
+
+
+    //     if ($cart) {
+    //         if ($this->request->getVar('qty') > $modul['0']['ketersediaan']) {
+    //             return redirect()->to('/modul');
+    //         } else if ($this->request->getVar('qty') < 0) {
+    //             return redirect()->to('/modul');
+    //         } else {
+    //             $data = [
+    //                 'qty' => $cart['0']['qty'] + $this->request->getVar('qty'),
+    //                 'harga' => $cart['0']['harga'] + ($modul['0']['harga_modul'] * $this->request->getVar('qty'))
+    //             ];
+    //             $this->cartmodel->updatedata($id, $data);
+    //             $data2 = [
+    //                 'ketersediaan' => $modul['0']['ketersediaan'] - $this->request->getVar('qty')
+    //             ];
+    //             $this->modulmodel->updatedata($id, $data2);
+    //             return redirect()->to('/modul');
+    //         }
+    //     } else {
+    //         if ($this->request->getVar('qty') > $modul['0']['ketersediaan']) {
+    //             return redirect()->to('/modul');
+    //         } else {
+    //             $data = [
+    //                 'id_user' => session('nim'),
+    //                 'id_produk' => $id,
+    //                 'qty' => $this->request->getVar('qty'),
+    //                 'harga' => $modul['0']['harga_modul'] * $this->request->getVar('qty')
+    //             ];
+    //             $data2 = [
+    //                 'ketersediaan' => $modul['0']['ketersediaan'] - $this->request->getVar('qty')
+    //             ];
+    //             $this->modulmodel->updatedata($id, $data2);
+    //             $this->cartmodel->insert($data);
+    //             return redirect()->to('/cart');
+    //         }
+    //     }
+
+    //     // $cart = session()->get('cart', []);
+    //     // if (isset($cart[$id])) {
+    //     //     return redirect()->to('/modul');
+    //     // } else {
+    //     //     $cart[$id] = [
+    //     //         'id' => $modul['id'],
+    //     //         'quantity' => 1,
+    //     //         'harga' => $modul['harga'],
+    //     //         'nama' => $modul['nama'],
+    //     //         'kode' => $modul['kode']
+    //     //     ];
+    //     //     session()->set('cart', $cart);
+    //     // }
+
+    // }
 
     public function updatecart()
     {
-        # code...
+
+        $modulmodel = new ModulsModel();
+        $cartmodel = new CartModel();
+        $qty = $this->request->getVar('qty');
+        $id_produk = $this->request->getVar('id');
+        $modul = $modulmodel->getspecific($id_produk);
+        $cart = $cartmodel->getspecific($id_produk);
+        $data = [
+            'ketersediaan' =>  $modul['0']['ketersediaan'] - ($qty - $cart['0']['qty'])
+        ];
+        $this->modulmodel->updatedata($id_produk, $data);
+
+
+        echo json_encode($cartmodel->updatecart($id_produk, $qty));
     }
 
     public function remove($id)

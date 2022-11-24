@@ -24,19 +24,19 @@
     <tbody>
         <?php $total = 0 ?>
 
-        <?php foreach ($cart as $item) : ?>
-            <?php $total += $item['harga'] ?>
+        <?php foreach ($cart as $key => $item) : ?>
+            <?php $total += $item['harga'] * $item['qty'] ?>
 
             <tr>
                 <?php if ($item['id_produk'] != null) : ?>
                     <td class="text-center"><?= $item['id_produk']; ?></td>
                     <td class="text-center"><?= $item['nama_modul']; ?></td>
-                    <td class="text-center"><?= number_format($item['harga'], 0, ".", ".") ?></td>
+                    <td class="text-center"><?= $harga = $item['harga'] * $item['qty'];
+                                            number_format($harga, 0, ".", ".") ?></td>
                     <td class="text-center">
 
-                        <!-- <button class="input-group-text text-bg-danger decrement-btn">-</button> -->
-                        <input type="number" id="qty" name="qty" class="form-control input-qty text-center" value="<?= $item['qty']; ?>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        <!-- <button class="input-group-text text-bg-success increment-btn">+</button> -->
+                        <input type="number" id="qty_<?= $key ?>" name="qty" class="form-control text-center" value="<?= $item['qty']; ?>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        <button type="button" id="update" class="btn btn-success" onclick="simpan_update('<?= $item['id_produk'] ?>','qty_<?= $key ?>' )">update</button>
 
                     </td>
                     <td class="text-center">
@@ -62,7 +62,7 @@
         <tr>
 
             <td colspan="5" class="text-end">
-                <h3><strong>Total </strong></h3>
+                <h3><strong id="label">Total </strong></h3>
                 <h4> <strong> Rp. <?= number_format($total, 0, ".", ".") ?> </strong> </h4>
             </td>
 
@@ -85,14 +85,14 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">Diharapkan!!! SEGERA!!!</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <p>Untuk pembayaran dapat dilakukan di PUPD dan bukti pembayaran silahkan diserahkan di ERP Center untuk di tukar dengan product yang sudah di pesam sebelum jam 16.00. </p>
                             </div>
                             <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                 <form action="/checkout" method="POST">
-                                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Checkout</button>
                                 </form>
                             </div>
                         </div>

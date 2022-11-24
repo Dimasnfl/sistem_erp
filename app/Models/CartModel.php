@@ -37,6 +37,14 @@ class CartModel extends Model
         return $query->getResultArray();
     }
 
+    public function get1($i)
+    {
+        $modul = $this->db->table('moduls')->select('kode_modul')->get()->getResultArray();
+        $builder = $this->db->table('shopping_cart')->where('id_produk', $modul[$i])->where('id_user', session('nim'));
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
+
     public function getspecific2($id)
     {
         $builder = $this->db->table('shopping_cart')->where('id_sertifikat', $id)->where('id_user', session('nim'));
@@ -66,5 +74,19 @@ class CartModel extends Model
     {
         $builder = $this->db->table('shopping_cart')->where('id_produk', $id)->where('id_user', session('nim'));
         $builder->delete();
+    }
+
+    public function updatecart($id, $qty)
+    {
+        $response = 0;
+        $builder = $this->db->table('shopping_cart')->where('id_produk', $id);
+        $data = [
+            'qty' => $qty
+        ];
+        $builder->update($data);
+        if ($this->db->affectedRows() > 0) {
+            $response = 1;
+        }
+        return $response;
     }
 }

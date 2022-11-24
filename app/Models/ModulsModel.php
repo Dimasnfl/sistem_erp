@@ -27,4 +27,10 @@ class ModulsModel extends Model
         $builder = $this->db->table('moduls')->where('kode_modul', $id);
         $builder->update($data);
     }
+
+    public function count()
+    {
+        $builder = $this->db->table('moduls');
+        return $builder->countAllResults();
+    }
 }
