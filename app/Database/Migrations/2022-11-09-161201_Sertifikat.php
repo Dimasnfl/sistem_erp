@@ -22,10 +22,6 @@ class Sertifikat extends Migration
             'kode_sertifikat' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255'
-            ],
-            'harga_sertifikat' => [
-                'type' => 'INT',
-                'constraint' => '100'
             ]
         ]);
         $this->forge->addKey('id', true);

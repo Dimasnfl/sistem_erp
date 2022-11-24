@@ -59,6 +59,17 @@ class NilaiSertifikat extends Migration
             'sertifikat_id' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
+            ],
+            'no_so' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'keterangan' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255'
+            ],
+            'is_out' => [
+                'type' => 'BOOLEAN'
             ]
         ]);
         $this->forge->addKey('id', true);

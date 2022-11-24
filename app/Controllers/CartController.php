@@ -32,12 +32,14 @@ class CartController extends BaseController
         $modulmodel = new ModulsModel();
         $cart = new CartModel();
         $count = $modulmodel->count();
-        $modul = $modulmodel->findAll();
+        $modul = $modulmodel->getall();
         $qty = $this->request->getVar('qty');
 
+        // dd($modul);
 
         for ($i = 0; $i < $count; $i++) {
-            $validasi = $cart->get1($i);
+            $id = $modul[$i]['kode_modul'];
+            $validasi = $cart->get1($id);
             $data = [
                 'id_user' => session('nim'),
                 'id_produk' => $modul[$i]['kode_modul'],
@@ -127,13 +129,14 @@ class CartController extends BaseController
         $id_produk = $this->request->getVar('id');
         $modul = $modulmodel->getspecific($id_produk);
         $cart = $cartmodel->getspecific($id_produk);
-        $data = [
-            'ketersediaan' =>  $modul['0']['ketersediaan'] - ($qty - $cart['0']['qty'])
-        ];
-        $this->modulmodel->updatedata($id_produk, $data);
-
-
-        echo json_encode($cartmodel->updatecart($id_produk, $qty));
+        if ($qty > $modul['0']['ketersediaan']) {
+        } else {
+            $data = [
+                'ketersediaan' =>  $modul['0']['ketersediaan'] - ($qty - $cart['0']['qty'])
+            ];
+            $this->modulmodel->updatedata($id_produk, $data);
+            echo json_encode($cartmodel->updatecart($id_produk, $qty));
+        }
     }
 
     public function remove($id)

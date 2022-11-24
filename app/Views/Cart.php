@@ -36,11 +36,13 @@
                     <td class="text-center">
 
                         <input type="number" id="qty_<?= $key ?>" name="qty" class="form-control text-center" value="<?= $item['qty']; ?>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        <button type="button" id="update" class="btn btn-success" onclick="simpan_update('<?= $item['id_produk'] ?>','qty_<?= $key ?>' )">update</button>
 
                     </td>
                     <td class="text-center">
-                        <a href="/remove-from-cart/<?= $item['id_produk'] ?>" class="btn btn-danger" role="button">Remove</a>
+                        <?php if ($item['tanggal_checkout'] == null) : ?>
+                            <button type="button" id="update" min="1" class="btn btn-success" onclick="simpan_update('<?= $item['id_produk'] ?>','qty_<?= $key ?>' )">update</button>
+                            <a href="/remove-from-cart/<?= $item['id_produk'] ?>" class="btn btn-danger" role="button">Remove</a>
+                        <?php endif; ?>
                     </td>
                 <?php else : ?>
                     <td class="text-center"><?= $item['kode_sertifikat']; ?></td>
@@ -48,7 +50,9 @@
                     <td class="text-center"><?= number_format($item['harga'], 0, ".", ".") ?></td>
                     <td class="text-center"><?= $item['qty']; ?></td>
                     <td class="text-center">
-                        <a href="/remove-sertifikat/<?= $item['id_sertifikat'] ?>" class="btn btn-danger" role="button">Remove</a>
+                        <?php if ($item['tanggal_checkout'] == null) : ?>
+                            <a href="/remove-sertifikat/<?= $item['id_sertifikat'] ?>" class="btn btn-danger" role="button">Remove</a>
+                        <?php endif; ?>
                     </td>
                 <?php endif; ?>
             </tr>

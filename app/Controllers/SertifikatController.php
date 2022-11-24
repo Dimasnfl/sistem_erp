@@ -40,7 +40,8 @@ class SertifikatController extends BaseController
                 'id_user' => session('nim'),
                 'id_sertifikat' => $id,
                 'qty' => 1,
-                'harga' => $harga
+                'harga' => $harga,
+                'k_sertifikat' => $nilai['0']['sertifikat_id']
             ];
             $cartmodul->insert($data);
             return redirect()->to('/cart');

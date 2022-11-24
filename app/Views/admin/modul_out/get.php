@@ -81,23 +81,23 @@
                      <tr>
                        <td> <?= $key + 1 ?> </td>
                        <td><?= $value->id_user ?></td>
-                       <td><?= $value->nama_user?></td>
-                       <td><?= $value->nama_jurusan?></td>
-                       <td><?= $value->reguler?></td>
+                       <td><?= $value->nama_user ?></td>
+                       <td><?= $value->nama_jurusan ?></td>
+                       <td><?= $value->reguler ?></td>
                        <td><?= $value->id_produk ?></td>
                        <td><?= $value->id_sertifikat ?></td>
                        <td><?= $value->qty ?></td>
                        <td><?= rupiah($value->harga) ?></td>
-                       <td><?= date('d/M/Y', strtotime($value->tanggal_checkout)) ?></td>
+                       <td><?= date('d/m/Y', ($value->tanggal_checkout)) ?></td>
 
                        <td class="text-center">
-                         <form action="<?= site_url('modul_out/restore/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Kembalikan Modul <?= $value->id_produk?> -  <?= $value->id_user?> ?')">
+                         <form action="<?= site_url('modul_out/restore/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Kembalikan Modul <?= $value->id_produk ?> -  <?= $value->id_user ?> ?')">
                            <input type="hidden" name="_method" value="GET">
                            <button class="btn btn-outline-danger">
                              <i class="fas fa-undo"></i>
                            </button>
                          </form>
-                         <form action="<?= site_url('modul_out/konfirmasi/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Konfirmasi Modul <?= $value->id_produk?> -  <?= $value->id_user?> ?')">
+                         <form action="<?= site_url('modul_out/konfirmasi/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Konfirmasi Modul <?= $value->id_produk ?> -  <?= $value->id_user ?> ?')">
                            <input type="hidden" name="_method" value="GET">
                            <button class="btn btn-outline-success">
                              <i class="fas fa-check"></i>

@@ -30,7 +30,13 @@ class ModulsModel extends Model
 
     public function count()
     {
-        $builder = $this->db->table('moduls');
+        $builder = $this->db->table('moduls')->where('ketersediaan > 0');
         return $builder->countAllResults();
+    }
+
+    public function getall()
+    {
+        $builder = $this->db->table('moduls')->where('ketersediaan > 0');
+        return $builder->get()->getResultArray();
     }
 }

@@ -75,10 +75,9 @@
                    <?php
                     foreach ($sertifikat as $key => $value) : ?>
                      <tr>
-                       <td><?= $key +1 ?></td>
+                       <td><?= $key + 1 ?></td>
                        <td><?= strtoupper($value['kode_sertifikat']) ?></td>
                        <td><?= $value['nama_sertifikat'] ?></td>
-                       <td><?= rupiah($value['harga_sertifikat']) ?></td>
                        <td class="text-center">
                          <a href="<?= site_url('sertifikat/edit/' . $value['id']) ?>" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i></a>
                          <form action="<?= site_url('sertifikat/' . $value['id']) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus Data Sertifikat Bernama <?= $value['nama_sertifikat'] ?>?')">

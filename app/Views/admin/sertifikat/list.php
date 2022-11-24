@@ -108,7 +108,7 @@
                        <td><?= strtoupper($value['result']) ?></td>
                        <td><?= $value['reguler_user'] ?></td>
                        <td><?= strtoupper($value['kelas']) ?></td>
-                       <td><?= strtoupper($value['status']) ?></td>
+                       <td><?= ($value['status']) ?></td>
                        <td><?= $value['nama_dosen'] ?></td>
                        <td><?= $value['ruangan'] ?></td>
                        <td><?= $value['sertifikat_id'] ?></td>
@@ -121,14 +121,14 @@
                  </tbody>
                </table>
                <div class="card-footer clearfix">
-               <ul class="pagination pagination-md m-0 float-left">
-                <i>Showing <?=1 + (10 * ($page - 1))?> to <?=$no-1?> of <?=$pager->getTotal()?> entries</i>      
-               </ul>
-               <!-- <div class="float-right"> -->
-               <ul class="pagination pagination-md m-0 float-right">
-               <?= $pager->links('default', 'pagination') ?>
-               </ul>
-               <!-- </div> -->
+                 <ul class="pagination pagination-md m-0 float-left">
+                   <i>Showing <?= 1 + (10 * ($page - 1)) ?> to <?= $no - 1 ?> of <?= $pager->getTotal() ?> entries</i>
+                 </ul>
+                 <!-- <div class="float-right"> -->
+                 <ul class="pagination pagination-md m-0 float-right">
+                   <?= $pager->links('default', 'pagination') ?>
+                 </ul>
+                 <!-- </div> -->
                </div>
 
              </div>
