@@ -44,7 +44,7 @@
           </a>
         </li>
         <li class="nav-item">
-        <a href="<?= site_url('admin.Modul') ?>" class="nav-link">
+          <a href="<?= site_url('admin.Modul') ?>" class="nav-link">
             <i class="nav-icon fas fa-book"></i>
             <p>
               Data Modul
@@ -99,7 +99,14 @@
             </li>
           </ul>
         </li>
-
+        <li class="nav-item">
+          <a href="<?= site_url('admin.artikel') ?>" class="nav-link">
+            <i class="nav-icon fas fa-list-alt"></i>
+            <p>
+              Artikel
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
