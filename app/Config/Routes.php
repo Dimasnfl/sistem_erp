@@ -77,6 +77,14 @@ $routes->get('admin.Modul', 'Modul::index');
 //search
 $routes->post('Modul', 'Modul::index');
 
+//artikel
+$routes->get('admin.artikel', 'Artikel::index', ['filter' => 'FilterErp']);
+$routes->delete('admin.artikel/delete/(:num)', 'Artikel::delete/$1', ['filter' => 'FilterErp']);
+$routes->get('admin.artikel/add', 'Artikel::create', ['filter' => 'FilterErp']);
+$routes->post('admin.artikel/add', 'Artikel::save', ['filter' => 'FilterErp']);
+$routes->get('admin.artikel/edit/(:segment)', 'Artikel::edit/$1', ['filter' => 'FilterErp']);
+$routes->post('admin.artikel/edit/(:segment)', 'Artikel::update/$1', ['filter' => 'FilterErp']);
+$routes->get('/detail/(:segment)', 'Home::detail/$1',);
 
 //add Modul
 $routes->get('modul/add', 'Modul::create');
