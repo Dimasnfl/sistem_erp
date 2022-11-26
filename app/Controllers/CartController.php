@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CartModel;
 use App\Models\ModulsModel;
+use App\Models\Nilai_SertifikatModel;
 use CodeIgniter\I18n\Time;
 use DateTime;
 
@@ -159,10 +160,14 @@ class CartController extends BaseController
     {
         $date = new Time('now');
         $cartmodel = new CartModel();
+        $i = $cartmodel->findColumn('id_sertifikat');
         $data = [
             'tanggal_checkout' => $date
         ];
-        $cartmodel->getiduser($data);
+        $data2 = [
+            'status' => "Proses Cetak"
+        ];
+        $cartmodel->getiduser($i, $data, $data2);
         return redirect()->to('/cart');
     }
 }

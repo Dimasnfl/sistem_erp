@@ -24,10 +24,12 @@ class CartModel extends Model
         return $query->getResultArray();
     }
 
-    public function getiduser($data)
+    public function getiduser($i, $data, $data2)
     {
+        $nilai = $this->db->table('nilai_sertifikat')->where('id', $i);
         $builder = $this->db->table('shopping_cart')->where('id_user', session('nim'));
         $builder->update($data);
+        $nilai->update($data2);
     }
 
     public function getspecific($id)
