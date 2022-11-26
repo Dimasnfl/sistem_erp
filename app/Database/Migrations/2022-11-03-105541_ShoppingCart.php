@@ -36,6 +36,11 @@ class ShoppingCart extends Migration
                 'constraint' => '255',
                 'null' => true
             ],
+            'k_jp' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'null' => true
+            ],
             'qty' => [
                 'type' => 'INT',
                 'constraint' => '5',

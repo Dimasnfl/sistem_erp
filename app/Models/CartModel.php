@@ -9,7 +9,7 @@ class CartModel extends Model
     protected $table = 'shopping_cart';
     protected $primaryKey = 'id';
     protected $allowedFields = [
-        'id_user', 'id_produk', 'qty', 'id_sertifikat', 'harga', 'konfirmasi', 'tanggal_checkout', 'k_sertifikat'
+        'id_user', 'id_produk', 'qty', 'id_sertifikat', 'harga', 'konfirmasi', 'tanggal_checkout', 'k_sertifikat', 'k_jp'
     ];
 
     public function getAll()

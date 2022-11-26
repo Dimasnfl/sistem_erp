@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2022 at 07:38 AM
+-- Generation Time: Nov 26, 2022 at 11:19 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -103,8 +103,8 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 (4, '2022-10-21-082753', 'App\\Database\\Migrations\\Jurusans', 'default', 'App', 1668757386, 1),
 (5, '2022-10-21-082821', 'App\\Database\\Migrations\\Fakultas', 'default', 'App', 1668757386, 1),
 (7, '2022-11-09-161201', 'App\\Database\\Migrations\\Sertifikat', 'default', 'App', 1668757387, 1),
-(11, '2022-11-03-105541', 'App\\Database\\Migrations\\ShoppingCart', 'default', 'App', 1669270583, 2),
-(13, '2022-11-09-161222', 'App\\Database\\Migrations\\NilaiSertifikat', 'default', 'App', 1669444695, 3);
+(13, '2022-11-09-161222', 'App\\Database\\Migrations\\NilaiSertifikat', 'default', 'App', 1669444695, 3),
+(14, '2022-11-03-105541', 'App\\Database\\Migrations\\ShoppingCart', 'default', 'App', 1669457805, 4);
 
 -- --------------------------------------------------------
 
@@ -125,12 +125,12 @@ CREATE TABLE `moduls` (
 --
 
 INSERT INTO `moduls` (`id`, `nama_modul`, `kode_modul`, `ketersediaan`, `harga_modul`) VALUES
-(2, 'SAP-Fundamental', 'SAP01', 11, 50000),
-(3, 'Business Processes in Management Accounting', 'AC040', 12, 65000),
-(4, 'Business Processes in Financial Accounting', 'AC010', 80, 70000),
+(2, 'SAP-Fundamental', 'SAP01', 5, 50000),
+(3, 'Business Processes in Management Accounting', 'AC040', 8, 65000),
+(4, 'Business Processes in Financial Accounting', 'AC010', 70, 70000),
 (5, 'Business Processes in Human Capital Management', 'HR050', 10, 85000),
 (6, 'Introduction to the ABAP Workbench', 'BC400', 20, 65000),
-(7, 'Business Processes in Sales Order', 'SCM600', 10, 60000),
+(7, 'Business Processes in Sales Order', 'SCM600', 5, 60000),
 (8, 'Business Processes in Procurement', 'SCM500', 10, 80000);
 
 -- --------------------------------------------------------
@@ -244,6 +244,7 @@ CREATE TABLE `shopping_cart` (
   `id_produk` varchar(255) DEFAULT NULL,
   `id_sertifikat` int(5) UNSIGNED DEFAULT NULL,
   `k_sertifikat` varchar(255) DEFAULT NULL,
+  `k_jp` varchar(255) DEFAULT NULL,
   `qty` int(5) UNSIGNED NOT NULL,
   `harga` int(100) NOT NULL,
   `konfirmasi` int(11) NOT NULL,
@@ -280,7 +281,8 @@ INSERT INTO `users` (`id`, `nama`, `nim`, `email`, `no_hp`, `id_jurusan`, `regul
 (6, 'VITA FATHIA LATIEF', '0119101086', 'vina@widyatama.ac.id', '085221381402', 10, '', '$2y$10$i0RqkDLZJ6pdTcIwGjInbeO7kCr2OgsGt7OuDgDdxWC7ndStiatY2', 0),
 (7, 'mahasiswa', '0619101000', 'mahasiswa@gmail.com', '08192381239', 3, '', '$2y$10$75Qr1fX4VY5lgkREE5MrsuEfn2I2ykkypOsfkG8lcUaA3wJAddr1O', 0),
 (8, 'FACHRI ADRIANSYAH', '0119101104', 'mahasiswa@gmail.com', '081231293123', 2, '', '$2y$10$/nYyHHsZ9xofVPKQedK7COaWCM9CJ6l.nvY/qy9GhWmgBN4NL8Eim', 0),
-(9, 'RAGA AHLIL FIKRI', '0119101072', 'raga@gmail.com', '081239129311', 2, '', '$2y$10$FVNMxzltIm7ZaCIxIdVr6e4Yk.z4y6r5RGkukibZayozm.vaP4rEO', 0);
+(9, 'RAGA AHLIL FIKRI', '0119101072', 'raga@gmail.com', '081239129311', 2, '', '$2y$10$FVNMxzltIm7ZaCIxIdVr6e4Yk.z4y6r5RGkukibZayozm.vaP4rEO', 0),
+(12, 'AgusA', '1234567891', 'agusmahmud@widyatama.ac.id', '123456788911', 2, 'B2', '$2y$10$lBeKXPaz7pyGN3l6gVMccu13wQwrTzksXTmmcu49x6Qjpe0yho7Va', 0);
 
 --
 -- Indexes for dumped tables
@@ -376,7 +378,7 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `moduls`
@@ -394,7 +396,7 @@ ALTER TABLE `moduls_in`
 -- AUTO_INCREMENT for table `nilai_sertifikat`
 --
 ALTER TABLE `nilai_sertifikat`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -412,13 +414,13 @@ ALTER TABLE `sertifikat`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
