@@ -39,4 +39,10 @@ class Nilai_SertifikatModel extends Model
         $builder = $this->db->table('shopping_cart')->where('id_sertifikat', $id)->where('id_user', session('nim'));
         $builder->delete();
     }
+
+    public function updatedata($i, $data2)
+    {
+        $nilai = $this->db->table('nilai_sertifikat')->where('id', $i);
+        $nilai->update($data2);
+    }
 }

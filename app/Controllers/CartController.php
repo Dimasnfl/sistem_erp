@@ -160,14 +160,31 @@ class CartController extends BaseController
     {
         $date = new Time('now');
         $cartmodel = new CartModel();
-        $i = $cartmodel->findColumn('id_sertifikat');
-        $data = [
-            'tanggal_checkout' => $date
-        ];
-        $data2 = [
-            'status' => "Proses Cetak"
-        ];
-        $cartmodel->getiduser($i, $data, $data2);
+        $nilai = new Nilai_SertifikatModel();
+        $cartid = $cartmodel->getcart();
+        $count = $cartmodel->count();
+
+
+
+        for ($i = 0; $i < $count; $i++) {
+
+            $id = $cartid[$i]['id_sertifikat'];
+            if ($cartid[$i]['id_sertifikat'] = null) {
+                $data = [
+                    'tanggal_checkout' => $date
+                ];
+                $cartmodel->update($cartid[$i], $data);
+            } else {
+                $data = [
+                    'tanggal_checkout' => $date
+                ];
+                $data2 = [
+                    'status' => "Proses Cetak"
+                ];
+                $cartmodel->update($cartid[$i], $data);
+                $nilai->updatedata($id, $data2);
+            }
+        }
         return redirect()->to('/cart');
     }
 }

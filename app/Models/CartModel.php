@@ -24,12 +24,11 @@ class CartModel extends Model
         return $query->getResultArray();
     }
 
-    public function getiduser($i, $data, $data2)
+    public function getiduser($data)
     {
-        $nilai = $this->db->table('nilai_sertifikat')->where('id', $i);
+
         $builder = $this->db->table('shopping_cart')->where('id_user', session('nim'));
         $builder->update($data);
-        $nilai->update($data2);
     }
 
     public function getspecific($id)
@@ -89,5 +88,17 @@ class CartModel extends Model
             $response = 1;
         }
         return $response;
+    }
+
+    public function count()
+    {
+        $builder = $this->db->table('shopping_cart')->where('id_user', session('nim'));
+        return $builder->countAllResults();
+    }
+
+    public function getcart()
+    {
+        $builder = $this->db->table('shopping_cart')->where('id_user', session('nim'));
+        return $builder->get()->getResultArray();
     }
 }

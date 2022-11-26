@@ -62,8 +62,8 @@
                     <select class="form-select text-start" style="height: 58px;" name="reguler" value="<?= set_value('reguler') ?>">
                         <option selected>Reguler</option>
                         <option value="A">A</option>
-                        <option value="B">B1</option>
-                        <option value="B">B2</option>
+                        <option value="B1">B1</option>
+                        <option value="B2">B2</option>
                     </select>
                 </div>
 

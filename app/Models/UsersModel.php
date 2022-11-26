@@ -15,6 +15,7 @@ class UsersModel extends Model
         'email',
         'password',
         'no_hp',
-        'is_admin'
+        'is_admin',
+        'reguler'
     ];
 }
