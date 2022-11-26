@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2022 at 10:30 AM
+-- Generation Time: Nov 26, 2022 at 07:38 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -104,7 +104,7 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 (5, '2022-10-21-082821', 'App\\Database\\Migrations\\Fakultas', 'default', 'App', 1668757386, 1),
 (7, '2022-11-09-161201', 'App\\Database\\Migrations\\Sertifikat', 'default', 'App', 1668757387, 1),
 (11, '2022-11-03-105541', 'App\\Database\\Migrations\\ShoppingCart', 'default', 'App', 1669270583, 2),
-(12, '2022-11-09-161222', 'App\\Database\\Migrations\\NilaiSertifikat', 'default', 'App', 1669282209, 3);
+(13, '2022-11-09-161222', 'App\\Database\\Migrations\\NilaiSertifikat', 'default', 'App', 1669444695, 3);
 
 -- --------------------------------------------------------
 
@@ -129,7 +129,7 @@ INSERT INTO `moduls` (`id`, `nama_modul`, `kode_modul`, `ketersediaan`, `harga_m
 (3, 'Business Processes in Management Accounting', 'AC040', 12, 65000),
 (4, 'Business Processes in Financial Accounting', 'AC010', 80, 70000),
 (5, 'Business Processes in Human Capital Management', 'HR050', 10, 85000),
-(6, 'Introduction to the ABAP Workbench', 'BC400', 0, 65000),
+(6, 'Introduction to the ABAP Workbench', 'BC400', 20, 65000),
 (7, 'Business Processes in Sales Order', 'SCM600', 10, 60000),
 (8, 'Business Processes in Procurement', 'SCM500', 10, 80000);
 
@@ -154,7 +154,8 @@ INSERT INTO `moduls_in` (`id_in`, `id_moduls`, `qty`, `created_at`) VALUES
 (1, 2, 10, '2022-11-24 13:36:19'),
 (2, 3, 5, '2022-11-24 13:41:46'),
 (3, 4, 70, '2022-11-24 15:30:12'),
-(4, 4, 10, '2022-11-24 15:30:29');
+(4, 4, 10, '2022-11-24 15:30:29'),
+(5, 6, 20, '2022-11-24 23:57:07');
 
 --
 -- Triggers `moduls_in`
@@ -182,6 +183,7 @@ DELIMITER ;
 
 CREATE TABLE `nilai_sertifikat` (
   `id` int(5) UNSIGNED NOT NULL,
+  `jp` varchar(255) NOT NULL,
   `nilai` int(5) UNSIGNED NOT NULL,
   `tanggal_ujian` date NOT NULL,
   `nama_user` varchar(255) NOT NULL,
@@ -374,7 +376,7 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `moduls`
@@ -386,7 +388,7 @@ ALTER TABLE `moduls`
 -- AUTO_INCREMENT for table `moduls_in`
 --
 ALTER TABLE `moduls_in`
-  MODIFY `id_in` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_in` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `nilai_sertifikat`
@@ -410,7 +412,7 @@ ALTER TABLE `sertifikat`
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `users`
