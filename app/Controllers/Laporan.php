@@ -30,9 +30,11 @@ class Laporan extends BaseController
     {
         $header['title'] = 'Laporan Transaksi';
 
+
         //data filter
-        $data['filter_modul'] = $this->modul->getAll();
+        $data['filter_modul'] = $this->modul->findAll();
         $data['filter_jurusan'] = $this->jurusan->findAll();
+        $data['filter_sertifikat'] = $this->sertifikat->findAll();
 
         $from = $this->request->getGet('from');
         $to = $this->request->getGet('to');

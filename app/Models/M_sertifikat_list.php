@@ -7,7 +7,7 @@ class M_sertifikat_list extends Model
 {
     protected $table         = 'nilai_sertifikat';
     protected $primaryKey    = 'id';
-    protected $allowedFields = ['JP', 'nilai', 'tanggal_ujian', 'nama_user', 'nim_user', 'result', 'reguler_user', 'kelas', 'status', 'nama_dosen', 'ruangan','sertifikat_id'];
+    protected $allowedFields = ['jp', 'nilai', 'tanggal_ujian', 'nama_user', 'nim_user', 'result', 'reguler_user', 'kelas', 'status', 'nama_dosen', 'ruangan', 'sertifikat_id', 'no_so', 'keterangan'];
 
     // public function getAlll()
     // {
@@ -38,18 +38,18 @@ class M_sertifikat_list extends Model
         $builder->where('is_out', 0);
         
         if($keyword != '') {
-            $builder->like('JP', $keyword)->where('is_out', 0);
-            $builder->orlike('nilai', $keyword)->where('is_out', 0);
+            $builder->like('nilai', $keyword)->where('is_out', 0);
             $builder->orlike('tanggal_ujian', $keyword)->where('is_out', 0);
             $builder->orlike('nama_user', $keyword)->where('is_out', 0);
             $builder->orlike('nim_user', $keyword)->where('is_out', 0);
             $builder->orlike('result', $keyword)->where('is_out', 0);
             $builder->orlike('reguler_user', $keyword)->where('is_out', 0);
-            $builder->orlike('kelas', $keyword)->where('is_out', 0);
             $builder->orlike('status', $keyword)->where('is_out', 0);
             $builder->orlike('nama_dosen', $keyword)->where('is_out', 0);
             $builder->orlike('ruangan', $keyword)->where('is_out', 0);
             $builder->orlike('sertifikat_id', $keyword)->where('is_out', 0);
+            $builder->orlike('no_so', $keyword)->where('is_out', 0);
+            $builder->orlike('keterangan', $keyword)->where('is_out', 0);
         }
         return [
             'sertifikat' => $this->paginate($num),

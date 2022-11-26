@@ -75,7 +75,6 @@ class Sertifikat extends BaseController
         $data = [
             'kode_sertifikat' => $this->request->getVar('kode_sertifikat'),
             'nama_sertifikat'  => $this->request->getVar('nama_sertifikat'),
-            'harga_sertifikat'  => $this->request->getVar('harga_sertifikat'),
         ];
 
 

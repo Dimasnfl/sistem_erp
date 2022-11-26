@@ -38,10 +38,6 @@
                    <label>NAMA SERTIFIKAT</label>
                    <input type="text" class="form-control" name="nama_sertifikat" placeholder="Masukkan Nama Sertifikat" required>
                  </div>
-                 <div class="form-group">
-                   <label>HARGA</label>
-                   <input type="number" class="form-control" name="harga_sertifikat" placeholder="Masukkan Harga Sertifikat" required>
-                 </div>
                  <button type="submit" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i>.Save</button>
                  <button type="reset" class="btn btn-outline-secondary"><i class="fas fa-redo"></i>.Reset</button>
                </form>

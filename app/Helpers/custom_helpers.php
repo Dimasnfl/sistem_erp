@@ -13,8 +13,6 @@ function countList()
 }
 
 
-
-
 function rupiah($harga)
 {
     $harga = 'Rp ' . number_format($harga, 2, ",", ".");

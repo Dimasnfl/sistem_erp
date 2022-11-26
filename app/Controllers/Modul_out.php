@@ -21,7 +21,7 @@ class Modul_out extends BaseController
 
     public function index()
     {
-        $header['title'] = 'Transaksi Modul';
+        $header['title'] = 'Data Transaksi';
         $data['shopping_cart'] = $this->shopping->get();
 
         echo view('admin/layout/header', $header);
@@ -34,7 +34,7 @@ class Modul_out extends BaseController
     public function restore($id = null)
     {
         $this->shopping->delete($id);
-        session()->setFlashdata('message', 'Data Modul Telah Di Restore');
+        session()->setFlashdata('message', 'Data Telah Di Restore');
         return $this->response->redirect(site_url('/Modul_out'));
     }
 
@@ -42,14 +42,14 @@ class Modul_out extends BaseController
     public function konfirmasi($id = null)
     {
         $this->db->table('shopping_cart')->where('id', $id)->set('konfirmasi', 1)->update();
-        session()->setFlashdata('message', 'Data Modul Telah Terkonfirmasi');
+        session()->setFlashdata('message', 'Data Transaksi Telah Terkonfirmasi');
         return $this->response->redirect(site_url('/Modul_out'));
     }
 
     public function restore2()
     {
         $this->shopping->emptyTable('shopping_cart');
-        session()->setFlashdata('message', 'Semua Data Modul Telah Di Restore');
+        session()->setFlashdata('message', 'Semua Data Telah Di Restore');
         return $this->response->redirect(site_url('admin.Modul'));
     }
 }

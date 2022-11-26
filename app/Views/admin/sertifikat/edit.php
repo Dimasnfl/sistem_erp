@@ -39,10 +39,7 @@
                    <label>NAMA SERTIFIKAT</label>
                    <input type="text" class="form-control" name="nama_sertifikat" value="<?= $sertifikat->nama_sertifikat ?>" placeholder="Masukkan Nama Sertifikat" required>
                  </div>
-                 <div class="form-group">
-                   <label>HARGA</label>
-                   <input type="text" class="form-control" name="harga_sertifikat" value="<?= $sertifikat->harga_sertifikat ?>" placeholder="Masukkan Harga Sertifikat" required>
-                 </div>
+
                  <button type="submit" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i>.Save</button>
                </form>
              </div>

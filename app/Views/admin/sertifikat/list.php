@@ -66,30 +66,21 @@
                <table class="table table-head-fixed table-striped text-nowrap table-bordered">
                  <thead>
                    <tr>
-                     <!-- <th>KODE</th>
-                     <th>NAMA SERTIFIKAT</th>
-                     <th>HARGA SERTIFIKAT</th>
-                     <th>GRADE</th>
-                     <th>RESULT</th>
-                     <th>TANGGAL UJIAN</th>
-                     <th>NIM MAHASISWA</th>
-                     <th>NAMA MAHASISWA</th>
-                     <th>REGULER</th>
-                     <th>KELAS</th>
-                     <th>NAMA DOSEN</th> -->
                      <th>NO</th>
                      <th>JP</th>
-                     <th>NILAI</th>
-                     <th>TANGGAL UJIAN</th>
-                     <th>NAMA USER</th>
-                     <th>NIM USER</th>
-                     <th>RESULT</th>
-                     <th>REGULER USER</th>
-                     <th>KELAS</th>
-                     <th>STATUS</th>
-                     <th>NAMA DOSEN</th>
+                     <th>NIM</th>
+                     <th>NAMA</th>
+                     <th>REG</th>
+                     <th>KLS</th>
                      <th>RUANGAN</th>
-                     <th>SERTIFIKAT ID</th>
+                     <th>MODUL</th>
+                     <th>NAMA DOSEN</th>
+                     <th>TGL UJIAN</th>
+                     <th>NILAI</th>
+                     <th>HASIL</th>
+                     <th>NO SO</th>
+                     <th>STATUS</th>
+                     <th>KET</th>
                    </tr>
                  </thead>
                  <tbody>
@@ -99,20 +90,20 @@
                     foreach ($sertifikat as $key => $value) : ?>
                      <tr>
                        <td><?= $no++ ?></td>
-
-                       <td><?= $value['JP'] ?></td>
-                       <td><?= $value['nilai'] ?></td>
-                       <td><?= $value['tanggal_ujian'] ?></td>
+                       <td><?= strtoupper($value['jp']) ?></td>
+                       <td><?= $value['nim_user'] ?></td>
                        <td><?= $value['nama_user'] ?></td>
-                       <td><?= strtoupper($value['nim_user']) ?></td>
-                       <td><?= strtoupper($value['result']) ?></td>
-                       <td><?= $value['reguler_user'] ?></td>
+                       <td><?= strtoupper($value['reguler_user']) ?></td>
                        <td><?= strtoupper($value['kelas']) ?></td>
-                       <td><?= ($value['status']) ?></td>
+                       <td><?= strtoupper($value['ruangan']) ?></td>
+                       <td><?= strtoupper($value['sertifikat_id']) ?></td>
                        <td><?= $value['nama_dosen'] ?></td>
-                       <td><?= $value['ruangan'] ?></td>
-                       <td><?= $value['sertifikat_id'] ?></td>
-
+                       <td><?= $value['tanggal_ujian'] ?></td>
+                       <td><?= $value['nilai'] ?></td>
+                       <td><?= strtoupper($value['result']) ?></td>
+                       <td><?= $value['no_so'] ?></td>
+                       <td><?= strtoupper($value['status']) ?></td>
+                       <td><?= strtoupper($value['keterangan']) ?></td>
                      </tr>
 
                    <?php endforeach; ?>
@@ -122,7 +113,7 @@
                </table>
                <div class="card-footer clearfix">
                  <ul class="pagination pagination-md m-0 float-left">
-                   <i>Showing <?= 1 + (10 * ($page - 1)) ?> to <?= $no - 1 ?> of <?= $pager->getTotal() ?> entries</i>
+                   <i>Showing <?= 1 + (10 * ($page - 1)) ?> to <?= $no - 1 ?> of <?= $pager->getTotal() ?> data</i>
                  </ul>
                  <!-- <div class="float-right"> -->
                  <ul class="pagination pagination-md m-0 float-right">

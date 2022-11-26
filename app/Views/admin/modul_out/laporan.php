@@ -56,7 +56,7 @@
 
                      <!-- modal import modul -->
                      <div class="modal fade" id="modal-filter">
-                       <div class="modal-dialog">
+                       <div class="modal-dialog modal-xl">
                          <div class="modal-content bg-primary">
                            <div class="modal-header">
                              <h4 class="modal-title">Filter Data</h4>
@@ -66,17 +66,26 @@
                            </div>
                            <div class="modal-body">
                              <form action="" method="get" autocomplete="off">
-                               <div class="input-group" style="width: 470px;">
-                                 <div class="col-6">
+                               <div class="input-group" style="width: 1300px;">
+                                 <div class="col-2">
                                    <label>PILIH MODUL</label>
                                    <select name="filter_modul" class="form-control">
                                      <option value="" hidden>- Pilih Modul -</option>
                                      <?php foreach ($filter_modul as $key => $value) : ?>
-                                       <option value="<?= $value->kode_modul ?>"><?= $value->kode_modul ?> - <?= $value->nama_modul ?></option>
+                                       <option value="<?= $value['kode_modul'] ?>"><?= $value['kode_modul'] ?> - <?= $value['nama_modul'] ?></option>
                                      <?php endforeach; ?>
                                    </select>
                                  </div>
-                                 <div class="col-6">
+                                 <div class="col-2">
+                                   <label>PILIH Sertifikat</label>
+                                   <select name="filter_sertifikat" class="form-control">
+                                     <option value="" hidden>- Pilih Sertifikat -</option>
+                                     <?php foreach ($filter_sertifikat as $key => $value) : ?>
+                                      <option value="<?= $value['kode_sertifikat'] ?>"><?= $value['kode_sertifikat'] ?> - <?= $value['nama_sertifikat'] ?></option>
+                                     <?php endforeach; ?>
+                                   </select>
+                                 </div>
+                                 <div class="col-2">
                                    <label>PILIH JURUSAN</label>
                                    <select name="filter_jurusan" class="form-control">
                                      <option value="" hidden>- Pilih Jurusan -</option>
@@ -85,12 +94,31 @@
                                      <?php endforeach; ?>
                                    </select>
                                  </div>
+                                 <div class="col-2">
+                                   <label>REGULER</label>
+                                   <select name="filter_reguler" class="form-control">
+                                     <option value="" hidden>- Pilih Reguler -</option>
+                                       <option value="A">REG A</option>
+                                       <option value="B">REG B</option>
+                                       <option value="B1">REG B1</option>
+                                       <option value="B2">REG B2</option>
+                                   </select>
+                                 </div>
+                                 <div class="col-2">
+                                   <label>JP</label>
+                                   <select name="filter_jp" class="form-control">
+                                     <option value="" hidden>- Pilih JP -</option>
+                                       <option value="S1">S1</option>
+                                       <option value="S2">S2</option>
+                                       <option value="PPAP">PPAP</option>
+                                   </select>
+                                 </div>
                                </div>
 
                            </div>
                            <div class="modal-footer justify-content-between">
                              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancel</button>
-                             <button type="submit" class="btn btn-outline-light">Submit</button>
+                             <button type="submit" class="btn btn-outline-light">Filter</button>
                            </div>
                    </form>
                    </form>
@@ -117,6 +145,7 @@
              <thead>
                <tr>
                  <th>NO</th>
+                 <th>JP</th>
                  <th>NIM</th>
                  <th>NAMA MAHASISWA</th>
                  <th>JURUSAN</th>
@@ -135,12 +164,13 @@
                 foreach ($laporan as $key => $value) : ?>
                  <tr>
                    <td> <?= $key + 1 ?> </td>
+                   <td><?= strtoupper($value->k_jp) ?></td>
                    <td><?= $value->id_user ?></td>
                    <td><?= $value->nama_user ?></td>
                    <td><?= $value->nama_jurusan ?></td>
                    <td><?= $value->reguler ?></td>
                    <td><?= $value->id_produk ?></td>
-                   <td><?= $value->id_sertifikat ?></td>
+                   <td><?= $value->k_sertifikat ?></td>
                    <td><?= $value->qty ?></td>
                    <td><?= rupiah($value->harga) ?></td>
                    <td><?= date('d/M/Y', strtotime($value->tanggal_checkout)) ?></td>
@@ -152,6 +182,7 @@
 
              </tbody>
            </table>
+
          </div>
          <!-- /.card-body -->
        </div>

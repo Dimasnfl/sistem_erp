@@ -65,9 +65,8 @@
                      <th>KELAS</th>
                      <th>NAMA DOSEN</th> -->
                      <th>NO</th>
-                     <th>KODE</th>
+                     <th>KODE SERTIFIKAT</th>
                      <th>NAMA SERTIFIKAT</th>
-                     <th>HARGA</th>
                      <th>ACTION</th>
                    </tr>
                  </thead>

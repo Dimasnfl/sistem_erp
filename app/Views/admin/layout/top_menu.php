@@ -20,11 +20,11 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
+      <li class="nav-item">
+        <a class="nav-link" data-slide="true" href="<?= site_url('/') ?>" role="button" onclick="return confirm('Log Out ?')">
+          <i class="fas fa-sign-out-alt"></i>
         </a>
-      </li> -->
+      </li>
     </ul>
   </nav>
   <!-- /.navbar -->
