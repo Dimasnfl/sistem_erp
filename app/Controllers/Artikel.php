@@ -5,13 +5,11 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ArtikelModel;
 use Config\Services;
-use App\Models\CartModel;
-use App\Models\ModulsModel;
 use Faker\Extension\Helper;
 
+helper('form');
 class Artikel extends BaseController
 {
-    protected $helpers = ['form'];
     public function index()
     {
         $artikel = new ArtikelModel();
@@ -39,12 +37,13 @@ class Artikel extends BaseController
         echo view('admin/layout.admin/header', $data);
         echo view('admin/layout.admin/top_menu');
         echo view('admin/layout.admin/side_menu');
-        return view('admin/artikel/add', $data);
+        echo view('admin/artikel/add', $data);
         echo view('admin/layout.admin/footer');
     }
 
     public function save()
     {
+        // dd($this->request->getVar());
         $rules = [
             'judul' => [
                 'rules' => 'required',
@@ -59,27 +58,24 @@ class Artikel extends BaseController
                 ]
             ],
 
-            'img' => [
-                'rules' => 'required|max_size[img,1024]|is_image[img]|mime_in[img,image/jpg, image/jpeg, image/png]',
-                'errors' => [
-                    'required' => 'Pilih Gambar yang akan diunggah',
-                    'max_size' => 'Ukuran gambar terlalu besar',
-                    'is_image' => 'Yang anda pilih bukan gambar',
-                    'mime_in' => 'Yang anda pilih bukan gambar'
-                ]
-            ]
         ];
-        // dd($this->request->getVar());
+
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput()->with('error', $this->validator->listErrors());
         }
+        $filefoto = $this->request->getFile('img');
+
+        //get foto
+        $filefoto->move('img/artikel');
+        $filename = $filefoto->getName();
+
         $artikel = new ArtikelModel();
         $slug = url_title($this->request->getVar('judul'), '-', true);
-        $artikel->insert([
+        $artikel->save([
             'judul' => $this->request->getVar('judul'),
             'slug' => $slug,
             'body' => $this->request->getVar('body'),
-            'img' => $this->request->getVar('img')
+            'img' => $filename
         ]);
         session()->setFlashdata('berhasil', 'Artikel berhasil diposting');
         return redirect()->to('admin.artikel');

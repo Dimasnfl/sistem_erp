@@ -33,20 +33,23 @@
                              </div>
                          <?php endif; ?>
                          <div class="card-body">
-                             <form action="/admin/artikel/add" method="post" enctype="multipart/form-data">
+                             <form action="<?= site_url('admin.artikel') ?>" method="post" enctype="multipart/form-data" autocomplete="off">
                                  <?= csrf_field(); ?>
                                  <div class="form-group">
                                      <label for="judul" class="form-label">Judul</label>
                                      <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul..." value="<?= set_value('judul') ?>" autofocus>
                                  </div>
-                                 <div class="form-group">
-                                     <label for="img" class="form-label">Foto</label>
-                                     <input type="file" class="form-control" name="img" id="img" placeholder="img..." value="<?= set_value('img') ?>" autofocus>
-                                 </div>
                                  <div class="mb-3">
                                      <label for="body" class="form-label">Isi Artikel</label>
                                      <input id="body" type="hidden" name="body" value="<?= set_value('body') ?>">
                                      <trix-editor input="body"></trix-editor>
+                                 </div>
+                                 <div class="mb-3">
+                                     <label for="img" class="form-label">Foto</label>
+                                     <div class="col-sm-2 mb-2">
+                                         <img src="/img/artikel/default.png" class="img-thumbnail img-preview">
+                                     </div>
+                                     <input type="file" class="form-control" id="img" name="img" value="<?= set_value('img') ?>" onchange="previewImg()">
                                  </div>
                                  <button type="submit" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i>.Save</button>
                                  <button type="reset" class="btn btn-outline-secondary"><i class="fas fa-redo"></i>.Reset</button>
@@ -58,5 +61,21 @@
              </div>
      </section>
      <!-- /.content -->
+     <script>
+         function previewImg() {
+             const img = document.querySelector('#img');
+             const imgLabel = document.querySelector('.form-label');
+             const imgPreview = document.querySelector('.img-preview');
+
+             imgLabel.textContent = img.files[0].name;
+
+             const fileimg = new FileReader();
+             fileimg.readAsDataURL(img.files[0]);
+
+             fileimg.onload = function(e) {
+                 imgPreview.src = e.target.result;
+             }
+         }
+     </script>
  </div>
  <!-- /.content-wrapper -->
