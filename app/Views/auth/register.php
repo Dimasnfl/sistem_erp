@@ -52,9 +52,12 @@
                 </div>
 
                 <!-- PASSWORD -->
-                <div class="form-floating mt-2">
-                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-                    <label for="password">Password</label>
+                <div class="input-group mt-2">
+                    <div class="form-floating">
+                        <input type="password" class="form-control pass" id="floatingPassword" name="password" placeholder="Password">
+                        <label for="password">Password</label>
+                    </div>
+                    <span class="input-group-text"><button type="button" style="background: none; border: none;"><i onclick="show(this)" class="bi bi-eye-fill"></i></button></span>
                 </div>
 
                 <!-- REGULER -->
@@ -73,7 +76,7 @@
                     <label for="no_hp">No Handphone</label>
                 </div>
 
-                <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Register</button>
+                <button type="submit" class="w-100 btn btn-lg btn-primary mt-2">Register</button>
             </form>
         </div>
     </div>

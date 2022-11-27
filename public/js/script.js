@@ -23,3 +23,13 @@ function simpan_update(id_produk, key) {
     error: function (e) {},
   });
 }
+
+function show(i){
+  var x = document.getElementById('floatingPassword');
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+  i.classList.toggle("bi-eye-slash-fill");
+}
