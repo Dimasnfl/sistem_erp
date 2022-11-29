@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CartModel;
 use App\Models\ModulsModel;
+use App\Models\Nilai_SertifikatModel;
 use CodeIgniter\I18n\Time;
 use DateTime;
 
@@ -32,12 +33,14 @@ class CartController extends BaseController
         $modulmodel = new ModulsModel();
         $cart = new CartModel();
         $count = $modulmodel->count();
-        $modul = $modulmodel->findAll();
+        $modul = $modulmodel->getall();
         $qty = $this->request->getVar('qty');
 
+        // dd($modul);
 
         for ($i = 0; $i < $count; $i++) {
-            $validasi = $cart->get1($i);
+            $id = $modul[$i]['kode_modul'];
+            $validasi = $cart->get1($id);
             $data = [
                 'id_user' => session('nim'),
                 'id_produk' => $modul[$i]['kode_modul'],
@@ -56,7 +59,7 @@ class CartController extends BaseController
                 }
             }
         }
-        return redirect()->to('/cart');
+        return redirect()->to('/modul');
     }
 
     // public function addtocart($id)
@@ -127,13 +130,14 @@ class CartController extends BaseController
         $id_produk = $this->request->getVar('id');
         $modul = $modulmodel->getspecific($id_produk);
         $cart = $cartmodel->getspecific($id_produk);
-        $data = [
-            'ketersediaan' =>  $modul['0']['ketersediaan'] - ($qty - $cart['0']['qty'])
-        ];
-        $this->modulmodel->updatedata($id_produk, $data);
-
-
-        echo json_encode($cartmodel->updatecart($id_produk, $qty));
+        if ($qty > $modul['0']['ketersediaan']) {
+        } else {
+            $data = [
+                'ketersediaan' =>  $modul['0']['ketersediaan'] - ($qty - $cart['0']['qty'])
+            ];
+            $this->modulmodel->updatedata($id_produk, $data);
+            echo json_encode($cartmodel->updatecart($id_produk, $qty));
+        }
     }
 
     public function remove($id)
@@ -156,10 +160,31 @@ class CartController extends BaseController
     {
         $date = new Time('now');
         $cartmodel = new CartModel();
-        $data = [
-            'tanggal_checkout' => $date
-        ];
-        $cartmodel->getiduser($data);
+        $nilai = new Nilai_SertifikatModel();
+        $cartid = $cartmodel->getcart();
+        $count = $cartmodel->count();
+
+
+
+        for ($i = 0; $i < $count; $i++) {
+
+            $id = $cartid[$i]['id_sertifikat'];
+            if ($cartid[$i]['id_sertifikat'] = null) {
+                $data = [
+                    'tanggal_checkout' => $date
+                ];
+                $cartmodel->update($cartid[$i], $data);
+            } else {
+                $data = [
+                    'tanggal_checkout' => $date
+                ];
+                $data2 = [
+                    'status' => "Proses Cetak"
+                ];
+                $cartmodel->update($cartid[$i], $data);
+                $nilai->updatedata($id, $data2);
+            }
+        }
         return redirect()->to('/cart');
     }
 }

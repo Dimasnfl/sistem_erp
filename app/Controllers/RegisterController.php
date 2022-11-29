@@ -67,7 +67,7 @@ class RegisterController extends BaseController
                 ]
             ],
             'reguler' => [
-                'rules' => 'in_list[A,B]'
+                'rules' => 'in_list[A,B1,B2]|required'
             ]
         ];
 
@@ -81,7 +81,8 @@ class RegisterController extends BaseController
             'id_jurusan' => $this->request->getVar('id_jurusan'),
             'email' => $this->request->getVar('email'),
             'password' => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
-            'no_hp' => $this->request->getVar('no_hp')
+            'no_hp' => $this->request->getVar('no_hp'),
+            'reguler' => $this->request->getVar('reguler')
         ]);
         session()->setFlashdata('berhasil', 'Registrasi Berhasil');
         return redirect()->to('/login');

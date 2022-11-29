@@ -19,7 +19,7 @@ class Nilai_SertifikatModel extends Model
     public function getAll()
     {
         $builder = $this->db->table('nilai_sertifikat');
-        $builder->select('nilai_sertifikat.id as id, nilai_sertifikat.*, kode_sertifikat, harga_sertifikat, nama_sertifikat');
+        $builder->select('nilai_sertifikat.id as id, nilai_sertifikat.*, kode_sertifikat, nama_sertifikat');
         $builder->join('sertifikat', 'sertifikat.kode_sertifikat = nilai_sertifikat.sertifikat_id');
         $builder->where('nim_user', session('nim'));
         $query = $builder->get();
@@ -38,5 +38,11 @@ class Nilai_SertifikatModel extends Model
     {
         $builder = $this->db->table('shopping_cart')->where('id_sertifikat', $id)->where('id_user', session('nim'));
         $builder->delete();
+    }
+
+    public function updatedata($i, $data2)
+    {
+        $nilai = $this->db->table('nilai_sertifikat')->where('id', $i);
+        $nilai->update($data2);
     }
 }

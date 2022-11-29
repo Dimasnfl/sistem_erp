@@ -87,18 +87,20 @@ class SertifikatList extends BaseController
                     continue;
                 }
                 $data = [
-                    'JP' => $value[1],
-                    'nilai' => $value[4],
-                    'tanggal_ujian' => $value[8],
-                    'nama_user' => $value[3],
+                    'jp' => $value[1],
                     'nim_user' => $value[2],
+                    'nama_user' => $value[3],
+                    'nilai' => $value[4],
                     'result' => $value[5],
-                    'reguler_user' => $value[7],
-                    'kelas' => $value[10],
-                    'status' => $value[11],
-                    'nama_dosen' => $value[12],
-                    'ruangan' => $value[9],
                     'sertifikat_id' => $value[6],
+                    'reguler_user' => $value[7],
+                    'tanggal_ujian' => $value[8],
+                    'ruangan' => $value[9],
+                    'kelas' => $value[10],
+                    'no_so' => $value[11],
+                    'status' => $value[12],
+                    'nama_dosen' => $value[13],
+                    'keterangan' => $value[14],
                 ];
                 $this->db->table('nilai_sertifikat')->insert($data);
             }

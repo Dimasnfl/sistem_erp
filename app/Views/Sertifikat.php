@@ -96,11 +96,15 @@
                                 </td>
                             </tr>
                         </table>
-                        <?php if ($nilai['result'] == 'Passed') : ?>
+                        <?php if ($nilai['result'] == 'Passed' && $nilai['status'] == 'Belum Cetak') { ?>
                             <a href="/add-sertifikat/<?= $nilai['id'] ?>" class="btn btn-primary mt-2">Ambil Sertifikat</a>
-                        <?php else : ?>
-                            <a href="#" class="btn btn-danger mt-2">Mengambil Perbaikan?</a>
-                        <?php endif; ?>
+                        <?php } else if ($nilai['result'] == 'Passed' && $nilai['status'] == 'Proses Cetak') { ?>
+                            <p class="btn btn-primary mt-2">Sertifikat Anda Sedang Dalam Proses Cetak</p>
+                        <?php } else if ($nilai['result'] == 'Passed' && $nilai['status'] == 'Sudah Diambil') { ?>
+                            <p class="btn btn-primary mt-2">Anda Sudah Mengambil Sertifikat ini</p>
+                        <?php } else { ?>
+                            <!-- <a href="#" class="btn btn-danger mt-2">Silahkan Ambil Perbaikan</a> -->
+                        <?php } ?>
                     </div>
                 </div>
             </div>

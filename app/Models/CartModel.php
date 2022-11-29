@@ -9,13 +9,13 @@ class CartModel extends Model
     protected $table = 'shopping_cart';
     protected $primaryKey = 'id';
     protected $allowedFields = [
-        'id_user', 'id_produk', 'qty', 'id_sertifikat', 'harga', 'konfirmasi', 'tanggal_checkout'
+        'id_user', 'id_produk', 'qty', 'id_sertifikat', 'harga', 'konfirmasi', 'tanggal_checkout', 'k_sertifikat', 'k_jp'
     ];
 
     public function getAll()
     {
         $builder = $this->db->table('shopping_cart');
-        $builder->select('shopping_cart.id as id, id_user , id_produk, id_sertifikat, qty, nama_modul, harga, nilai_sertifikat.* ,sertifikat.*');
+        $builder->select('shopping_cart.id as id, id_user , id_produk, id_sertifikat, qty, nama_modul, tanggal_checkout,  harga, nilai_sertifikat.* ,sertifikat.*');
         $builder->join('moduls', 'moduls.kode_modul = shopping_cart.id_produk', 'left');
         $builder->join('nilai_sertifikat', 'nilai_sertifikat.id = shopping_cart.id_sertifikat', 'left');
         $builder->join('sertifikat', 'sertifikat.kode_sertifikat = nilai_sertifikat.sertifikat_id', 'left');
@@ -26,6 +26,7 @@ class CartModel extends Model
 
     public function getiduser($data)
     {
+
         $builder = $this->db->table('shopping_cart')->where('id_user', session('nim'));
         $builder->update($data);
     }
@@ -37,10 +38,9 @@ class CartModel extends Model
         return $query->getResultArray();
     }
 
-    public function get1($i)
+    public function get1($id)
     {
-        $modul = $this->db->table('moduls')->select('kode_modul')->get()->getResultArray();
-        $builder = $this->db->table('shopping_cart')->where('id_produk', $modul[$i])->where('id_user', session('nim'));
+        $builder = $this->db->table('shopping_cart')->where('id_produk', $id)->where('id_user', session('nim'));
         $query = $builder->get();
         return $query->getResultArray();
     }
@@ -88,5 +88,17 @@ class CartModel extends Model
             $response = 1;
         }
         return $response;
+    }
+
+    public function count()
+    {
+        $builder = $this->db->table('shopping_cart')->where('id_user', session('nim'));
+        return $builder->countAllResults();
+    }
+
+    public function getcart()
+    {
+        $builder = $this->db->table('shopping_cart')->where('id_user', session('nim'));
+        return $builder->get()->getResultArray();
     }
 }

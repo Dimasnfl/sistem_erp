@@ -31,6 +31,16 @@ class ShoppingCart extends Migration
                 'unsigned' => true,
                 'null' => true
             ],
+            'k_sertifikat' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'null' => true
+            ],
+            'k_jp' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'null' => true
+            ],
             'qty' => [
                 'type' => 'INT',
                 'constraint' => '5',
