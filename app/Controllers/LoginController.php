@@ -18,6 +18,17 @@ class LoginController extends BaseController
         return view('auth/login', $data);
     }
 
+    public function admin()
+    {
+        session();
+        $data = [
+            'title' => 'Admin Login',
+            'validation' => \Config\Services::validation()
+        ];
+
+        return view('auth/login_admin', $data);
+    }
+
     public function auth()
     {
 
