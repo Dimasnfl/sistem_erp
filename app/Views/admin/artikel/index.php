@@ -2,6 +2,8 @@
  <div class="content-wrapper">
      <!-- Content Header (Page header) -->
      <section class="content-header">
+
+
          <div class="container-fluid">
              <div class="row mb-2">
                  <div class="col-sm-6">
@@ -10,16 +12,18 @@
                  <div class="col-sm-6">
                      <ol class="breadcrumb float-sm-right">
                          <li class="breadcrumb-item"><a href="dashboard.admin">Home</a></li>
-                         <li class="breadcrumb-item"><a href="admin.modul">Artikel</a></li>
                          <li class="breadcrumb-item active">List Artikel</li>
                      </ol>
                  </div>
              </div>
          </div><!-- /.container-fluid -->
+
      </section>
 
      <!-- Main content -->
      <section class="content">
+
+
          <div class="container-fluid">
              <!-- /.row -->
              <div class="row">
@@ -58,13 +62,13 @@
                              </div>
                          </div>
                          <!-- /.card-header -->
-                         <div class="card-body table-responsive p-0" style="height: 510px;">
-                             <table class="table table-head-fixed table-striped text-nowrap table-bordered">
+                         <div class="card-body table-responsive " style="max-width: 1800px;">
+                             <table class="table  table-striped text-nowrap table-bordered">
                                  <thead>
                                      <tr>
-                                         <th style="width: 70px;">NO</th>
+                                         <th style="width: 70px;">No.</th>
                                          <th>Judul</th>
-                                         <th style="width: 750px;">Isi Artikel</th>
+                                         <th style="max-width: 750px;">Isi Artikel</th>
                                          <th class="text-center" style="width: 250px;">ACTION</th>
                                      </tr>
                                  </thead>
@@ -73,33 +77,36 @@
                                      <tr>
                                          <?php $i = 1; ?>
                                          <?php foreach ($artikel as $a) : ?>
-                                             <td><?php echo $i ?></td>
-                                             <td><?php echo $a->judul ?></td>
-                                             <td><?php echo $a->body ?></td>
-                                             <td class="text-center">
-                                                 <a href="admin.artikel/edit/<?= $a->slug; ?>" class="btn btn-outline-warning">
-                                                     <i class="fas fa-pen"></i>.Edit
-                                                 </a>
-                                                 <form action="admin.artikel/delete/<?= $a->id; ?>" method="POST" class="d-inline">
-                                                     <?= csrf_field(); ?>
-                                                     <input type="hidden" name="_method" value="DELETE">
-                                                     <button class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin mau menghapus artikel ini?');">
-                                                         <i class="fas fa-trash"></i>.Delete
-                                                     </button>
-                                                 </form>
-                                             </td>
-                                     </tr>
-                                     <?php $i++; ?>
-                                 <?php endforeach ?>
 
-                                 </tbody>
-                             </table>
                          </div>
-                         <!-- /.card-body -->
+                         <td><?php echo $i ?></td>
+                         <td><?php echo $a->judul ?></td>
+                         <td style="max-width: 750px;"><?php echo word_limiter($a->body, 15) ?></td>
+                         <td class="text-center">
+                             <a href="admin.artikel/edit/<?= $a->slug; ?>" class="btn btn-outline-warning">
+                                 <i class="fas fa-pen"></i>.Edit
+                             </a>
+                             <form action="admin.artikel/delete/<?= $a->id; ?>" method="POST" class="d-inline">
+                                 <?= csrf_field(); ?>
+                                 <input type="hidden" name="_method" value="DELETE">
+                                 <button class="btn btn-outline-danger" onclick="return confirm('Apakah anda yakin mau menghapus artikel ini?');">
+                                     <i class="fas fa-trash"></i>.Delete
+                                 </button>
+                             </form>
+                         </td>
+                         </tr>
+                         <?php $i++; ?>
+                     <?php endforeach ?>
+
+                     </tbody>
+                     </table>
                      </div>
-                     <!-- /.card -->
+                     <!-- /.card-body -->
                  </div>
+                 <!-- /.card -->
              </div>
+
+
      </section>
      <!-- /.content -->
  </div>
