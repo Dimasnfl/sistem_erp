@@ -40,49 +40,11 @@
                     </li>
                 </ul>
 
-                <?php $session = session();
-                $total = 0;
-                $totalseluruh = 0 ?>
+                <?php $session = session(); ?>
                 <?php if (session()->has('logged_in') == true) : ?>
-                    <?php $carts = session('cart') ?>
+
                     <!-- Cart -->
-                    <div class="dropdown">
-                        <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
-                            <i class="bi bi-cart-fill">
-                                <?php if ($count == "0") :  ?>
-                                    <span class='badge badge-warning' id='lblCartCount'></span>
-                                <?php else : ?>
-                                    <span class='badge badge-warning' id='lblCartCount'> <?php echo $count ?> </span>
-                                <?php endif; ?>
-                            </i>
-                        </button>
-                        <div class="dropdown-menu text-center">
-                            <div class="row">
-                                <?php if ($count == "0") : ?>
-                                    <p>Empty cart</p>
-                                <?php else : ?>
-                                    <?php foreach ($cart as $cart) : ?>
-                                        <?php $total = $cart['harga'] * $cart['qty'];
-                                        $totalseluruh += $total ?>
-                                        <div class="row cart-detail">
-                                            <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                                <?php if ($cart['id_produk'] != null) : ?>
-                                                    <p><?php echo $cart['nama_modul'] ?></p>
-                                                <?php else : ?>
-                                                    <p><?php echo $cart['nama_sertifikat'] ?></p>
-                                                <?php endif; ?>
-                                                <span class="price text-info"><?php echo $total ?></span>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                    <?php echo $totalseluruh ?>
-                                <?php endif ?>
-                                <div class="col-lg-12 col-sm-12 col-12 text-center">
-                                    <a href="cart" class="btn btn-primary btn-block">View all</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="cart" class="me-2" style="color: black;"><i class="bi bi-cart-fill"></i></a>
 
                     <!-- Notifications -->
                     <div class="dropdown">
@@ -102,9 +64,6 @@
                         <?php echo $session->get('nama') ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Menu item</a></li>
-                        <li><a class="dropdown-item" href="#">Menu item</a></li>
-                        <li><a class="dropdown-item" href="#">Menu item</a></li>
                         <li>
                             <form action="/logout" method="GET">
                                 <button type="submit" class="dropdown-item">

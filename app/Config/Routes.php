@@ -59,6 +59,7 @@ $routes->get('/remove-sertifikat/(:any)', 'SertifikatController::removesertifika
 $routes->get('/login', 'LoginController::index');
 $routes->post('/login', 'LoginController::auth');
 $routes->get('/logout', 'LoginController::logout');
+$routes->get('/login.admin', 'LoginController::admin');
 
 // Register
 $routes->get('/register', 'RegisterController::index');

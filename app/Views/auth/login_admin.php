@@ -10,7 +10,7 @@
     <div class="col-sm-4 mt-4">
         <div class="container-sm mt-5 p-4">
 
-            <h1 class="h3 mb-3 fw-normal">Login Account</h1>
+            <h1 class="h3 mb-3 fw-normal">Admin Login Account</h1>
             <?php if (!empty(session()->getFlashdata('error'))) : ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <?php echo session()->getFlashdata('error'); ?>
@@ -37,7 +37,6 @@
                 <button class="w-100 btn btn-lg btn-primary" type="submit" name="login">Login</button>
             </form>
         </div>
-        <a href="/login.admin" class="d-flex justify-content-center" style="text-decoration: none;">apakah anda admin?</a>
     </div>
 </div>
 <!-- End Login Section -->

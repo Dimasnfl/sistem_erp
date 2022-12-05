@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
     <div class="justify-content-md-center border border-dark p-3">
-        <table class="table table-bordered border-dark text-center">
+        <table class="table table-bordered border-dark text-center align-middle">
             <thead>
                 <tr>
                     <th scope="col" style="width: 10%;">Kode</th>
@@ -53,9 +53,25 @@
                     </tr>
                 <?php endforeach ?>
             </tbody>
-        </table>
 
-        <button class="btn btn-primary" type="submit">Masukkan Keranjang</button>
+            <tfoot>
+                <tr style="border: none;">
+                    <td style="border: none;">
+                    </td>
+                    <td style="border: none;">
+                    </td>
+                    <td style="border: none;">
+                    </td>
+                    <td style="border: none;">
+                    </td>
+                    <td style="border: none;">
+                        <?php if (session()->has('logged_in') == true) : ?>
+                            <button class="btn btn-primary me-3" style="width: 200px;" type="submit">Masukkan Keranjang</button>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
         </form>
     </div>
 </div>
