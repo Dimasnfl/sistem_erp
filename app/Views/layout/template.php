@@ -44,7 +44,13 @@
                 <?php if (session()->has('logged_in') == true) : ?>
 
                     <!-- Cart -->
-                    <a href="cart" class="me-2" style="color: black;"><i class="bi bi-cart-fill"></i></a>
+                    <a href="cart" class="me-2" style="color: black;"><i class="bi bi-cart-fill">
+                            <?php if ($count == "0") :  ?>
+                                <span class='badge badge-warning' id='lblCartCount'></span>
+                            <?php else : ?>
+                                <span class='badge badge-warning' id='lblCartCount'> <?php echo $count ?> </span>
+                            <?php endif; ?>
+                        </i></a>
 
                     <!-- Notifications -->
                     <div class="dropdown">
@@ -64,6 +70,9 @@
                         <?php echo $session->get('nama') ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="/history">History</a>
+                        </li>
                         <li>
                             <form action="/logout" method="GET">
                                 <button type="submit" class="dropdown-item">
@@ -101,7 +110,6 @@
     <!-- End Footer -->
 
     <script>
-        var baseurl = '<?= base_url(); ?>';
         var siteurl = '<?= site_url(); ?>';
     </script>
     <script src="js/jquery.js"></script>

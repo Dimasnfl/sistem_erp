@@ -130,7 +130,8 @@ class CartController extends BaseController
         $id_produk = $this->request->getVar('id');
         $modul = $modulmodel->getspecific($id_produk);
         $cart = $cartmodel->getspecific($id_produk);
-        if ($qty > $modul['0']['ketersediaan']) {
+        $all = $modul['0']['ketersediaan'] + $cart['0']['qty'];
+        if ($qty > $all) {
         } else {
             $data = [
                 'ketersediaan' =>  $modul['0']['ketersediaan'] - ($qty - $cart['0']['qty'])
@@ -148,7 +149,7 @@ class CartController extends BaseController
         $cart = $cartmodel->getspecific($id);
         if ($cart) {
             $data = [
-                'ketersediaan' =>  $modul['0']['ketersediaan'] + $cart['0']['qty']
+                'ketersediaan' =>  $modul['0']['ketersediaan'] //+ $cart['0']['qty']
             ];
             $this->modulmodel->updatedata($id, $data);
             $this->cartmodel->deletedata($id);

@@ -33,16 +33,20 @@
                     <td class="text-center"><?= $item['nama_modul']; ?></td>
                     <td class="text-center"><?= $harga = $item['harga'] * $item['qty'];
                                             number_format($harga, 0, ".", ".") ?></td>
-                    <td class="text-center">
-
-                        <input type="number" id="qty_<?= $key ?>" name="qty" class="form-control text-center" value="<?= $item['qty']; ?>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-
-                    </td>
-                    <td class="text-center">
-                        <?php if ($item['tanggal_checkout'] == null) : ?>
-                            <button type="button" id="update" min="1" class="btn btn-success" onclick="simpan_update('<?= $item['id_produk'] ?>','qty_<?= $key ?>' )">update</button>
-                            <a href="/remove-from-cart/<?= $item['id_produk'] ?>" class="btn btn-danger" role="button">Remove</a>
-                        <?php endif; ?>
+                    <?php if ($item['tanggal_checkout'] == null) : ?>
+                        <td class="text-center">
+                            <div class="row text-center">
+                                <div class="col ">
+                                    <input type="number" id="qty_<?= $key ?>" name="qty" class="form-control text-center" value="<?= $item['qty']; ?>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="width: 250px;">
+                                </div>
+                                <div class="col">
+                                    <button type="button" id="update" min="1" class="btn btn-success" onclick="simpan_update('<?= $item['id_produk'] ?>','qty_<?= $key ?>' )">update</button>
+                                    <a href="/remove-from-cart/<?= $item['id_produk'] ?>" class="btn btn-danger" role="button">Remove</a>
+                                </div>
+                            </div>
+                        <?php else : ?>
+                        <td class="text-center"><?= $item['qty']; ?></td>
+                    <?php endif; ?>
                     </td>
                 <?php else : ?>
                     <td class="text-center"><?= $item['kode_sertifikat']; ?></td>

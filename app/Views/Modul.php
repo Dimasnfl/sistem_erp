@@ -54,24 +54,10 @@
                 <?php endforeach ?>
             </tbody>
 
-            <tfoot>
-                <tr style="border: none;">
-                    <td style="border: none;">
-                    </td>
-                    <td style="border: none;">
-                    </td>
-                    <td style="border: none;">
-                    </td>
-                    <td style="border: none;">
-                    </td>
-                    <td style="border: none;">
-                        <?php if (session()->has('logged_in') == true) : ?>
-                            <button class="btn btn-primary me-3" style="width: 200px;" type="submit">Masukkan Keranjang</button>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-            </tfoot>
         </table>
+        <?php if (session()->has('logged_in') == true) : ?>
+            <button class="btn btn-primary" style="width: 200px; margin-left: 1465px;" type="submit">Masukkan Keranjang</button>
+        <?php endif; ?>
         </form>
     </div>
 </div>

@@ -66,6 +66,9 @@ $routes->post('/login.admin', 'LoginController::auth_admin');
 $routes->get('/register', 'RegisterController::index');
 $routes->post('/register', 'RegisterController::store');
 
+// History
+$routes->get('/history', 'HistoryController::index');
+
 // Error Page
 $routes->get('/error404', 'customError404::index');
 

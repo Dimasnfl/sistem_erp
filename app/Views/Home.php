@@ -37,7 +37,6 @@
                         <div class="card-body">
                             <h5 class="card-title"><strong><?= $t->judul; ?></strong></h5>
                             <p class="card-text"><?= word_limiter($t->body, 20) ?>.</p>
-
                             <a href="/detail/<?= $t->slug; ?>" class="btn btn-primary">Read more</a>
                         </div>
                     </div>
