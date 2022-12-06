@@ -60,6 +60,7 @@ $routes->get('/login', 'LoginController::index');
 $routes->post('/login', 'LoginController::auth');
 $routes->get('/logout', 'LoginController::logout');
 $routes->get('/login.admin', 'LoginController::admin');
+$routes->post('/login.admin', 'LoginController::auth_admin');
 
 // Register
 $routes->get('/register', 'RegisterController::index');

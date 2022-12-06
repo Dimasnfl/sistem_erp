@@ -22,7 +22,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/login" method="POST">
+            <form action="/login.admin" method="POST">
                 <?= csrf_field(); ?>
 
                 <div class="form-floating mt-2">

@@ -40,7 +40,8 @@ class LoginController extends BaseController
         if ($data) {
             $pass = $data['password'];
             $verify = password_verify($password, $pass);
-            if ($verify) {
+            $role = $data['is_admin'];
+            if ($verify && $role == '0') {
                 session()->set([
                     'logged_in' => true,
                     'nama' => $data['nama'],
@@ -48,17 +49,44 @@ class LoginController extends BaseController
                     'nim' => $data['nim'],
                     'reguler' => $data['reguler']
                 ]);
-                if (session()->get('role') == '1') {
-                    return redirect()->to('dashboard.admin');
-                } else {
-                    return redirect()->to('/');
-                }
+                return redirect()->to('/');
             } else {
                 session()->setFlashdata('error', 'Username atau Password Salah');
                 return redirect()->back();
             }
         } else {
-            session()->setFlashdata('error', 'Username atau Password Salah');
+            session()->setFlashdata('error', 'Akun Anda Tidak Tersedia');
+            return redirect()->back();
+        }
+    }
+
+    public function auth_admin()
+    {
+
+        $user = new UsersModel();
+        $email = $this->request->getVar('email');
+        $password = $this->request->getVar('password');
+        $data = $user->where('email', $email)->first();
+
+        if ($data) {
+            $pass = $data['password'];
+            $verify = password_verify($password, $pass);
+            $role = $data['is_admin'];
+            if ($verify && $role == '1') {
+                session()->set([
+                    'logged_in' => true,
+                    'nama' => $data['nama'],
+                    'role' => $data['is_admin'],
+                    'nim' => $data['nim'],
+                    'reguler' => $data['reguler']
+                ]);
+                return redirect()->to('dashboard.admin');
+            } else {
+                session()->setFlashdata('error', 'Username atau Password Salah');
+                return redirect()->back();
+            }
+        } else {
+            session()->setFlashdata('error', 'Akun Anda Tidak Tersedia atau Anda Bukan Admin');
             return redirect()->back();
         }
     }
