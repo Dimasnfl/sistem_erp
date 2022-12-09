@@ -101,7 +101,10 @@ $routes->post('modul_in', 'Modul_in::store');
 $routes->get('Modul_out', 'Modul_out::index');
 $routes->get('modul_out/restore/(:any)', 'Modul_out::restore/$1');
 $routes->post('modul_out/restore2', 'Modul_out::restore2');
+// $routes->get('modul_out/konfirmasi/(:any)', 'Modul_out::konfirmasi/$1');
 $routes->get('modul_out/konfirmasi/(:any)', 'Modul_out::konfirmasi/$1');
+$routes->post('modul_out/', 'Modul_out::store_konfirmasi');
+
 
 
 

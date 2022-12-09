@@ -76,22 +76,5 @@ class M_shopping_cart extends Model
         $query = $builder->get();
         return $query->getResult();
     }
-
-
-
-    // function laporan()
-    // {
-    //     $from  = @$_POST['mulai_tanggal'];
-    //     $to = @$_POST['sampai_tanggal'];
-
-    //     return $this->db->table('shopping_cart')
-    //         ->select('shopping_cart.id, shopping_cart.id_user, shopping_cart.id_produk, shopping_cart.id_sertifikat, shopping_cart.qty, shopping_cart.harga, shopping_cart.tanggal_checkout,  
-    //                  users.id as users_id, users.nama as nama_user, users.nim, users.id_jurusan, users.reguler, jurusan.nama as nama_jurusan')
-    //         ->join('users', 'users.nim = shopping_cart.id_user')
-    //         ->join('jurusan', 'jurusan.id = users.id_jurusan')
-    //         ->where("tanggal_checkout BETWEEN '{$from}' AND '{$to}'")
-    //         ->where('konfirmasi', 1)
-    //         ->get()
-    //         ->getResultArray();
-    // }
+    
 }

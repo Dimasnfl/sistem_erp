@@ -97,12 +97,8 @@
                              <i class="fas fa-undo"></i>
                            </button>
                          </form>
-                         <form action="<?= site_url('modul_out/konfirmasi/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Konfirmasi Modul <?= $value->id_produk ?> -  <?= $value->id_user ?> ?')">
-                           <input type="hidden" name="_method" value="GET">
-                           <button class="btn btn-outline-success">
-                             <i class="fas fa-check"></i>
-                           </button>
-                         </form>
+
+                         <a href="<?= site_url('modul_out/konfirmasi/' . $value->id) ?>" class="btn btn-outline-success"><i class="fas fa-check"></i></a>
                        </td>
                      </tr>
 

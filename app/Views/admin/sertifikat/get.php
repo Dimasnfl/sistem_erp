@@ -32,7 +32,7 @@
              <div class="card-header">
                <h3 class="card-title">
                  <div class="btn-group">
-                   <a href="<?= site_url('sertifikat/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
+                   <a href="<?= site_url('sertifikat/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i>. Add New Sertifikat</a>
                  </div>
                  <!-- <div class="btn-group">
                    <button type="button" class="btn btn-outline-success"><i class="fas fa-file-upload"></i>.Import Excel</button>
@@ -53,17 +53,6 @@
                <table class="table table-head-fixed table-striped text-nowrap table-bordered">
                  <thead>
                    <tr>
-                     <!-- <th>KODE</th>
-                     <th>NAMA SERTIFIKAT</th>
-                     <th>HARGA SERTIFIKAT</th>
-                     <th>GRADE</th>
-                     <th>RESULT</th>
-                     <th>TANGGAL UJIAN</th>
-                     <th>NIM MAHASISWA</th>
-                     <th>NAMA MAHASISWA</th>
-                     <th>REGULER</th>
-                     <th>KELAS</th>
-                     <th>NAMA DOSEN</th> -->
                      <th>NO</th>
                      <th>KODE SERTIFIKAT</th>
                      <th>NAMA SERTIFIKAT</th>

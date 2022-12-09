@@ -23,4 +23,48 @@ class HistoryModel extends Model
         $query = $builder->get();
         return $query->getResultArray();
     }
+
+    function laporan($num, $from = null, $to = null)
+    {
+        $from  = @$_GET['from'];
+        $to = @$_GET['to'];
+        $filter_modul = @$_GET['filter_modul'];
+        $filter_sertifikat = @$_GET['filter_sertifikat'];
+        $filter_jurusan = @$_GET['filter_jurusan'];
+        $filter_reguler = @$_GET['filter_reguler'];
+        $filter_jp = @$_GET['filter_jp'];
+
+
+        $builder = $this->db->table('history');
+        $builder->select('history.id, history.id_user, history.id_produk, history.id_sertifikat, history.qty, history.harga, history.tanggal_checkout, history.k_sertifikat, history.k_jp,  
+        users.id as users_id, users.nama as nama_user, users.nim, users.id_jurusan, users.reguler, jurusan.nama as nama_jurusan 
+        ');
+        $builder->join('users', 'users.nim = history.id_user');
+        $builder->join('jurusan', 'jurusan.id = users.id_jurusan');
+        // $builder->join('nilai_sertifikat', 'nilai_sertifikat.id = history.id_sertifikat');
+
+        if ($from && $to != '') {
+        $builder->where("tanggal_checkout BETWEEN '{$from}' AND '{$to}'");      
+        }
+        if ($filter_modul != '') {
+            $builder->where('id_produk', $filter_modul);      
+        }
+        if ($filter_sertifikat != '') {
+            $builder->where('k_sertifikat', $filter_sertifikat);      
+        }
+        if ($filter_jurusan != '') {
+            $builder->where('id_jurusan', $filter_jurusan);      
+        }
+        if ($filter_reguler != '') {
+            $builder->where('reguler', $filter_reguler);      
+        }
+        if ($filter_jp != '') {
+            $builder->like('k_jp', $filter_jp);      
+        }
+
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }
+
+

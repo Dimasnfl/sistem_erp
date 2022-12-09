@@ -41,10 +41,16 @@
                  </div>
                  <div class="form-group">
                    <label>HARGA</label>
-                   <input type="text" class="form-control" name="harga_modul" value="<?= $moduls->harga_modul ?>" placeholder="Masukkan Harga Modul" required>
+                   <input type="number" class="form-control" name="harga_modul" value="<?= $moduls->harga_modul ?>" placeholder="Masukkan Harga Modul" required>
+                 </div>
+                 <div class="form-group">
+                   <label>Ubah Stok</label>
+                   <input type="number" class="form-control" name="ketersediaan" value="<?= $moduls->ketersediaan ?>" placeholder="Masukkan Stok Modul" required>
                  </div>
 
                  <button type="submit" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i>.Save</button>
+                 <button type="reset" class="btn btn-outline-secondary"><i class="fas fa-redo"></i>.Re Edit</button>
+
                </form>
              </div>
            </div>

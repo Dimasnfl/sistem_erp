@@ -5,7 +5,7 @@
      <div class="container-fluid">
        <div class="row mb-2">
          <div class="col-sm-6">
-           <h1>Stok Modul</h1>
+           <h1>Data Modul</h1>
          </div>
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
@@ -31,11 +31,22 @@
            <div class="card">
              <div class="card-header">
                <h3 class="card-title">
-                 <div class="btn-group">
+                 <!-- <div class="btn-group">
                    <a href="<?= site_url('modul/add') ?>" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
                  </div>
                  <div class="btn-group">
                    <a href="<?= site_url('modul_in/add') ?>" class="btn btn-outline-warning"><i class="fas fa-th"></i></a>
+                 </div> -->
+                 <div class="btn-group">
+                   <button type="button" class="btn btn-outline-success"><i class="fas fa-plus"></i>.Add Modul</button>
+                   <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">
+                     <span class="sr-only">Toggle Dropdown</span>
+                   </button>
+                   <div class="dropdown-menu" role="menu">
+                     <a class="dropdown-item has-icon" href="<?= site_url('modul/add') ?>"><i class="fas fa-plus"></i>.Add New Modul</a>
+                     <div class="dropdown-divider"></div>
+                     <a class="dropdown-item has-icon" href="<?= site_url('modul_in/add') ?>" ><i class="fas fa-th"></i>.Add Stock Modul</a>
+                   </div>
                  </div>
                  <div class="btn-group">
                    <button type="button" class="btn btn-outline-success"><i class="fas fa-file-upload"></i>.Import Excel</button>
