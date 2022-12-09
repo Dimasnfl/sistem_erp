@@ -81,7 +81,7 @@
                                    <select name="filter_sertifikat" class="form-control">
                                      <option value="" hidden>- Pilih Sertifikat -</option>
                                      <?php foreach ($filter_sertifikat as $key => $value) : ?>
-                                      <option value="<?= $value['kode_sertifikat'] ?>"><?= $value['kode_sertifikat'] ?> - <?= $value['nama_sertifikat'] ?></option>
+                                       <option value="<?= $value['kode_sertifikat'] ?>"><?= $value['kode_sertifikat'] ?> - <?= $value['nama_sertifikat'] ?></option>
                                      <?php endforeach; ?>
                                    </select>
                                  </div>
@@ -98,19 +98,19 @@
                                    <label>REGULER</label>
                                    <select name="filter_reguler" class="form-control">
                                      <option value="" hidden>- Pilih Reguler -</option>
-                                       <option value="A">REG A</option>
-                                       <option value="B">REG B</option>
-                                       <option value="B1">REG B1</option>
-                                       <option value="B2">REG B2</option>
+                                     <option value="A">REG A</option>
+                                     <option value="B">REG B</option>
+                                     <option value="B1">REG B1</option>
+                                     <option value="B2">REG B2</option>
                                    </select>
                                  </div>
                                  <div class="col-2">
                                    <label>JP</label>
                                    <select name="filter_jp" class="form-control">
                                      <option value="" hidden>- Pilih JP -</option>
-                                       <option value="S1">S1</option>
-                                       <option value="S2">S2</option>
-                                       <option value="PPAP">PPAP</option>
+                                     <option value="S1">S1</option>
+                                     <option value="S2">S2</option>
+                                     <option value="PPAP">PPAP</option>
                                    </select>
                                  </div>
                                </div>
@@ -129,7 +129,7 @@
            </div>
            <!-- /.modal -->
 
-           
+
            </form>
 
            </h3>
@@ -164,7 +164,7 @@
                 foreach ($laporan as $key => $value) : ?>
                  <tr>
                    <td> <?= $key + 1 ?> </td>
-                   <td><?= strtoupper($value->k_jp) ?></td>
+                   <td><?= $value->k_jp ?></td>
                    <td><?= $value->id_user ?></td>
                    <td><?= $value->nama_user ?></td>
                    <td><?= $value->nama_jurusan ?></td>
