@@ -56,7 +56,6 @@ class Modul_out extends BaseController
             if ($query->resultID->num_rows > 0) {
                 $header['title'] = 'Detail Transaksi';
                 $data['shopping_cart'] = $query->getRow();
-
                 echo view('admin/layout/header', $header);
                 echo view('admin/layout/top_menu');
                 echo view('admin/layout/side_menu');
@@ -71,7 +70,6 @@ class Modul_out extends BaseController
     }
     public function store_konfirmasi()
     {
-
         $data = [
             'k_jp' => $this->request->getVar('k_jp'),
             'id_user' => $this->request->getVar('id_user'),
@@ -84,7 +82,6 @@ class Modul_out extends BaseController
         ];
 
         $this->db->table('history')->insert($data);
-
 
         if ($this->db->affectedRows() > 0) {
             session()->setFlashdata('message', 'Transaksi Telah Dikonfirmasi');

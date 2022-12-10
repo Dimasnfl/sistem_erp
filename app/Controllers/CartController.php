@@ -35,8 +35,9 @@ class CartController extends BaseController
         $count = $modulmodel->count();
         $modul = $modulmodel->getall();
         $qty = $this->request->getVar('qty');
-
-        // dd($modul);
+        $message = [
+            'notifications' => 'Ada Pesanan Masuk dari '
+        ];
 
         for ($i = 0; $i < $count; $i++) {
             $id = $modul[$i]['kode_modul'];
@@ -59,6 +60,7 @@ class CartController extends BaseController
                 }
             }
         }
+
         return redirect()->to('/modul');
     }
 

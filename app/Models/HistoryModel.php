@@ -14,12 +14,12 @@ class HistoryModel extends Model
 
     public function getAll()
     {
-        $builder = $this->db->table('history');
-        $builder->select('history.id as id, id_user , id_produk, id_sertifikat, qty, nama_modul, tanggal_checkout,  harga, nilai_sertifikat.* ,sertifikat.*');
-        $builder->join('moduls', 'moduls.kode_modul = history.id_produk', 'left');
-        $builder->join('nilai_sertifikat', 'nilai_sertifikat.id = history.id_sertifikat', 'left');
+        $builder = $this->db->table('shopping_cart');
+        $builder->select('shopping_cart.id as id, id_user , id_produk, id_sertifikat, qty, nama_modul, tanggal_checkout,  harga, nilai_sertifikat.* ,sertifikat.*');
+        $builder->join('moduls', 'moduls.kode_modul = shopping_cart.id_produk', 'left');
+        $builder->join('nilai_sertifikat', 'nilai_sertifikat.id = shopping_cart.id_sertifikat', 'left');
         $builder->join('sertifikat', 'sertifikat.kode_sertifikat = nilai_sertifikat.sertifikat_id', 'left');
-        $builder->where('id_user', session('nim'));
+        $builder->where('id_user', session('nim'))->where('konfirmasi', 1);
         $query = $builder->get();
         return $query->getResultArray();
     }
@@ -44,27 +44,25 @@ class HistoryModel extends Model
         // $builder->join('nilai_sertifikat', 'nilai_sertifikat.id = history.id_sertifikat');
 
         if ($from && $to != '') {
-        $builder->where("tanggal_checkout BETWEEN '{$from}' AND '{$to}'");      
+            $builder->where("tanggal_checkout BETWEEN '{$from}' AND '{$to}'");
         }
         if ($filter_modul != '') {
-            $builder->where('id_produk', $filter_modul);      
+            $builder->where('id_produk', $filter_modul);
         }
         if ($filter_sertifikat != '') {
-            $builder->where('k_sertifikat', $filter_sertifikat);      
+            $builder->where('k_sertifikat', $filter_sertifikat);
         }
         if ($filter_jurusan != '') {
-            $builder->where('id_jurusan', $filter_jurusan);      
+            $builder->where('id_jurusan', $filter_jurusan);
         }
         if ($filter_reguler != '') {
-            $builder->where('reguler', $filter_reguler);      
+            $builder->where('reguler', $filter_reguler);
         }
         if ($filter_jp != '') {
-            $builder->like('k_jp', $filter_jp);      
+            $builder->like('k_jp', $filter_jp);
         }
 
         $query = $builder->get();
         return $query->getResult();
     }
 }
-
-

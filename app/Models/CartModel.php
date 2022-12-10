@@ -19,7 +19,7 @@ class CartModel extends Model
         $builder->join('moduls', 'moduls.kode_modul = shopping_cart.id_produk', 'left');
         $builder->join('nilai_sertifikat', 'nilai_sertifikat.id = shopping_cart.id_sertifikat', 'left');
         $builder->join('sertifikat', 'sertifikat.kode_sertifikat = nilai_sertifikat.sertifikat_id', 'left');
-        $builder->where('id_user', session('nim'));
+        $builder->where('id_user', session('nim'))->where('konfirmasi', 0);
         $query = $builder->get();
         return $query->getResultArray();
     }
@@ -40,7 +40,7 @@ class CartModel extends Model
 
     public function get1($id)
     {
-        $builder = $this->db->table('shopping_cart')->where('id_produk', $id)->where('id_user', session('nim'));
+        $builder = $this->db->table('shopping_cart')->where('id_produk', $id)->where('id_user', session('nim'))->where('konfirmasi', 0);
         $query = $builder->get();
         return $query->getResultArray();
     }
@@ -66,7 +66,7 @@ class CartModel extends Model
         $builder->join('moduls', 'moduls.kode_modul = shopping_cart.id_produk', 'left');
         $builder->join('nilai_sertifikat', 'nilai_sertifikat.id = shopping_cart.id_sertifikat', 'left');
         $builder->join('sertifikat', 'sertifikat.id = nilai_sertifikat.sertifikat_id', 'left');
-        $builder->where('id_user', session('nim'));
+        $builder->where('id_user', session('nim'))->where('konfirmasi', 0);
         return $builder->countAllResults();
     }
 

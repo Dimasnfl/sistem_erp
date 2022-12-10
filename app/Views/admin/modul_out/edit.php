@@ -34,32 +34,32 @@
 
                  <div class="form-group">
                    <label>JP</label>
-                   <input type="text" class="form-control" name="k_jp" value="<?=$shopping_cart->k_jp?>" placeholder="-" readonly>
+                   <input type="text" class="form-control" name="k_jp" value="<?= $shopping_cart->k_jp ?>" placeholder="-" readonly>
                  </div>
                  <div class="form-group">
                    <label>NIM</label>
-                   <input type="text" class="form-control" name="id_user" value="<?=$shopping_cart->id_user?>" placeholder="-" readonly>
+                   <input type="text" class="form-control" name="id_user" value="<?= $shopping_cart->id_user ?>" placeholder="-" readonly>
                  </div>
                  <div class="form-group">
                    <label>MODUL YANG DIBELI</label>
-                   <input type="text" class="form-control" name="id_produk" value="<?=$shopping_cart->id_produk?>" placeholder="-" readonly>
+                   <input type="text" class="form-control" name="id_produk" value="<?= $shopping_cart->id_produk ?>" placeholder="-" readonly>
                  </div>
 
                  <div class="form-group">
                    <label>SERTIFIKAT YANG DIAMBIL</label>
-                   <input type="text" class="form-control" name="k_sertifikat" value="<?=$shopping_cart->k_sertifikat?>" placeholder="-" readonly>
+                   <input type="text" class="form-control" name="k_sertifikat" value="<?= $shopping_cart->k_sertifikat ?>" placeholder="-" readonly>
                  </div>
                  <div class="form-group">
                    <label>JUMLAH</label>
-                   <input type="number" class="form-control" name="qty" value="<?=$shopping_cart->qty?>" placeholder="-" readonly>
+                   <input type="number" class="form-control" name="qty" value="<?= $shopping_cart->qty ?>" placeholder="-" readonly>
                  </div>
                  <div class="form-group">
                    <label>TOTAL HARGA</label>
-                   <input type="number" class="form-control" name="harga" value="<?=$shopping_cart->harga?>" placeholder="-" readonly>
+                   <input type="number" class="form-control" name="harga" value="<?= $shopping_cart->harga ?>" placeholder="-" readonly>
                  </div>
                  <div class="form-group">
                    <label>TANGGAL CHECKOUT</label>
-                   <input type="date" class="form-control" name="tanggal_checkout" value="<?=$shopping_cart->tanggal_checkout?>" placeholder="-" readonly>
+                   <input type="date" class="form-control" name="tanggal_checkout" value="<?= $shopping_cart->tanggal_checkout ?>" placeholder="-" readonly>
                  </div>
                  <button type="submit" class="btn btn-outline-success"><i class="fas fa-check"></i>.Konfirmasi Transaksi</button>
                </form>

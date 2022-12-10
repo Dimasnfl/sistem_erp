@@ -52,11 +52,17 @@
                     <td class="text-center"><?= $item['kode_sertifikat']; ?></td>
                     <td class="text-center"><?= $item['nama_sertifikat']; ?></td>
                     <td class="text-center"><?= number_format($item['harga'], 0, ".", ".") ?></td>
-                    <td class="text-center"><?= $item['qty']; ?></td>
                     <td class="text-center">
-                        <?php if ($item['tanggal_checkout'] == null) : ?>
-                            <a href="/remove-sertifikat/<?= $item['id_sertifikat'] ?>" class="btn btn-danger" role="button">Remove</a>
-                        <?php endif; ?>
+                        <div class="row text-center">
+                            <div class="col ms-5">
+                                <?= $item['qty']; ?>
+                            </div>
+                            <div class="col">
+                                <?php if ($item['tanggal_checkout'] == null) : ?>
+                                    <a href="/remove-sertifikat/<?= $item['id_sertifikat'] ?>" class="btn btn-danger" role="button">Remove</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                     </td>
                 <?php endif; ?>
             </tr>
