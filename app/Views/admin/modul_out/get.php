@@ -47,9 +47,9 @@
                </h3>
                <div class="card-tools">
                  <!-- <a href="<?= site_url('listmodul/restore') ?>" class="btn btn-outline-danger"><i class="fas fa-undo"></i>.Restore All</a> -->
-                 <form action="<?= site_url('modul_out/restore2') ?>" method="post" class="d-inline" onsubmit="return confirm('Kembalikan Semua Modul Ke Stok ?')">
+                 <form action="<?= site_url('modul_out/restore2') ?>" method="post" class="d-inline" onsubmit="return confirm('Batalkan Semua Transaksi ?')">
                    <button class="btn btn-outline-danger">
-                     <i class="fas fa-undo"></i>.Restore All
+                     <i class="fas fa-undo"></i>.Cancel All Transactions
                    </button>
                  </form>
                </div>
@@ -91,14 +91,19 @@
                        <td><?= date('d/m/Y', strtotime($value->tanggal_checkout)) ?></td>
 
                        <td class="text-center">
-                         <form action="<?= site_url('modul_out/restore/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Kembalikan Modul <?= $value->id_produk ?> -  <?= $value->id_user ?> ?')">
+                         <form action="<?= site_url('modul_out/restore/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Batalkan Transaksi dari <?= $value->id_user ?> ?')">
                            <input type="hidden" name="_method" value="GET">
                            <button class="btn btn-outline-danger">
                              <i class="fas fa-undo"></i>
                            </button>
                          </form>
 
-                         <a href="<?= site_url('modul_out/konfirmasi/' . $value->id) ?>" class="btn btn-outline-success"><i class="fas fa-check"></i></a>
+                         <form action="<?= site_url('modul_out/konfirmasi/' . $value->id) ?>" method="get" class="d-inline" onsubmit="return confirm('Konfirmasi Transaksi dari <?= $value->id_user ?> ?')">
+                           <input type="hidden" name="_method" value="GET">
+                           <button class="btn btn-outline-success">
+                             <i class="fas fa-check"></i>
+                           </button>
+                         </form>
                        </td>
                      </tr>
 

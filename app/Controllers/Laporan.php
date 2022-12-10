@@ -6,7 +6,7 @@ use App\Models\M_modul;
 use App\Models\M_sertifikat;
 use App\Models\M_modul_in;
 use App\Models\M_modul_out;
-use App\Models\HistoryModel;
+use App\Models\M_shopping_cart;
 use App\Models\JurusanModel;
 
 
@@ -20,7 +20,7 @@ class Laporan extends BaseController
         $this->sertifikat = new M_sertifikat();
         $this->modul_in = new M_modul_in();
         $this->modul_out = new M_modul_out();
-        $this->history = new HistoryModel();
+        $this->shopping = new M_shopping_cart();
         $this->jurusan = new JurusanModel();
 
 
@@ -39,7 +39,7 @@ class Laporan extends BaseController
         $from = $this->request->getGet('from');
         $to = $this->request->getGet('to');
 
-        $data['laporan'] = $this->history->laporan($from, $to);
+        $data['laporan'] = $this->shopping->laporan($from, $to);
 
         echo view('admin/layout/header', $header);
         echo view('admin/layout/top_menu');
