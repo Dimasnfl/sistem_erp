@@ -1,4 +1,6 @@
-<!-- Main Sidebar Container -->
+
+
+  <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-primary elevation-4">
   <!-- Brand Logo -->
   <a href="" class="brand-link bg-primary">
@@ -8,16 +10,13 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
-        <!-- <img src="<?= base_url('adminLTE/dist/img/avatar5.png') ?>" class="img-circle elevation-2" alt="User Image"> -->
+      <!-- <div class="image">
+        <img src="<?= base_url('adminLTE/dist/img/admin.png') ?>" class="img-circle elevation-3" alt="User Image">
       </div>
       <div class="info">
-        <a class="d-block">ADMIN</a>
-        <!-- Status -->
-        <a><i class="fa fa-circle text-success"></i> Online</a>
-      </div>
+        <a class="d-block"><i class="fa fa-circle text-success"></i> Online</a>
+      </div> -->
     </div>
 
     <!-- SidebarSearch Form -->

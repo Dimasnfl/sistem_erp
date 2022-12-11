@@ -75,9 +75,12 @@ class LoginController extends BaseController
             if ($verify && $role == '1') {
                 session()->set([
                     'logged_in' => true,
+                    'id' => $data['id'],
                     'nama' => $data['nama'],
                     'role' => $data['is_admin'],
                     'nim' => $data['nim'],
+                    'email' => $data['email'],
+                    'password' => $data['password'],
                     'reguler' => $data['reguler']
                 ]);
                 return redirect()->to('dashboard.admin');

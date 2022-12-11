@@ -106,8 +106,6 @@ $routes->get('modul_out/konfirmasi/(:any)', 'Modul_out::konfirmasi/$1');
 // $routes->post('modul_out/', 'Modul_out::store_konfirmasi');
 
 
-
-
 //edit Modul
 $routes->get('modul/edit/(:num)', 'Modul::edit/$1');
 $routes->put('modul/(:any)', 'Modul::update/$1');
@@ -161,6 +159,14 @@ $routes->get('admin.Laporan', 'Laporan::index');
 
 //import List modul
 $routes->post('listmodul/import', 'ListModul::import');
+
+//profil admin
+$routes->get('/profil/edit/(:any)', 'Dashboard::edit/$1');
+$routes->put('profil/edit/change_profil/(:any)', 'Dashboard::update/$1');
+$routes->put('profil/edit/change_password/(:any)', 'Dashboard::change_password/$1');
+
+
+
 //===================================================================
 /*
  * --------------------------------------------------------------------

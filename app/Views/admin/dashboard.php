@@ -20,11 +20,14 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-
-
-
+      <?php if (!empty(session()->getFlashdata('message'))) : ?>
+        <div class="alert alert-success">
+          <?php echo session()->getFlashdata('message'); ?>
+        </div>
+      <?php endif ?>
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
+
           <div class="info-box">
             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-archive"></i></span>
 
@@ -62,11 +65,13 @@
 
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-certificate"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">#</span>
-              <span class="info-box-number">##</span>
+              <span class="info-box-text">Mhs Belum Ambil Sertifikat</span>
+              <span class="info-box-number">
+              <?= $sum_nilai ?>
+              </span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -75,11 +80,13 @@
         <!-- /.col -->
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">#</span>
-              <span class="info-box-number">##</span>
+              <span class="info-box-text">Jumlah Transaksi Selesai</span>
+              <span class="info-box-number">
+              <?= $sum_transaksi ?>
+              </span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -111,8 +118,7 @@
           <!-- /.card -->
         </div>
         <!-- /.col (LEFT) -->
-        <div class="col-md-6">
-          <!-- PIE CHART -->
+        <!-- <div class="col-md-6">
           <div class="card card-danger">
             <div class="card-header">
               <h3 class="card-title">Example Chart</h3>
@@ -129,11 +135,9 @@
             <div class="card-body">
               <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
             </div>
-            <!-- /.card-body -->
           </div>
-          <!-- /.card -->
 
-        </div>
+        </div> -->
         <!-- /.col (RIGHT) -->
       </div>
       <!-- /.row -->
