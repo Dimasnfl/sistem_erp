@@ -30,17 +30,17 @@
                  <div class="col-12">
                      <?php if (!empty(session()->getFlashdata('berhasil'))) : ?>
                          <div class="alert alert-success">
-                             <?php echo session()->getFlashdata('berhasil'); ?>
+                             <i class="fas fa-check"></i> <?php echo session()->getFlashdata('berhasil'); ?>
                          </div>
                      <?php endif ?>
                      <?php if (!empty(session()->getFlashdata('sukses'))) : ?>
                          <div class="alert alert-danger">
-                             <?php echo session()->getFlashdata('sukses'); ?>
+                             <i class="fas fa-trash"></i> <?php echo session()->getFlashdata('sukses'); ?>
                          </div>
                      <?php endif ?>
                      <?php if (!empty(session()->getFlashdata('updated'))) : ?>
                          <div class="alert alert-success">
-                             <?php echo session()->getFlashdata('updated'); ?>
+                             <i class="fas fa-check"></i> <?php echo session()->getFlashdata('updated'); ?>
                          </div>
                      <?php endif ?>
                      <div class="card">
@@ -51,14 +51,6 @@
                                  </div>
                              </h3>
                              <div class="card-tools">
-                                 <div class="input-group" style="width: 150px;">
-                                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                                     <div class="input-group-append">
-                                         <button type="submit" class="btn btn-default">
-                                             <i class="fas fa-search"></i>
-                                         </button>
-                                     </div>
-                                 </div>
                              </div>
                          </div>
                          <!-- /.card-header -->
