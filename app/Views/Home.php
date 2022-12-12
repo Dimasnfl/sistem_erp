@@ -24,25 +24,28 @@
     </button>
 </div>
 
+
 <div class="m-3 ms-5">
     <h2 class="d-flex justify-content-center">Artikel</h2>
     <div class="row d-flex justify-content-center">
-        <?php foreach ($artikel as $t) : ?>
-            <div class="card mb-3 ms-2 shadow" style="max-width: 740px;">
+        <div class="card mb-3 ms-2 shadow sm-floar-left" style="max-width: 740px;">
+            <?php foreach ($artikel as $t) : ?>
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="/img/artikel/<?= $t->img; ?>" class="img-fluid rounded-start" alt="...">
+                        <img src="/img/artikel/<?= $t->img; ?>" class="img-fluid rounded-start" style="max-height: fit-content;" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title"><strong><?= $t->judul; ?></strong></h5>
                             <p class="card-text"><?= word_limiter($t->body, 20) ?>.</p>
+
                             <a href="/detail/<?= $t->slug; ?>" class="btn btn-primary">Read more</a>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+                <hr style="background-color :gray">
+        </div>
+    <?php endforeach; ?>
     </div>
 </div>
 
