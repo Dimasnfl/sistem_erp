@@ -60,18 +60,10 @@
                         </i>
                     </button>
                     <div class="dropdown-menu">
-                        <?php if ($notif > 0) : ?>
-                            <div class="row" id="pesan">
+                        <div class="row" id="pesan">
 
-                            </div>
-                            <button type="button" class="btn btn-info" onclick="delete_all()">Clear Notifications</button>
-                        <?php else : ?>
-                            <div class="row">
-                                <div class="col-lg-12 col-sm-12 col-12 text-center">
-                                    No New Messages
-                                </div>
-                            </div>
-                        <?php endif; ?>
+                        </div>
+                        <button type="button" class="btn btn-info" onclick="notif()">Clear Notifications</button>
                     </div>
                 </div>
                 <a class="nav-link dropdown-toggle me-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -129,16 +121,18 @@
             setInterval(function() {
 
                 $.ajax({
-                    url: siteurl + "admin.modul/get_tot",
+                    url: siteurl + "/notif_user",
                     type: "POST",
                     dataType: "json",
                     data: {},
                     success: function(data) {
-                        if (data.tot == 0) {} else {
+                        if (data.tot == 0) {
+                            $("#pesan").html("No New Messages");
+                        } else {
                             $("#pesan").empty();
                             $("#tot").html(data.tot);
                             $.each(data.msg, function() {
-                                $("#pesan").append("<div class='mb-2'>" + this['body'].substr(0, 28) + "... </div>");
+                                $("#pesan").append("<div> <a class='text-sm' href='#' style='text-decoration: none;'>" + this['body'] + "</a></div>");
 
                             });
                         }

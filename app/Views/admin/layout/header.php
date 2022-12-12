@@ -28,12 +28,12 @@
           data: {},
           success: function(data) {
             if (data.tot == 0) {
-              $("#pesan").html("no new messages");
+              $("#pesan").html("No New Messages");
             } else {
               $("#pesan").empty();
               $("#tot").html(data.tot);
               $.each(data.msg, function() {
-                $("#pesan").append("<div> <a class='text-sm' href='#' style='text-decoration: none;''>" + this['body'] + "</a></div>");
+                $("#pesan").append("<div> <a class='text-sm' href='#' style='text-decoration: none;'>" + this['body'] + "</a></div>");
 
               });
             }

@@ -2,7 +2,9 @@
 
 <?= $this->section('content'); ?>
 
-<h1>Modul</h1>
+
+
+<h1 class="text-center mt-3 mb-3">Modul</h1>
 
 <div class="container-fluid">
     <div class="justify-content-md-center border border-dark p-3">
@@ -52,12 +54,23 @@
                             <?php endif;  ?>
                     </tr>
                 <?php endforeach ?>
-            </tbody>
+                <?php if (session()->has('logged_in') == true) : ?>
+            <tfoot style="border: none;">
+                <tr style="border: none;">
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;">
+                        <button class="btn btn-primary" style="width: 200px;" type="submit">Masukkan Keranjang</button>
+                    </td>
+                </tr>
+            </tfoot>
+        <?php endif; ?>
+        </tbody>
 
         </table>
-        <?php if (session()->has('logged_in') == true) : ?>
-            <button class="btn btn-primary" style="width: 200px; margin-left: 1465px;" type="submit">Masukkan Keranjang</button>
-        <?php endif; ?>
+
         </form>
     </div>
 </div>

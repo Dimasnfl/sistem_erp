@@ -54,14 +54,18 @@
                     <td class="text-center"><?= number_format($item['harga'], 0, ".", ".") ?></td>
                     <td class="text-center">
                         <div class="row text-center">
-                            <div class="col ms-5">
-                                <?= $item['qty']; ?>
-                            </div>
-                            <div class="col">
-                                <?php if ($item['tanggal_checkout'] == null) : ?>
+                            <?php if ($item['tanggal_checkout'] == null) : ?>
+                                <div class="col ms-5">
+                                    <?= $item['qty']; ?>
+                                </div>
+                                <div class="col">
                                     <a href="/remove-sertifikat/<?= $item['id_sertifikat'] ?>" class="btn btn-danger" role="button">Remove</a>
-                                <?php endif; ?>
-                            </div>
+                                </div>
+                            <?php else : ?>
+                                <div class="col ms-5">
+                                    <?= $item['qty']; ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </td>
                 <?php endif; ?>

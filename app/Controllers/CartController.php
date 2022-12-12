@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\CartModel;
 use App\Models\ModulsModel;
 use App\Models\Nilai_SertifikatModel;
+use App\Models\Notif_UserModel;
 use App\Models\NotificationsModel;
 use CodeIgniter\I18n\Time;
 use DateTime;
@@ -20,11 +21,10 @@ class CartController extends BaseController
 
     public function cart()
     {
-        $notif = new NotificationsModel();
+
         $data = [
             'title' => 'Cart',
             'cart' => $this->cartmodel->getAll(),
-            'notif' => $notif->notif(),
             'count' => $this->cartmodel->Countdata()
         ];
         return view('Cart', $data);
@@ -165,10 +165,15 @@ class CartController extends BaseController
         $cartmodel = new CartModel();
         $nilai = new Nilai_SertifikatModel();
         $notif = new NotificationsModel();
+        $notif_user = new Notif_UserModel();
         $cartid = $cartmodel->getcart();
         $count = $cartmodel->count();
         $message = [
             'body' => "Ada Pesanan Masuk dari " . session('nama') . "(" . session('nim') . ")"
+        ];
+        $message1 = [
+            'body' => "Silahkan melakukan pembayaran sesuai dengan nominal yang tertera di keranjang",
+            'user' => session('nim')
         ];
 
 
@@ -192,23 +197,7 @@ class CartController extends BaseController
             }
         }
         $notif->insert($message);
+        $notif_user->insert($message1);
         return redirect()->to('/cart');
-    }
-
-    public function notif()
-    {
-        $notif = new NotificationsModel();
-        $pesan = $notif->notif();
-        $notif1 = $notif->findAll();
-        $result['tot'] = $pesan;
-        $result['msg'] = $notif1;
-        echo json_encode($result);
-    }
-
-    public function delete_notif()
-    {
-        $notif = new NotificationsModel();
-        $result = $notif->delete_all();
-        echo json_encode($result);
     }
 }

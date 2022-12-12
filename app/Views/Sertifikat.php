@@ -4,14 +4,15 @@
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 ms-2 me-2 g-3 mb-3 mt-3">
     <?php if ($nilai == NULL) : ?>
-        <div class="container mt-4">
-            <p class="text-center">Anda Belum Mengikuti Ujian Sertifikat Apapun</p>
+        <div class="container text-center mt-3">
+            <h1>Sertifikat</h1>
+            <p class="mt-5">Anda Belum Mengikuti Ujian Sertifikat Apapun</p>
         </div>
     <?php else : ?>
         <?php foreach ($nilai as $nilai) : ?>
             <div class="col mb-3">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-center mt-3">
                         Sertifikat
                     </div>
                     <div class="card-body">

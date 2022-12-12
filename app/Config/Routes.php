@@ -39,8 +39,10 @@ $routes->set404Override();
 
 // Home
 $routes->get('/', 'Home::index');
-$routes->post('/admin.modul/get_tot', 'CartController::notif');
-$routes->post('/clear_notif', 'CartController::delete_notif');
+$routes->post('/admin.modul/get_tot', 'NotificationsController::notif');
+$routes->post('/clear_notif', 'NotificationsController::delete_notif');
+$routes->post('/notif_user', 'NotificationsController::notif_user');
+$routes->post('/del-notif', 'NotificationsController::delete_notif_user');
 
 //Modul
 $routes->get('/modul', 'ModulController::index');

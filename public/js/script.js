@@ -36,6 +36,18 @@ function delete_all() {
 })
 }
 
+function notif() {
+  $.ajax({
+    url: siteurl + "del-notif",
+    type: "POST",
+    dataType: "json",
+    data: {},
+    success: function (data) {
+      location.reload();
+    }
+})
+}
+
 function show(i){
   var x = document.getElementById('floatingPassword');
   if (x.type === "password") {
