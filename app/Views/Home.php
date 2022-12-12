@@ -32,7 +32,7 @@
             <?php foreach ($artikel as $t) : ?>
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="/img/artikel/<?= $t->img; ?>" class="img-fluid rounded-start" style="max-height: fit-content;" alt="...">
+                        <img src="/img/artikel/<?= $t->img; ?>" class="img-fluid rounded-start" style="max-height: 100px; max-width : 100px " alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
