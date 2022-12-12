@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CartModel;
 use App\Models\HistoryModel;
+use App\Models\NotificationsModel;
 
 class HistoryController extends BaseController
 {
