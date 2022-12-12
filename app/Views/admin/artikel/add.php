@@ -52,7 +52,7 @@
                                      <input type="file" class="form-control" id="img" name="img" value="<?= set_value('img') ?>" onchange="previewImg()">
                                  </div>
                                  <button type="submit" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i>.Save</button>
-                                 <button type="reset" class="btn btn-outline-secondary"><i class="fas fa-redo"></i>.Reset</button>
+                                 <a href="<?= site_url('admin.artikel') ?>" class="btn btn-outline-danger"><i class="fas fa-chevron-left"></i> Kembali</a>
                              </form>
                          </div>
                      </div>

@@ -88,7 +88,7 @@ $routes->post('Modul', 'Modul::index');
 $routes->get('admin.artikel', 'Artikel::index', ['filter' => 'FilterErp']);
 $routes->delete('admin.artikel/delete/(:num)', 'Artikel::delete/$1', ['filter' => 'FilterErp']);
 $routes->get('admin.artikel/add', 'Artikel::create', ['filter' => 'FilterErp']);
-$routes->post('admin.artikel/add', 'Artikel::save', ['filter' => 'FilterErp']);
+$routes->post('admin.artikel', 'Artikel::save', ['filter' => 'FilterErp']);
 $routes->get('admin.artikel/edit/(:segment)', 'Artikel::edit/$1', ['filter' => 'FilterErp']);
 $routes->post('admin.artikel/edit/(:segment)', 'Artikel::update/$1', ['filter' => 'FilterErp']);
 $routes->get('/detail/(:segment)', 'Home::detail/$1',);
