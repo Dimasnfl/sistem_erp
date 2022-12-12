@@ -73,7 +73,7 @@
                          </div>
                          <td><?php echo $i ?></td>
                          <td><?php echo $a->judul ?></td>
-                         <td style="max-width: 750px;"><?php echo word_limiter($a->body, 15) ?></td>
+                         <td style="max-width: 750px;"><?php echo word_limiter($a->body, 10) ?></td>
                          <td class="text-center">
                              <a href="admin.artikel/edit/<?= $a->slug; ?>" class="btn btn-outline-warning">
                                  <i class="fas fa-pen"></i>.Edit
@@ -104,32 +104,5 @@
  </div>
  <!-- /.content-wrapper -->
 
- <!-- modal import modul -->
- <div class="modal fade" id="modal-import-modul">
-     <div class="modal-dialog">
-         <div class="modal-content bg-primary">
-             <div class="modal-header">
-                 <h4 class="modal-title">Import Modul</h4>
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                 </button>
-             </div>
-             <form action="<?= site_url('modul/import') ?>" method="post" enctype="multipart/form-data">
-                 <div class="modal-body">
-                     <label>File Excel</label>
-                     <div class="custom-file">
-                         <input type="file" name="file_excel" class="file-input" id="file_excel" required>
-                         <!-- <label for="file_excel" class="custom-file-label"></label> -->
-                     </div>
-                 </div>
-                 <div class="modal-footer justify-content-between">
-                     <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancel</button>
-                     <button type="submit" class="btn btn-outline-light">Submit</button>
-                 </div>
-             </form>
-         </div>
-         <!-- /.modal-content -->
-     </div>
-     <!-- /.modal-dialog -->
- </div>
+
  <!-- /.modal -->
