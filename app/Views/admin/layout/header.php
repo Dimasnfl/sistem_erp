@@ -10,7 +10,39 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" type="text/css" href="/css/trix.css">
   <script type="text/javascript" src="/js/trix.js"></script>
-  
+
+  <!-- notif -->
+  <script>
+    var siteurl = '<?= site_url(); ?>';
+  </script>
+  <script src="js/jquery.js"></script>
+  <script src="js/script.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      setInterval(function() {
+
+        $.ajax({
+          url: siteurl + "admin.modul/get_tot",
+          type: "POST",
+          dataType: "json",
+          data: {},
+          success: function(data) {
+            if (data.tot == 0) {
+              $("#pesan").html("no new messages");
+            } else {
+              $("#pesan").empty();
+              $("#tot").html(data.tot);
+              $.each(data.msg, function() {
+                $("#pesan").append("<div> <a class='text-sm' href='#' style='text-decoration: none;''>" + this['body'] + "</a></div>");
+
+              });
+            }
+          }
+        });
+      }, 2000);
+    })
+  </script>
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= base_url('adminLTE/plugins/fontawesome-free/css/all.min.css') ?>">
   <!-- Theme style -->

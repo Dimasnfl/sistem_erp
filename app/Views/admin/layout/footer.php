@@ -81,30 +81,6 @@
   });
 </script>
 
-<!-- notif -->
-<script type="text/javascript">
-  $(document).ready(function() {
-    setInterval(function() {
-
-      $.ajax({
-        url: siteurl + "admin.modul/get_tot",
-        type: "POST",
-        dataType: "json",
-        data: {},
-        success: function(data) {
-          if (data.tot == 0) {} else {
-            $("#pesan").empty();
-            $("#tot").html(data.tot);
-            $.each(data.msg, function() {
-              $("#pesan").append("<div class='mb-2'>" + this['body'].substr(0, 28) + "... </div>");
-
-            });
-          }
-        }
-      });
-    }, 2000);
-  })
-</script>
 
 
 <!-- SCRIPT CHART JS -->
