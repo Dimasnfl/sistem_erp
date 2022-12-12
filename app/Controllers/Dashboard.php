@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\M_listmodul;
 use App\Models\M_modul;
 use App\Models\UsersModel;
-use App\Models\NotificationsModel;
 use Config\Services;
 
 
@@ -36,14 +35,10 @@ class Dashboard extends BaseController
 
         $modul_per_kategori = $this->db->table('moduls')->select('ketersediaan AS jumlah, moduls.nama_modul')
             ->get();
-
-        $notif = new NotificationsModel();
         
         $header['title'] = 'Dashboard';
         echo view('admin/layout/header', $header);
-        echo view('admin/layout/top_menu',[
-            'notif' => $notif->notif(),
-        ]);
+        echo view('admin/layout/top_menu');
         echo view('admin/layout/side_menu');
         echo view('admin/dashboard', [
             'modul_per_kategori' => $modul_per_kategori,
