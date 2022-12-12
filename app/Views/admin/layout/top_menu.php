@@ -22,23 +22,49 @@
         <i class="fas fa-expand-arrows-alt"></i>
       </a>
     </li>
-    <?php $session = session(); ?>
-    <?php if (session()->has('logged_in') == true) : ?>
-    <!-- Profil -->
+
+    <!-- notif -->
     <li class="nav-item dropdown">
-      <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i class="far fa-user"></i> Hi, <?=$session->nama?></a>
+      <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i class="far fa-bell">
+        <span class="badge rounded-pill text-bg-warning" id="tot"></span>
+      </i>
+      </a>
       <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-1 shadow">
-        <li> <a class="dropdown-item" data-slide="true" href="<?= site_url('/profil/edit/' . $session->id) ?>" role="button">
-            <i class="fas fa-cog"></i> Profile Setting
-          </a></li>
-        <li><a class="dropdown-item" data-slide="true" href="<?= site_url('/logout') ?>" role="button" onclick="return confirm('Log Out ?')">
-            <i class="fas fa-sign-out-alt"></i> LogOut
+        <li> <a class="dropdown-item" data-slide="true" href="" role="button">
+        <?php if ($notif > 0) : ?>
+          <div class="row" id="pesan">
+
+          </div>
+          <button type="button" class="btn btn-info" onclick="delete_all()">Clear Notifications</button>
+        <?php else : ?>
+          <div class="row">
+            <div class="col-lg-12 col-sm-12 col-12 text-center">
+              No New Messages
+            </div>
+          </div>
+        <?php endif; ?>
           </a></li>
       </ul>
     </li>
+
+    <?php $session = session(); ?>
+    <?php if (session()->has('logged_in') == true) : ?>
+      <!-- Profil -->
+      <li class="nav-item dropdown">
+        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i class="far fa-user"></i> Hi, <?= $session->nama ?></a>
+        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-1 shadow">
+          <li> <a class="dropdown-item" data-slide="true" href="<?= site_url('/profil/edit/' . $session->id) ?>" role="button">
+              <i class="fas fa-cog"></i> Profile Setting
+            </a></li>
+          <li><a class="dropdown-item" data-slide="true" href="<?= site_url('/logout') ?>" role="button" onclick="return confirm('Log Out ?')">
+              <i class="fas fa-sign-out-alt"></i> LogOut
+            </a></li>
+        </ul>
+      </li>
     <?php endif; ?>
 
 
   </ul>
 </nav>
 <!-- /.navbar -->
+

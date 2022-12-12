@@ -17,7 +17,7 @@
 <script src="<?= base_url('adminLTE/plugins/jquery/jquery.min.js') ?>"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= base_url('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!-- AdminLTE App -->
 <script src="<?= base_url('adminLTE/dist/js/adminlte.min.js') ?>"></script>
 
@@ -48,6 +48,7 @@
   });
 </script>
 
+<!-- change password -->
 <script>
   $(document).ready(function() {
     $(".far").bind("click", function() {
@@ -78,6 +79,31 @@
       }
     })
   });
+</script>
+
+<!-- notif -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    setInterval(function() {
+
+      $.ajax({
+        url: siteurl + "admin.modul/get_tot",
+        type: "POST",
+        dataType: "json",
+        data: {},
+        success: function(data) {
+          if (data.tot == 0) {} else {
+            $("#pesan").empty();
+            $("#tot").html(data.tot);
+            $.each(data.msg, function() {
+              $("#pesan").append("<div class='mb-2'>" + this['body'].substr(0, 28) + "... </div>");
+
+            });
+          }
+        }
+      });
+    }, 2000);
+  })
 </script>
 
 
