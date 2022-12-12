@@ -35,20 +35,10 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fas fa-user"></i>
-                                Profile Information
+                                Form Ubah Profil
                             </h3>
                         </div>
                         <div class="card-body">
-                            <!-- <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="pill" href="#update_profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="true">Ubah Informasi</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="pill" href="#update_password" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Ubah Password</a>
-                                </li>
-                            </ul> -->
-
-
                             <!-- UBAH INFORMASI -->
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="update_profile" role="tabpanel">
@@ -81,7 +71,17 @@
                                     <?php endif; ?>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-key"></i>
+                                Form Ubah Password
+                            </h3>
+                        </div>
+                        <div class="card-body">
                             <div class="tab-content">
                                 <!-- UBAH PASSWORD -->
                                 <div class="tab-pane fade show active" id="update_password" role="tabpanel">
@@ -97,15 +97,6 @@
                                         <?php endif; ?>
                                         <form class="form-horizontal" action="<?= site_url('profil/edit/change_password/' . $session->id) ?>" method="post" autocomplete="off">
                                             <input type="hidden" name="_method" value="PUT">
-                                            <!-- <div class="form-group row">
-                                                <label for="inputPassword" class="col-sm-2 col-form-label">Password Lama</label>
-                                                <div class="input-group col-sm-10">
-                                                    <input type="password" class="form-control " name="old_password" id="pwd" value="" placeholder="Masukkan Password Lama">
-                                                    <span class="input-group-append">
-                                                        <button type="button" style="border: none;"><i class="far fa-eye-slash"></i></button>
-                                                    </span>
-                                                </div>
-                                            </div> -->
                                             <div class="form-group row">
                                                 <label for="inputPassword" class="col-sm-2 col-form-label">Password Baru</label>
                                                 <div class="input-group col-sm-10">
