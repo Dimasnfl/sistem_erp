@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\CartModel;
 use App\Models\ModulsModel;
 use App\Models\Nilai_SertifikatModel;
+use App\Models\NotificationsModel;
 use CodeIgniter\I18n\Time;
 use DateTime;
 
@@ -19,10 +20,11 @@ class CartController extends BaseController
 
     public function cart()
     {
-
+        $notif = new NotificationsModel();
         $data = [
             'title' => 'Cart',
             'cart' => $this->cartmodel->getAll(),
+            'notif' => $notif->notif(),
             'count' => $this->cartmodel->Countdata()
         ];
         return view('Cart', $data);
@@ -35,9 +37,7 @@ class CartController extends BaseController
         $count = $modulmodel->count();
         $modul = $modulmodel->getall();
         $qty = $this->request->getVar('qty');
-        $message = [
-            'notifications' => 'Ada Pesanan Masuk dari '
-        ];
+
 
         for ($i = 0; $i < $count; $i++) {
             $id = $modul[$i]['kode_modul'];
@@ -164,9 +164,12 @@ class CartController extends BaseController
         $date = new Time('now');
         $cartmodel = new CartModel();
         $nilai = new Nilai_SertifikatModel();
+        $notif = new NotificationsModel();
         $cartid = $cartmodel->getcart();
         $count = $cartmodel->count();
-
+        $message = [
+            'body' => "Ada Pesanan Masuk dari " . session('nama') . "(" . session('nim') . ")"
+        ];
 
 
         for ($i = 0; $i < $count; $i++) {
@@ -188,6 +191,24 @@ class CartController extends BaseController
                 $nilai->updatedata($id, $data2);
             }
         }
+        $notif->insert($message);
         return redirect()->to('/cart');
+    }
+
+    public function notif()
+    {
+        $notif = new NotificationsModel();
+        $pesan = $notif->notif();
+        $notif1 = $notif->findAll();
+        $result['tot'] = $pesan;
+        $result['msg'] = $notif1;
+        echo json_encode($result);
+    }
+
+    public function delete_notif()
+    {
+        $notif = new NotificationsModel();
+        $result = $notif->delete_all();
+        echo json_encode($result);
     }
 }

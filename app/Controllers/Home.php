@@ -2,8 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\ArtikelModel;
 use App\Models\CartModel;
+use App\Models\ArtikelModel;
+use App\Models\NotificationsModel;
 
 helper('text');
 class Home extends BaseController
@@ -13,10 +14,12 @@ class Home extends BaseController
         $artikel = new ArtikelModel();
         $show = $artikel->findAll();
         $cartmodul = new CartModel();
+        $notif = new NotificationsModel();
         $data = [
             'title' => 'Home',
             'cart' => $cartmodul->getAll(),
             'artikel' => $show,
+            'notif' => $notif->notif(),
             'count' => $cartmodul->Countdata()
         ];
         return view('Home', $data);

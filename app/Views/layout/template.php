@@ -14,85 +14,94 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow sticky-top">
+    <nav class="navbar navbar-expand-lg bg-light shadow sticky-top">
         <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="navbar-brand ms-3" href="/">
-                            <img src="img/ERP.png" alt="Logo" width="75" height="40" class="d-inline-block align-text-top">
-                        </a>
-                    </li>
-                    <li class="nav-item" style="width: 120px;">
-                        <a class="nav-link text-center text-primary" href="/">Home</a>
-                    </li>
-                    <li class="nav-item" style="width: 120px;">
-                        <a class="nav-link text-center text-primary" href="/modul">Modul</a>
-                    </li>
-                    <li class="nav-item" style="width: 120px;">
-                        <a class="nav-link text-center text-primary" href="/sertifikat">Sertifikat</a>
-                    </li>
-                    <li class="nav-item" style="width: 120px;">
-                        <a class="nav-link text-center text-primary" href="#">Layanan</a>
-                    </li>
-                    <li class="nav-item" style="width: 120px;">
-                        <a class="nav-link text-center text-primary" href="#">Tentang</a>
-                    </li>
-                </ul>
+            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="navbar-brand ms-3" href="/">
+                        <img src="img/ERP.png" alt="Logo" width="75" height="40" class="d-inline-block align-text-top">
+                    </a>
+                </li>
+                <li class="nav-item" style="width: 120px;">
+                    <a class="nav-link text-center text-primary" href="/">Home</a>
+                </li>
+                <li class="nav-item" style="width: 120px;">
+                    <a class="nav-link text-center text-primary" href="/modul">Modul</a>
+                </li>
+                <li class="nav-item" style="width: 120px;">
+                    <a class="nav-link text-center text-primary" href="/sertifikat">Sertifikat</a>
+                </li>
+                <li class="nav-item" style="width: 120px;">
+                    <a class="nav-link text-center text-primary" href="#">Layanan</a>
+                </li>
+                <li class="nav-item" style="width: 120px;">
+                    <a class="nav-link text-center text-primary" href="#">Tentang</a>
+                </li>
+            </ul>
 
-                <?php $session = session(); ?>
-                <?php if (session()->has('logged_in') == true) : ?>
+            <?php $session = session(); ?>
+            <?php if (session()->has('logged_in') == true) : ?>
 
-                    <!-- Cart -->
-                    <a href="cart" class="me-2" style="color: black;"><i class="bi bi-cart-fill">
-                            <?php if ($count == "0") :  ?>
-                                <span class='badge badge-warning' id='lblCartCount'></span>
-                            <?php else : ?>
-                                <span class='badge badge-warning' id='lblCartCount'> <?php echo $count ?> </span>
-                            <?php endif; ?>
-                        </i></a>
+                <!-- Cart -->
+                <a href="cart" class="me-2" style="color: black;"><i class="bi bi-cart-fill">
+                        <?php if ($count == "0") :  ?>
+                            <span class='badge badge-warning' id='lblCartCount'></span>
+                        <?php else : ?>
+                            <span class='badge badge-warning' id='lblCartCount'> <?php echo $count ?> </span>
+                        <?php endif; ?>
+                    </i></a>
 
-                    <!-- Notifications -->
-                    <div class="dropdown">
-                        <button type="button" class="btn me-3" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
-                            <i class="bi bi-bell-fill"></i>
-                        </button>
-                        <div class="dropdown-menu">
+                <!-- Notifications -->
+                <div class="dropdown">
+                    <button type="button" class="btn me-3 position-relative" data-bs-toggle="dropdown" style="border: none;">
+                        <i class="bi bi-bell-fill">
+                            <span class="badge rounded-pill text-bg-warning" id="tot"></span>
+                        </i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <?php if ($notif > 0) : ?>
+                            <div class="row" id="pesan">
+
+                            </div>
+                            <button type="button" class="btn btn-info" onclick="delete_all()">Clear Notifications</button>
+                        <?php else : ?>
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12 text-center">
                                     No New Messages
                                 </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                     </div>
-                    <a class="nav-link dropdown-toggle me-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="img/ERP.png" class="rounded-circle" width="40px" height="40px">
-                        <?php echo $session->get('nama') ?>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <a class="dropdown-item" href="/history">History</a>
-                        </li>
-                        <li>
-                            <form action="/logout" method="GET">
-                                <button type="submit" class="dropdown-item">
-                                    Logout
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
-                <?php else : ?>
-                    <ul class="navbar-nav d-flex justify-content-end">
-                        <li class="nav-item" style="width: 120px;">
-                            <a class="nav-link text-center text-primary" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item" style="width: 120px;">
-                            <a class="nav-link text-center text-primary" href="/register">Register</a>
-                        </li>
-                    </ul>
-                <?php endif; ?>
+                </div>
+                <a class="nav-link dropdown-toggle me-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="img/ERP.png" class="rounded-circle" width="40px" height="40px">
+                    <?php echo $session->get('nama') ?>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item" href="/history">History</a>
+                    </li>
+                    <li>
+                        <form action="/logout" method="GET">
+                            <button type="submit" class="dropdown-item">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            <?php else : ?>
+                <ul class="navbar-nav d-flex justify-content-end">
+                    <li class="nav-item" style="width: 120px;">
+                        <a class="nav-link text-center text-primary" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item" style="width: 120px;">
+                        <a class="nav-link text-center text-primary" href="/register">Register</a>
+                    </li>
+                </ul>
+            <?php endif; ?>
 
-            </div>
+            <!-- </div> -->
         </div>
     </nav>
     <!-- End Navbar -->
@@ -115,6 +124,29 @@
     <script src="js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setInterval(function() {
+
+                $.ajax({
+                    url: siteurl + "admin.modul/get_tot",
+                    type: "POST",
+                    dataType: "json",
+                    data: {},
+                    success: function(data) {
+                        if (data.tot == 0) {} else {
+                            $("#pesan").empty();
+                            $("#tot").html(data.tot);
+                            $.each(data.msg, function() {
+                                $("#pesan").append("<div class='mb-2'>" + this['body'].substr(0, 28) + "... </div>");
+
+                            });
+                        }
+                    }
+                });
+            }, 2000);
+        })
+    </script>
 </body>
 
 </html>

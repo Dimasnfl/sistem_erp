@@ -24,6 +24,18 @@ function simpan_update(id_produk, key) {
   });
 }
 
+function delete_all() {
+  $.ajax({
+    url: siteurl + "clear_notif",
+    type: "POST",
+    dataType: "json",
+    data: {},
+    success: function (data) {
+      location.reload();
+    }
+})
+}
+
 function show(i){
   var x = document.getElementById('floatingPassword');
   if (x.type === "password") {
@@ -33,3 +45,4 @@ function show(i){
   }
   i.classList.toggle("bi-eye-slash-fill");
 }
+
