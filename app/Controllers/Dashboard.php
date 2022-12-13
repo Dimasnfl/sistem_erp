@@ -36,8 +36,6 @@ class Dashboard extends BaseController
 
         $modul_per_kategori = $this->db->table('moduls')->select('ketersediaan AS jumlah, moduls.nama_modul')
             ->get();
-        $artikel = new ArtikelModel();
-        $sum = $artikel->findAll();
 
         $header['title'] = 'Dashboard';
         echo view('admin/layout/header', $header);
@@ -48,7 +46,6 @@ class Dashboard extends BaseController
             'sum_modul' => $sum_modul,
             'sum_nilai' => $sum_nilai,
             'sum_transaksi' => $sum_transaksi,
-            'sum_artikel' => $sum,
         ]);
     }
 

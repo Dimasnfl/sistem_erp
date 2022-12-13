@@ -59,22 +59,7 @@
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-            <?php $i = 0; ?>
-            <?php foreach ($sum_artikel as $a) : ?>
-              <?php $i++; ?>
-            <?php endforeach ?>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Jumlah Postingan Artikel</span>
-              <span class="info-box-number"><?php echo $i ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
+      
 
         <!-- fix for small devices only -->
         <div class="clearfix hidden-md-up"></div>
