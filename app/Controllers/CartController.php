@@ -169,7 +169,7 @@ class CartController extends BaseController
         $cartid = $cartmodel->getcart();
         $count = $cartmodel->count();
         $message = [
-            'body' => "Ada Pesanan Masuk dari " . session('nama') . "(" . session('nim') . ")"
+            'body' => "Transaksi Baru dari "  . session('nim')
         ];
         $message1 = [
             'body' => "Silahkan melakukan pembayaran sesuai dengan nominal yang tertera di keranjang",
