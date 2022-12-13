@@ -77,11 +77,11 @@ $routes->get('/history', 'HistoryController::index');
 $routes->get('/error404', 'customError404::index');
 
 //homepage
-$routes->get('dashboard.admin', 'Dashboard::index');
+$routes->get('dashboard.admin', 'Dashboard::index', ['filter' => 'FilterErp']);
 
 //===================================================================
 //modul page
-$routes->get('admin.Modul', 'Modul::index');
+$routes->get('admin.Modul', 'Modul::index', ['filter' => 'FilterErp']);
 
 //search
 $routes->post('Modul', 'Modul::index');
@@ -96,27 +96,27 @@ $routes->post('admin.artikel/edit/(:segment)', 'Artikel::update/$1', ['filter' =
 $routes->get('/detail/(:segment)', 'Home::detail/$1',);
 
 //add Modul
-$routes->get('modul/add', 'Modul::create');
-$routes->post('modul', 'Modul::store');
+$routes->get('modul/add', 'Modul::create', ['filter' => 'FilterErp']);
+$routes->post('modul', 'Modul::store', ['filter' => 'FilterErp']);
 
 
-$routes->get('modul_in/add', 'Modul_in::create');
-$routes->post('modul_in', 'Modul_in::store');
-$routes->get('Modul_out', 'Modul_out::index');
-$routes->get('modul_out/restore/(:any)', 'Modul_out::restore/$1');
-$routes->post('modul_out/restore2', 'Modul_out::restore2');
+$routes->get('modul_in/add', 'Modul_in::create', ['filter' => 'FilterErp']);
+$routes->post('modul_in', 'Modul_in::store', ['filter' => 'FilterErp']);
+$routes->get('Modul_out', 'Modul_out::index', ['filter' => 'FilterErp']);
+$routes->get('modul_out/restore/(:any)', 'Modul_out::restore/$1', ['filter' => 'FilterErp']);
+$routes->post('modul_out/restore2', 'Modul_out::restore2', ['filter' => 'FilterErp']);
 $routes->get('modul_out/konfirmasi/(:any)', 'Modul_out::konfirmasi/$1');
 // $routes->get('modul_out/konfirmasi/(:any)', 'Modul_out::konfirmasi/$1');
 // $routes->post('modul_out/', 'Modul_out::store_konfirmasi');
 
 
 //edit Modul
-$routes->get('modul/edit/(:num)', 'Modul::edit/$1');
-$routes->put('modul/(:any)', 'Modul::update/$1');
-$routes->delete('modul/(:segment)', 'Modul::destroy/$1');
+$routes->get('modul/edit/(:num)', 'Modul::edit/$1', ['filter' => 'FilterErp']);
+$routes->put('modul/(:any)', 'Modul::update/$1', ['filter' => 'FilterErp']);
+$routes->delete('modul/(:segment)', 'Modul::destroy/$1', ['filter' => 'FilterErp']);
 
 //import modul
-$routes->post('modul/import', 'Modul::import');
+$routes->post('modul/import', 'Modul::import', ['filter' => 'FilterErp']);
 //===================================================================
 
 //===================================================================
@@ -126,48 +126,48 @@ $routes->get('admin.Sertifikat', 'Sertifikat::index');
 
 
 //add sertifikat
-$routes->get('sertifikat/add', 'Sertifikat::create');
-$routes->post('sertifikat', 'Sertifikat::store');
+$routes->get('sertifikat/add', 'Sertifikat::create', ['filter' => 'FilterErp']);
+$routes->post('sertifikat', 'Sertifikat::store', ['filter' => 'FilterErp']);
 
 //edit sertifikat
-$routes->get('sertifikat/edit/(:num)', 'Sertifikat::edit/$1');
-$routes->put('sertifikat/(:any)', 'Sertifikat::update/$1');
-$routes->delete('sertifikat/(:segment)', 'Sertifikat::destroy/$1');
+$routes->get('sertifikat/edit/(:num)', 'Sertifikat::edit/$1', ['filter' => 'FilterErp']);
+$routes->put('sertifikat/(:any)', 'Sertifikat::update/$1', ['filter' => 'FilterErp']);
+$routes->delete('sertifikat/(:segment)', 'Sertifikat::destroy/$1', ['filter' => 'FilterErp']);
 
 //import sertifikat
-$routes->post('sertifikatlist/import', 'SertifikatList::import');
+$routes->post('sertifikatlist/import', 'SertifikatList::import', ['filter' => 'FilterErp']);
 //===================================================================
 
 //===================================================================
 //list modul page
-$routes->get('ListModul', 'ListModul::index');
+$routes->get('ListModul', 'ListModul::index', ['filter' => 'FilterErp']);
 
 //add List Modul
-$routes->get('listmodul/add', 'ListModul::create');
-$routes->post('listmodul', 'ListModul::store');
+$routes->get('listmodul/add', 'ListModul::create', ['filter' => 'FilterErp']);
+$routes->post('listmodul', 'ListModul::store', ['filter' => 'FilterErp']);
 
 //edit List Modul
-$routes->get('listmodul/edit/(:num)', 'ListModul::edit/$1');
-$routes->put('listmodul/(:any)', 'ListModul::update/$1');
-$routes->delete('listmodul/(:segment)', 'ListModul::destroy/$1');
+$routes->get('listmodul/edit/(:num)', 'ListModul::edit/$1', ['filter' => 'FilterErp']);
+$routes->put('listmodul/(:any)', 'ListModul::update/$1', ['filter' => 'FilterErp']);
+$routes->delete('listmodul/(:segment)', 'ListModul::destroy/$1', ['filter' => 'FilterErp']);
 
 //process modul
-$routes->get('listmodul/restore/(:any)', 'ListModul::restore/$1');
-$routes->get('listmodul/restore', 'ListModul::restore');
-$routes->delete('listmodul/konfirm/(:any)', 'ListModul::konfirm/$1');
-$routes->delete('listmodul/destroy2/(:any)', 'ListModul::destroy2/$1');
+$routes->get('listmodul/restore/(:any)', 'ListModul::restore/$1', ['filter' => 'FilterErp']);
+$routes->get('listmodul/restore', 'ListModul::restore', ['filter' => 'FilterErp']);
+$routes->delete('listmodul/konfirm/(:any)', 'ListModul::konfirm/$1', ['filter' => 'FilterErp']);
+$routes->delete('listmodul/destroy2/(:any)', 'ListModul::destroy2/$1', ['filter' => 'FilterErp']);
 
 //Laporan
-$routes->get('admin.Laporan', 'Laporan::index');
+$routes->get('admin.Laporan', 'Laporan::index', ['filter' => 'FilterErp']);
 
 
 //import List modul
-$routes->post('listmodul/import', 'ListModul::import');
+$routes->post('listmodul/import', 'ListModul::import', ['filter' => 'FilterErp']);
 
 //profil admin
-$routes->get('/profil/edit/(:any)', 'Dashboard::edit/$1');
-$routes->put('profil/edit/change_profil/(:any)', 'Dashboard::update/$1');
-$routes->put('profil/edit/change_password/(:any)', 'Dashboard::change_password/$1');
+$routes->get('/profil/edit/(:any)', 'Dashboard::edit/$1', ['filter' => 'FilterErp']);
+$routes->put('profil/edit/change_profil/(:any)', 'Dashboard::update/$1', ['filter' => 'FilterErp']);
+$routes->put('profil/edit/change_password/(:any)', 'Dashboard::change_password/$1', ['filter' => 'FilterErp']);
 
 
 
