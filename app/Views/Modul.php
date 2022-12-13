@@ -62,7 +62,7 @@
                     <td style="border: none;"></td>
                     <td style="border: none;"></td>
                     <td style="border: none;">
-                        <button class="btn btn-primary" style="width: 200px;" type="submit">Masukkan Keranjang</button>
+                        <button class="btn btn-primary float-sm-right mt-3" style="width: 200px;" type="submit">Masukkan Keranjang</button>
                     </td>
                 </tr>
             </tfoot>
