@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Des 2022 pada 06.44
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 8.0.19
+-- Generation Time: Dec 13, 2022 at 05:33 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `artikel`
+-- Table structure for table `artikel`
 --
 
 CREATE TABLE `artikel` (
@@ -38,7 +38,7 @@ CREATE TABLE `artikel` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `fakultas`
+-- Table structure for table `fakultas`
 --
 
 CREATE TABLE `fakultas` (
@@ -47,7 +47,7 @@ CREATE TABLE `fakultas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `fakultas`
+-- Dumping data for table `fakultas`
 --
 
 INSERT INTO `fakultas` (`id`, `nama`) VALUES
@@ -60,7 +60,26 @@ INSERT INTO `fakultas` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jurusan`
+-- Table structure for table `history`
+--
+
+CREATE TABLE `history` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `id_user` varchar(255) NOT NULL,
+  `id_produk` varchar(255) DEFAULT NULL,
+  `id_sertifikat` int(5) UNSIGNED DEFAULT NULL,
+  `k_sertifikat` varchar(255) DEFAULT NULL,
+  `k_jp` varchar(255) DEFAULT NULL,
+  `qty` int(5) UNSIGNED NOT NULL,
+  `harga` int(100) NOT NULL,
+  `konfirmasi` int(11) NOT NULL,
+  `tanggal_checkout` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jurusan`
 --
 
 CREATE TABLE `jurusan` (
@@ -70,7 +89,7 @@ CREATE TABLE `jurusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `jurusan`
+-- Dumping data for table `jurusan`
 --
 
 INSERT INTO `jurusan` (`id`, `nama`, `id_fakultas`) VALUES
@@ -93,7 +112,7 @@ INSERT INTO `jurusan` (`id`, `nama`, `id_fakultas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -107,7 +126,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
@@ -120,12 +139,14 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 (11, '2022-11-03-105541', 'App\\Database\\Migrations\\ShoppingCart', 'default', 'App', 1669270583, 2),
 (12, '2022-11-09-161222', 'App\\Database\\Migrations\\NilaiSertifikat', 'default', 'App', 1669282209, 3),
 (13, '2022-11-15-092028', 'App\\Database\\Migrations\\Artikels', 'default', 'App', 1670347416, 4),
-(15, '2022-12-09-190835', 'App\\Database\\Migrations\\Notifications', 'default', 'App', 1670782996, 5);
+(15, '2022-12-09-190835', 'App\\Database\\Migrations\\Notifications', 'default', 'App', 1670782996, 5),
+(16, '2022-12-06-172009', 'App\\Database\\Migrations\\History', 'default', 'App', 1670867490, 6),
+(17, '2022-12-12-162859', 'App\\Database\\Migrations\\NotifUser', 'default', 'App', 1670867503, 7);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `moduls`
+-- Table structure for table `moduls`
 --
 
 CREATE TABLE `moduls` (
@@ -137,13 +158,13 @@ CREATE TABLE `moduls` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `moduls`
+-- Dumping data for table `moduls`
 --
 
 INSERT INTO `moduls` (`id`, `nama_modul`, `kode_modul`, `ketersediaan`, `harga_modul`) VALUES
-(2, 'SAP-Fundamental', 'SAP01', 90, 50000),
-(3, 'Business Processes in Management Accounting', 'AC040', 50, 65000),
-(4, 'Business Processes in Financial Accounting', 'AC010', 80, 70000),
+(2, 'SAP-Fundamental', 'SAP01', 85, 50000),
+(3, 'Business Processes in Management Accounting', 'AC040', 46, 65000),
+(4, 'Business Processes in Financial Accounting', 'AC010', 78, 70000),
 (5, 'Business Processes in Human Capital Management', 'HR050', 10, 85000),
 (6, 'Introduction to the ABAP Workbench', 'BC400', 28, 65000),
 (7, 'Business Processes in Sales Order', 'SCM600', 10, 60000),
@@ -152,7 +173,7 @@ INSERT INTO `moduls` (`id`, `nama_modul`, `kode_modul`, `ketersediaan`, `harga_m
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `moduls_in`
+-- Table structure for table `moduls_in`
 --
 
 CREATE TABLE `moduls_in` (
@@ -163,7 +184,7 @@ CREATE TABLE `moduls_in` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `moduls_in`
+-- Dumping data for table `moduls_in`
 --
 
 INSERT INTO `moduls_in` (`id_in`, `id_moduls`, `qty`, `created_at`) VALUES
@@ -173,7 +194,7 @@ INSERT INTO `moduls_in` (`id_in`, `id_moduls`, `qty`, `created_at`) VALUES
 (4, 4, 10, '2022-11-24 15:30:29');
 
 --
--- Trigger `moduls_in`
+-- Triggers `moduls_in`
 --
 DELIMITER $$
 CREATE TRIGGER `delete_moduls_in` AFTER DELETE ON `moduls_in` FOR EACH ROW BEGIN
@@ -193,7 +214,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nilai_sertifikat`
+-- Table structure for table `nilai_sertifikat`
 --
 
 CREATE TABLE `nilai_sertifikat` (
@@ -216,7 +237,7 @@ CREATE TABLE `nilai_sertifikat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `nilai_sertifikat`
+-- Dumping data for table `nilai_sertifikat`
 --
 
 INSERT INTO `nilai_sertifikat` (`id`, `jp`, `nilai`, `tanggal_ujian`, `nama_user`, `nim_user`, `result`, `reguler_user`, `kelas`, `status`, `nama_dosen`, `ruangan`, `sertifikat_id`, `no_so`, `keterangan`, `is_out`) VALUES
@@ -244,7 +265,7 @@ INSERT INTO `nilai_sertifikat` (`id`, `jp`, `nilai`, `tanggal_ujian`, `nama_user
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `notifications`
+-- Table structure for table `notifications`
 --
 
 CREATE TABLE `notifications` (
@@ -252,10 +273,29 @@ CREATE TABLE `notifications` (
   `body` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `body`) VALUES
+(69, 'Ada Pesanan Masuk dari darth(1234567890)');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `roles`
+-- Table structure for table `notif_user`
+--
+
+CREATE TABLE `notif_user` (
+  `id` int(5) UNSIGNED NOT NULL,
+  `body` text NOT NULL,
+  `user` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
@@ -266,7 +306,7 @@ CREATE TABLE `roles` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sertifikat`
+-- Table structure for table `sertifikat`
 --
 
 CREATE TABLE `sertifikat` (
@@ -276,7 +316,7 @@ CREATE TABLE `sertifikat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `sertifikat`
+-- Dumping data for table `sertifikat`
 --
 
 INSERT INTO `sertifikat` (`id`, `nama_sertifikat`, `kode_sertifikat`) VALUES
@@ -291,7 +331,7 @@ INSERT INTO `sertifikat` (`id`, `nama_sertifikat`, `kode_sertifikat`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `shopping_cart`
+-- Table structure for table `shopping_cart`
 --
 
 CREATE TABLE `shopping_cart` (
@@ -308,7 +348,16 @@ CREATE TABLE `shopping_cart` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Trigger `shopping_cart`
+-- Dumping data for table `shopping_cart`
+--
+
+INSERT INTO `shopping_cart` (`id`, `id_user`, `id_produk`, `id_sertifikat`, `k_sertifikat`, `k_jp`, `qty`, `harga`, `konfirmasi`, `tanggal_checkout`) VALUES
+(164, '1234567890', 'SAP01', NULL, NULL, NULL, 5, 50000, 0, '2022-12-12'),
+(165, '1234567890', 'AC040', NULL, NULL, NULL, 4, 65000, 0, '2022-12-12'),
+(166, '1234567890', 'AC010', NULL, NULL, NULL, 2, 70000, 0, '2022-12-12');
+
+--
+-- Triggers `shopping_cart`
 --
 DELIMITER $$
 CREATE TRIGGER `restore_stok_modul` AFTER DELETE ON `shopping_cart` FOR EACH ROW BEGIN
@@ -335,7 +384,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -351,7 +400,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `nama`, `nim`, `email`, `no_hp`, `id_jurusan`, `reguler`, `password`, `is_admin`) VALUES
@@ -363,79 +412,96 @@ INSERT INTO `users` (`id`, `nama`, `nim`, `email`, `no_hp`, `id_jurusan`, `regul
 (8, 'FACHRI ADRIANSYAH', '0119101104', 'mahasiswa@gmail.com', '081231293123', 2, '', '$2y$10$/nYyHHsZ9xofVPKQedK7COaWCM9CJ6l.nvY/qy9GhWmgBN4NL8Eim', 0),
 (9, 'RAGA AHLIL FIKRI', '0119101072', 'raga@gmail.com', '081239129311', 2, 'A', '$2y$10$FVNMxzltIm7ZaCIxIdVr6e4Yk.z4y6r5RGkukibZayozm.vaP4rEO', 0),
 (10, 'Admin', '6666666666', 'admin@gmail.com', '0866666666666', 3, '', '$2y$10$5TEJVY5wyeu5DajwV0G2k.hdhDiLbAjQ6q4mFjWJcAjYj3foRYsPC', 1),
-(11, 'Muhamad Agung Raharjo', '0619101024', 'agung.raharjo@widyatama.ac.id', '087775642178', 3, 'A', '$2y$10$iW54oLvCR117kmBxc9WRz.RrtQGAREzgoddmcLKh/BHcsu5XbS9BS', 0);
+(11, 'Muhamad Agung Raharjo', '0619101024', 'agung.raharjo@widyatama.ac.id', '087775642178', 3, 'A', '$2y$10$iW54oLvCR117kmBxc9WRz.RrtQGAREzgoddmcLKh/BHcsu5XbS9BS', 0),
+(12, 'agus mahmud', '1234567891', 'agusmahmud@widyatama.ac.id', '1234567889111', 3, 'A', '$2y$10$Nrg5lKrBUiosGObZziS0Z..Bt8tAPYj9F1wqBuP.x0LFfoYhP/Ype', 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `artikel`
+-- Indexes for table `artikel`
 --
 ALTER TABLE `artikel`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `fakultas`
+-- Indexes for table `fakultas`
 --
 ALTER TABLE `fakultas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `jurusan`
+-- Indexes for table `history`
+--
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `history_id_user_foreign` (`id_user`),
+  ADD KEY `history_id_produk_foreign` (`id_produk`),
+  ADD KEY `history_id_sertifikat_foreign` (`id_sertifikat`);
+
+--
+-- Indexes for table `jurusan`
 --
 ALTER TABLE `jurusan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `jurusan_id_fakultas_foreign` (`id_fakultas`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `moduls`
+-- Indexes for table `moduls`
 --
 ALTER TABLE `moduls`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `kode_modul` (`kode_modul`);
 
 --
--- Indeks untuk tabel `moduls_in`
+-- Indexes for table `moduls_in`
 --
 ALTER TABLE `moduls_in`
   ADD PRIMARY KEY (`id_in`),
   ADD KEY `id_moduls` (`id_moduls`);
 
 --
--- Indeks untuk tabel `nilai_sertifikat`
+-- Indexes for table `nilai_sertifikat`
 --
 ALTER TABLE `nilai_sertifikat`
   ADD PRIMARY KEY (`id`),
   ADD KEY `nilai_sertifikat_sertifikat_id_foreign` (`sertifikat_id`);
 
 --
--- Indeks untuk tabel `notifications`
+-- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `roles`
+-- Indexes for table `notif_user`
+--
+ALTER TABLE `notif_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `notif_user_user_foreign` (`user`);
+
+--
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `sertifikat`
+-- Indexes for table `sertifikat`
 --
 ALTER TABLE `sertifikat`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `kode_sertifikat` (`kode_sertifikat`);
 
 --
--- Indeks untuk tabel `shopping_cart`
+-- Indexes for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
   ADD PRIMARY KEY (`id`),
@@ -444,7 +510,7 @@ ALTER TABLE `shopping_cart`
   ADD KEY `shopping_cart_id_sertifikat_foreign` (`id_sertifikat`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -452,99 +518,125 @@ ALTER TABLE `users`
   ADD KEY `users_id_jurusan_foreign` (`id_jurusan`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `artikel`
+-- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
   MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `fakultas`
+-- AUTO_INCREMENT for table `fakultas`
 --
 ALTER TABLE `fakultas`
   MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `jurusan`
+-- AUTO_INCREMENT for table `history`
+--
+ALTER TABLE `history`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `jurusan`
 --
 ALTER TABLE `jurusan`
   MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT untuk tabel `moduls`
+-- AUTO_INCREMENT for table `moduls`
 --
 ALTER TABLE `moduls`
   MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `moduls_in`
+-- AUTO_INCREMENT for table `moduls_in`
 --
 ALTER TABLE `moduls_in`
   MODIFY `id_in` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `nilai_sertifikat`
+-- AUTO_INCREMENT for table `nilai_sertifikat`
 --
 ALTER TABLE `nilai_sertifikat`
   MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- AUTO_INCREMENT untuk tabel `notifications`
+-- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT untuk tabel `roles`
+-- AUTO_INCREMENT for table `notif_user`
+--
+ALTER TABLE `notif_user`
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `sertifikat`
+-- AUTO_INCREMENT for table `sertifikat`
 --
 ALTER TABLE `sertifikat`
   MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `shopping_cart`
+-- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `jurusan`
+-- Constraints for table `history`
+--
+ALTER TABLE `history`
+  ADD CONSTRAINT `history_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `moduls` (`kode_modul`),
+  ADD CONSTRAINT `history_id_sertifikat_foreign` FOREIGN KEY (`id_sertifikat`) REFERENCES `nilai_sertifikat` (`id`),
+  ADD CONSTRAINT `history_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`nim`);
+
+--
+-- Constraints for table `jurusan`
 --
 ALTER TABLE `jurusan`
   ADD CONSTRAINT `jurusan_id_fakultas_foreign` FOREIGN KEY (`id_fakultas`) REFERENCES `fakultas` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `nilai_sertifikat`
+-- Constraints for table `nilai_sertifikat`
 --
 ALTER TABLE `nilai_sertifikat`
   ADD CONSTRAINT `nilai_sertifikat_sertifikat_id_foreign` FOREIGN KEY (`sertifikat_id`) REFERENCES `sertifikat` (`kode_sertifikat`);
 
 --
--- Ketidakleluasaan untuk tabel `shopping_cart`
+-- Constraints for table `notif_user`
+--
+ALTER TABLE `notif_user`
+  ADD CONSTRAINT `notif_user_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`nim`);
+
+--
+-- Constraints for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
   ADD CONSTRAINT `shopping_cart_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `moduls` (`kode_modul`),
@@ -552,7 +644,7 @@ ALTER TABLE `shopping_cart`
   ADD CONSTRAINT `shopping_cart_id_user_foreign` FOREIGN KEY (`id_user`) REFERENCES `users` (`nim`);
 
 --
--- Ketidakleluasaan untuk tabel `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_id_jurusan_foreign` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id`);
