@@ -46,12 +46,15 @@
                                      <input id="body" type="hidden" name="body" value="<?= $artikel->body; ?>">
                                      <trix-editor input="body"></trix-editor>
                                  </div>
-                                 <div class="mb-3">
+                                 <div class="form-group">
                                      <label for="img" class="form-label">Foto</label>
                                      <div class="col-sm-2 mb-2">
                                          <img src="/img/artikel/<?= $artikel->img; ?>" class="img-thumbnail img-preview">
                                      </div>
-                                     <input type="file" class="form-control" id="img" name="img" value="<?= $artikel->img; ?>" onchange="previewImg()">
+                                     <div class="custom-file">
+                                         <input type="file" class="custom-file-input" name="img" id="img" value="<?= $artikel->img; ?>" onchange="previewImg()">
+                                         <label class="custom-file-label" for="img">Choose file</label>
+                                     </div>
                                  </div>
                                  <button type="submit" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i>.Ubah</button>
                                  <a href="<?= site_url('admin.artikel') ?>" class="btn btn-outline-danger"><i class="fas fa-chevron-left"></i> Kembali</a>

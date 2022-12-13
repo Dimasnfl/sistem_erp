@@ -44,9 +44,10 @@
                     </div>
                 </div>
                 <hr style="background-color :gray">
+            <?php endforeach; ?>
         </div>
-    <?php endforeach; ?>
     </div>
+</div>
 </div>
 
 <?= $this->endsection('content'); ?>
