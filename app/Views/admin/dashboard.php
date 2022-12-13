@@ -59,6 +59,22 @@
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+            <?php $i = 0; ?>
+            <?php foreach ($sum_artikel as $a) : ?>
+              <?php $i++; ?>
+            <?php endforeach ?>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Jumlah Postingan Artikel</span>
+              <span class="info-box-number"><?php echo $i ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
 
         <!-- fix for small devices only -->
         <div class="clearfix hidden-md-up"></div>
@@ -70,7 +86,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Mhs Belum Ambil Sertifikat</span>
               <span class="info-box-number">
-              <?= $sum_nilai ?>
+                <?= $sum_nilai ?>
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -85,7 +101,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Jumlah Transaksi Selesai</span>
               <span class="info-box-number">
-              <?= $sum_transaksi ?>
+                <?= $sum_transaksi ?>
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -93,6 +109,8 @@
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
+
+
       </div>
       <div class="row">
         <div class="col-md-12">
