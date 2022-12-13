@@ -42,7 +42,7 @@ class Modul_out extends BaseController
 
     public function restore2()
     {
-        $this->shopping->emptyTable('shopping_cart');
+        $this->shopping->where('konfirmasi', 0)->delete();
         session()->setFlashdata('message', 'Semua Data Telah Di Restore');
         return $this->response->redirect(site_url('admin.Modul'));
     }
