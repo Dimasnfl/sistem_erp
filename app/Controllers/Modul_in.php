@@ -21,7 +21,7 @@ class Modul_in extends BaseController
     }
 
 
-    public function create()
+    public function inc()
     {
         $header['title'] = 'Form Tambah Stok Modul';
         $data['moduls'] = $this->modul->getAll();
@@ -33,7 +33,7 @@ class Modul_in extends BaseController
         echo view('admin/layout/footer');
     }
 
-    public function store()
+    public function increase()
     {
         $data = $this->request->getpost();
 
@@ -46,6 +46,35 @@ class Modul_in extends BaseController
 
         if ($this->db->affectedRows() > 0) {
             session()->setFlashdata('message', 'Stok Modul Telah Ditambahkan');
+            return $this->response->redirect(site_url('admin.Modul'));
+        }
+    }
+
+    public function dec()
+    {
+        $header['title'] = 'Form Kurangi Stok Modul';
+        $data['moduls'] = $this->modul->getAll();
+
+        echo view('admin/layout/header', $header);
+        echo view('admin/layout/top_menu');
+        echo view('admin/layout/side_menu');
+        echo view('admin/modul_in/add2', $data);
+        echo view('admin/layout/footer');
+    }
+
+    public function decrease()
+    {
+        $data = $this->request->getpost();
+
+        // $data = [
+        //     'id_moduls' => $this->request->getVar('id_moduls'),
+        //     'qty'  => $this->request->getVar('qty'),
+        // ];
+
+        $this->db->table('moduls_out')->insert($data);
+
+        if ($this->db->affectedRows() > 0) {
+            session()->setFlashdata('message', 'Stok Modul Telah Dikurangi');
             return $this->response->redirect(site_url('admin.Modul'));
         }
     }

@@ -100,8 +100,10 @@ $routes->get('modul/add', 'Modul::create', ['filter' => 'FilterErp']);
 $routes->post('modul', 'Modul::store', ['filter' => 'FilterErp']);
 
 
-$routes->get('modul_in/add', 'Modul_in::create', ['filter' => 'FilterErp']);
-$routes->post('modul_in', 'Modul_in::store', ['filter' => 'FilterErp']);
+$routes->get('modul_in/add', 'Modul_in::inc', ['filter' => 'FilterErp']);
+$routes->post('modul_in', 'Modul_in::increase', ['filter' => 'FilterErp']);
+$routes->get('modul_in/dec', 'Modul_in::dec', ['filter' => 'FilterErp']);
+$routes->post('modul_in/decrease', 'Modul_in::decrease', ['filter' => 'FilterErp']);
 $routes->get('Modul_out', 'Modul_out::index', ['filter' => 'FilterErp']);
 $routes->get('modul_out/restore/(:any)', 'Modul_out::restore/$1', ['filter' => 'FilterErp']);
 $routes->post('modul_out/restore2', 'Modul_out::restore2', ['filter' => 'FilterErp']);
@@ -169,6 +171,20 @@ $routes->get('/profil/edit/(:any)', 'Dashboard::edit/$1', ['filter' => 'FilterEr
 $routes->put('profil/edit/change_profil/(:any)', 'Dashboard::update/$1', ['filter' => 'FilterErp']);
 $routes->put('profil/edit/change_password/(:any)', 'Dashboard::change_password/$1', ['filter' => 'FilterErp']);
 
+//===================================================================
+//users page
+$routes->get('admin.users', 'Users::index');
+
+
+//add sertifikat
+$routes->get('users/add', 'Users::create', ['filter' => 'FilterErp']);
+$routes->post('users', 'Users::store', ['filter' => 'FilterErp']);
+
+//edit sertifikat
+$routes->get('users/edit/(:num)', 'Users::edit/$1', ['filter' => 'FilterErp']);
+$routes->put('users/edit/change_info/(:any)', 'Users::update/$1', ['filter' => 'FilterErp']);
+$routes->put('users/edit/change_password/(:any)', 'Users::update2/$1', ['filter' => 'FilterErp']);
+$routes->delete('users/(:segment)', 'Users::destroy/$1', ['filter' => 'FilterErp']);
 
 
 //===================================================================

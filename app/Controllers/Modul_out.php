@@ -44,7 +44,7 @@ class Modul_out extends BaseController
     {
         $this->shopping->where('konfirmasi', 0)->delete();
         session()->setFlashdata('message', 'Semua Data Telah Di Restore');
-        return $this->response->redirect(site_url('admin.Modul'));
+        return $this->response->redirect(site_url('/Modul_out'));
     }
 
     public function konfirmasi($id = null)

@@ -38,14 +38,16 @@
                    <a href="<?= site_url('modul_in/add') ?>" class="btn btn-outline-warning"><i class="fas fa-th"></i></a>
                  </div> -->
                  <div class="btn-group">
-                   <button type="button" class="btn btn-outline-success"><i class="fas fa-plus"></i>.Add Modul</button>
+                   <button type="button" class="btn btn-outline-success"><i class="fas fa-archive"></i>.Manage Modul</button>
                    <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">
                      <span class="sr-only">Toggle Dropdown</span>
                    </button>
                    <div class="dropdown-menu" role="menu">
-                     <a class="dropdown-item has-icon" href="<?= site_url('modul/add') ?>"><i class="fas fa-plus"></i>.Add New Modul</a>
+                     <a class="dropdown-item has-icon" href="<?= site_url('modul/add') ?>"><i class="fas fa-th"></i>.Tambah Modul Baru</a>
                      <div class="dropdown-divider"></div>
-                     <a class="dropdown-item has-icon" href="<?= site_url('modul_in/add') ?>" ><i class="fas fa-th"></i>.Add Stock Modul</a>
+                     <a class="dropdown-item has-icon" href="<?= site_url('modul_in/add') ?>" ><i class="fas fa-plus"></i>.Tambah Stok Modul</a>
+                     <div class="dropdown-divider"></div>
+                     <a class="dropdown-item has-icon" href="<?= site_url('modul_in/dec') ?>" ><i class="fas fa-minus"></i>.Kurangi Stok Modul</a>
                    </div>
                  </div>
                  <div class="btn-group">

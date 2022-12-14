@@ -98,6 +98,7 @@ class Modul extends BaseController
             'kode_modul' => $this->request->getVar('kode_modul'),
             'nama_modul'  => $this->request->getVar('nama_modul'),
             'harga_modul'  => $this->request->getVar('harga_modul'),
+
         ];
 
 

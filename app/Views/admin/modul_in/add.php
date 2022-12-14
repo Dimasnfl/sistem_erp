@@ -42,7 +42,7 @@
 
                  <div class="form-group">
                    <label>TAMBAH STOK SEBANYAK</label>
-                   <input type="text" class="form-control" name="qty" placeholder="Masukkan Jumlah Stok" required>
+                   <input type="number" class="form-control" name="qty" placeholder="Masukkan Jumlah Stok" required>
                  </div>
                  <button type="submit" class="btn btn-outline-success"><i class="fas fa-paper-plane"></i>.Save</button>
                  <button type="reset" class="btn btn-outline-secondary"><i class="fas fa-redo"></i>.Reset</button>

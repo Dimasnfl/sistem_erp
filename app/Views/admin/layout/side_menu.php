@@ -34,6 +34,9 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+      <li class="nav-header">MANAJEMEN DATA</li>
+
         <li class="nav-item">
           <a href="<?= site_url('dashboard.admin') ?>" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -103,6 +106,16 @@
             <i class="nav-icon fas fa-list-alt"></i>
             <p>
               Artikel
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-header">PENGATURAN ADMIN</li>
+        <li class="nav-item">
+          <a href="<?= site_url('admin.users') ?>" class="nav-link">
+            <i class="nav-icon fas fa-user-friends"></i>
+            <p>
+              Data Admin
             </p>
           </a>
         </li>
