@@ -34,7 +34,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Jenis Modul</span>
               <span class="info-box-number">
-                <?= countData('moduls') ?>
+                <?= countData('moduls') ?> jenis
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -71,7 +71,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Mhs Belum Ambil Sertifikat</span>
               <span class="info-box-number">
-                <?= $sum_nilai ?>
+                <?= $sum_nilai ?> mahasiswa
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -86,7 +86,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Jumlah Transaksi Selesai</span>
               <span class="info-box-number">
-                <?= $sum_transaksi ?>
+                <?= $sum_transaksi ?> transaksi
               </span>
             </div>
             <!-- /.info-box-content -->
